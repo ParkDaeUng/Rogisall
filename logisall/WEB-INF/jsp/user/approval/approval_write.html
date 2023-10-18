@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=UTF-8'>
+    <link rel="stylesheet" href="../../../../resources/css/common.css" />
+    <link rel="stylesheet" href="../../../../resources/css/approval.css" />
+    <link rel="stylesheet" href="../../../../resources/css/header.css">
+    <link rel="stylesheet" href="../../../../resources/css/nav.css">
+    <!-- <link rel="stylesheet" href="<%=ROOT%>/resources/css/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/easy-pie-chart@2.1.7/dist/jquery.easypiechart.min.js"></script>
+    <script>
+
+    
+    
+        /**
+         * 그래프 데이터 입력
+         * : 미수금현황(도넛 그래프), 업무관리 진행바 데이터 입력은 해당 html 태그에서 진행
+         * /
+         
+        /* 바 그래프 데이터셋 */
+        let barData = {
+            labels: ['2020', '2021', '2022'],  // 연도 순서대로 입력
+            datasets: [
+                {
+                    label: '복리후생비',
+                    data: [70, 75, 90],  // 데이터 순서대로 입력
+                    borderRadius: 3,
+                    backgroundColor: '#394DC0',
+                    maxBarThickness: 40,
+                    datalabels: {
+                        color: '#394DC0',
+                    },
+                },
+                {
+                    label: '접대비',
+                    data: [30, 25, 10],  // 데이터 순서대로 입력
+                    borderRadius: 3,
+                    backgroundColor: '#FEAA12',
+                    maxBarThickness: 40,
+                    datalabels: {
+                        color: '#FEAA12'
+                    },
+                },
+            ]
+        }
+
+        // Profile DropDown Start
+        $(document).ready(function() {
+            // quick-menu dropDown
+            $('#quick-menu').click(function(e) {
+                e.stopPropagation();
+                $(".quickmenu-wrapper").toggle();
+            });
+            
+            $(document).click(function(e) {
+                if (!$(e.target).closest('#quick-menu').length &&
+                    !$(e.target).closest('.quickmenu-wrapper').length) {
+                        $('.quickmenu-wrapper').css({'display': 'none'});
+                };
+            });
+
+            // profile dropDown
+            $('#more-menu').click(function(e) {
+                e.stopPropagation();
+                $(".drop-wrapper").toggle();
+                $('#dropdown-icon').toggleClass('rotate');
+            });
+
+            $(document).click(function(e) {
+                if (!$(e.target).closest('#more-menu').length &&
+                    !$(e.target).closest('.drop-wrapper').length) {
+                        $('.drop-wrapper').css({'display': 'none'});
+                        $('#dropdown-icon').removeClass('rotate');
+                };
+            });
+
+            // profile-contents dropDown
+            $(".menu-contents").hide();
+            $(".menu-title").click(function() {
+                $(this).next(".menu-contents").toggle();
+                $(this).children('.drop-btn').toggleClass('rotate');
+            });
+
+        });
+        // Profile DropDown End
+
+        // Nav menu DropDown End
+        $(document).ready(function() {
+            // nav hide show
+            $(".slider_btn").click(function (e) {
+                if ($(".slider_btn").hasClass("slider_chk")) {
+                    $(".nav-menu").animate({
+                        left: "0px",
+                    }, 500);
+                    $(".main-wrapper").animate({
+                        paddingLeft: "240px",
+                    }, 500);
+                    $(".slider_btn").removeClass("slider_chk");
+                } else {
+                    $(".nav-menu").animate({
+                        left: "-200px",
+                    }, 500);
+                    $(".main-wrapper").animate({
+                        paddingLeft: "40px",
+                    }, 500);
+                    $(".slider_btn").addClass("slider_chk");
+                }
+            });
+
+            // nav dropDown
+            $('.nav-list-2nd').hide();
+            $('.nav-list-1nd').click(function() {
+                $('.list-2nd-item').removeClass('select');
+                $('.sub-content').css({'display':'none'});
+                $(this).toggleClass('select');
+                $('.nav-list-1nd').not(this).removeClass('select');
+                $(this).next('.nav-list-2nd').slideToggle(300);
+                $('.nav-list-1nd').not(this).next('.nav-list-2nd').slideUp(300);
+            });
+        
+            // nav-sub dropDown
+            $('.list-2nd-item').click(function(e) {
+                let viewY = window.innerHeight;
+                let targetY = Math.floor(e.target.getBoundingClientRect().top);
+                let popupHeight = $('.sub-content').outerHeight()
+
+
+                $(this).toggleClass('select');
+                $('.list-2nd-item').not(this).removeClass('select');
+                if($('.list-2nd-item').hasClass('select')) {
+                    if((viewY - popupHeight) > (targetY + 10)) {
+                        $('.sub-content').css({'display':'block', 'top':targetY, 'bottom':''});
+                    }else {
+                        $('.sub-content').css({'display':'block', 'top':'', 'bottom':viewY - targetY - 30});
+                    }
+                }else {
+                    $('.sub-content').css({'display':'none'});
+                }
+            });
+
+            $(document).click(function(e) {
+                if (!$(e.target).closest('.list-2nd-item').length &&
+                    !$(e.target).closest('.sub-content').length) {
+                        $('.sub-content').css({'display': 'none'});
+                        $('.list-2nd-item').removeClass('select');
+                };
+            });
+        });
+        // Nav menu DropDown End
+
+        // @note 2023-04-21
+        $(document).ready(function() {
+            $(".approval-wrapper").scroll(function() {
+                $('.daterangepicker').css("display", "none");
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <!-- 공통 nav Start -->
+    <nav class="nav-menu">
+        <div class="slider_btn ">
+            <img src="../../../../resources/svgs/Icon_arrowdownx20.svg" />
+        </div>
+        <a href="../main/index.html" class="logo"><img src="../../../../resources/white_new_logo.png" alt="logo"/></a>
+        <ul class="nav-list">
+            <li id="email" class="nav-list-1nd">E-메일</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="working-mail" class="nav-list-1nd">업무메일</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="message" class="nav-list-1nd">쪽지</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="schedule" class="nav-list-1nd">일정</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="id-card" class="nav-list-1nd">명함</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="board" class="nav-list-1nd">게시판</li>
+            <ol class="nav-list-2nd">
+                <li>그룹게시판</li>
+                <li>조직문화개선</li>
+                <li>안전보건</li>
+                <li>GlobalBiz게시판</li>
+                <li>사내게시판</li>
+                <li>코로나예방대책본부</li>
+                <li>청도고덕리게시판</li>
+                <li>교육게시판</li>
+                <li>사진함</li>
+            </ol>
+            <li id="work-board" class="nav-list-1nd">업무게시판</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="approve" class="nav-list-1nd">결재</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="fnq" class="nav-list-1nd">설문</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="meeting" class="nav-list-1nd">회의실</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="asset" class="nav-list-1nd">자산관리</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="esg" class="nav-list-1nd">ESG경영</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="logistar" class="nav-list-1nd">로지스타</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+        </ul>
+
+        <div class="nav-setting">
+            <img src="../../../../resources/svgs/setting2.svg" alt="widget-setting"/>
+            <p>위젯설정</p>
+        </div>
+    </nav>
+    <div class="sub-content">
+        <ul>
+            <li>서브컨텐츠_1</li>
+            <li>서브컨텐츠_2</li>
+            <li>서브컨텐츠_3</li>
+            <li>서브컨텐츠_4</li>
+            <li>서브컨텐츠_5</li>
+        </ul>
+    </div>
+    <!-- 공통 Nav End -->
+
+    <div class="main-wrapper bgW">
+        <!-- 공통 Header Start -->
+        <header>
+            <div class="header-search">
+                <input type="text" placeholder="검색어를 입력해주세요" />
+                <img src="../../../../resources/svgs/Icon_search.svg" alt="search" class="search"/>
+            </div>
+            <div class="header-middle"></div>
+            <div class="header-options">
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_mail_new.svg" alt="mail"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 1</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_messagecircle.svg" alt="message"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 2</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_talk.svg" alt="messanger"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 3</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_clipboard.svg" alt="clipboard"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 4</span>
+                </div>
+                <div class="division"></div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_quickmenu.svg" alt="quick-menu" id="quick-menu"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 5</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_notification_new.svg" alt="alert"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 6</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_usersearch.svg" alt="search-user"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 7</span>
+                </div>
+                <div id="more-menu" class="more-menu">
+                    <div class="profile-img">
+                        <img src="../../../../resources/svgs/profile.jfif" alt="profile-img"/>
+                    </div>
+                    <img src="../../../../resources/svgs/Icon_arrowdown.svg" alt="dropdown-icon" id="dropdown-icon"/>
+                </div>
+            </div>
+            <!-- QuickMenu Start -->
+            <div class="quickmenu-wrapper">
+                <div class="quick-box">
+                    <div class="quick-contents">
+                        <a href="#"><p>온라인연수원</p></a>
+                        <a href="#"><p>사내추천</p></a>
+                        <a href="#"><p>담당업무</p></a>
+                        <a href="#"><p>일반업무</p></a>
+                        <a href="#"><p>업무용SW다운</p></a>
+                        <a href="#"><p>지원센터</p></a>
+                        <a href="#"><p>전산자료실</p></a>
+                        <a href="#"><p>전산담당자</p></a>
+                    </div>
+                    <div class="quick-contents">
+                        <a href="#"><p>담당자별 사무보조</p></a>
+                        <a href="#"><p>노사협의회</p></a>
+                        <a href="#"><p>건의함</p></a>
+                        <a href="#"><p>연구회</p></a>
+                        <a href="#"><p>문의요청</p></a>
+                        <a href="#"><p>실비보험</p></a>
+                        <a href="#"><p>콘도예약</p></a>
+                        <a href="#"><p>메인설정</p></a>
+                    </div>
+                </div>
+            </div>
+            <!-- QuickMenu End -->
+            <!-- Profile DropDown Start -->
+            <div class="drop-wrapper">
+                <div class="dorp-my-profile">
+                    <div class="profile-box">
+                        <img src="../../../../resources/svgs/profile.jfif" alt="profile-img"/>
+                        <div class="my-profile">
+                            <div>노지은</div>
+                            <div>ULN 경영시스템 | 운영관리팀</div>
+                        </div>
+                        <img src="../../../../resources/svgs/Icon_setting.svg" alt="setting-icon">
+                    </div>
+                    <div class="info-box">
+                        <div>마지막 접속일 : 2022.12.09</div>
+                        <button type="button" class="logout-btn">로그아웃</button>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>커뮤니티</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_mail.svg"><p class="content-title">메일</p></div>
+                            <div class="community-right"><p class="txt-blue">129<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_messagecircle.svg"><p class="content-title">쪽지</p></div>
+                            <div class="community-right"><p class="txt-blue">9<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_talk.svg"><p class="content-title">로지스톡</p></div>
+                            <div class="community-right"><p class="txt-blue">34<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg"><p class="content-title">결재</p></div>
+                            <div class="community-right"><p class="txt-blue">86<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>일정관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full bg-blue-10 h-84">
+                            <div class="cal-box">
+                                <div class="cal">
+                                    <p class="day">Mon</p>
+                                    <p class="date">09</p>
+                                </div>
+                                <div class="schedule">
+                                    <div class="schedule-time">공유<span class="line"></span>15:00</div>
+                                    <div class="schedule-title content-title">운영관리팀 회의</div>
+                                </div>
+                            </div>
+                            <div class="date-count">today</div>
+                        </div>
+                        <div class="con-full h-84">
+                            <div  class="cal-box">
+                                <div class="cal">
+                                    <p class="day">Wed</p>
+                                    <p class="date">11</p>
+                                </div>
+                                <div class="schedule">
+                                    <div class="schedule-time">개인<span class="line"></span>10:00</div>
+                                    <div class="schedule-title content-title">포스팟 미팅</div>
+                                </div>
+                            </div>
+                            <div class="date-count">today</div>
+                        </div>
+                        <button class="add-btn">일정등록<img src="../../../../resources/svgs/Icon_add.svg"></button>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>휴가 사용현황</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-56">
+                            <div class="content-title">연차</div>
+                            <p class="txt-bold"><span class="s-navy100" style="margin-right: 10px;">총 10일 중</span>10<span class="s-navy100"> 일 남음</span></p>
+                        </div>
+                        <div class="con-full h-56">
+                            <div class="content-title">하계휴가</div>
+                            <p class="txt-bold"><span class="s-navy100" style="margin-right: 10px;">총 10일 중</span>0<span class="s-navy100"> 일 남음</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>교육이수</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents flex-left">
+                        <div class="con-auto bg-y content-title">어학</div>
+                        <div class="con-auto bg-p content-title">물류</div>
+                        <div class="con-auto bg-b content-title">마케팅</div>
+                        <span class="s-gray60">개인정보관리 > 인사정보 > <a href="#">진급/교육과정필수정보</a> 에서 반드시 상세정보를 확인하시길 바랍니다.</span>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>자산관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">자산</p>
+                            </div>
+                            <p class="txt-blue">3<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg" alt="icon"/>
+                                <p class="content-title">관리</p>
+                            </div>
+                            <p class="txt-blue">29<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>물품관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">신청</p>
+                            </div>
+                            <p class="txt-blue">3<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg" alt="icon"/>
+                                <p class="content-title">결재</p>
+                            </div>
+                            <p class="txt-blue">29<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>콘도예약</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">신청</p>
+                            </div>
+                            <p class="txt-blue">75<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_calendar.svg" alt="icon"/>
+                                <p class="content-title">예약</p>
+                            </div>
+                            <p class="txt-blue">176<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Profile DropDown End -->
+        </header>
+        <!-- 공통 Header End -->
+
+        <!-- content start -->
+        <main>
+            <div class="approval-wrapper">
+                <!-- @note 2023-03-10 -->
+                <div class="approval-cont">
+                    <div class="approval-cont-row">
+                        
+                        <div class="approval-content-left">                        
+                            <section class="approval-group-content color_bg">
+                                <div class="tree-list">
+                                    <!-- 바인딩된 data로 jstree 생성하는 부분, /resouces/js/approval/index.js에서 처리 -->
+                                    <div class="tree-list-bottom" id="jstree">
+                                        <ul class="menu-list"></ul>
+                                    </div>
+                                </div>                            
+                            </section>                        
+                        </div>
+                        
+                        <div class="approval-content-right">
+                            <section class="post-content view-content">
+                                <div class="post-view-top">
+                                    <p class="tit">미사용연차 확인 및 연차사용계획서</p>
+                                </div>
+            
+                                <table class="post-tb">
+                                    <caption>문서분류 문서등급 부서 직위 잔여 연차 연차 사용일 내용이 담겨있는 표</caption>
+                                    <colgroup>
+                                        <col style="width: 159px;">
+                                        <col style="width: auto;">
+                                        <col style="width: 159px;">
+                                        <col style="width: auto;">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th><span class="tit">문서분류</span></th>
+                                            <td>미사용연차확인 및 연차사용계획서</td>
+                                            <th><span class="tit">문서등급</span></th>
+                                            <td>
+                                                <div class="content-search-item">
+                                                    <div class="select-box size-s">                                
+                                                        <input type="hidden" name="option-value" value="" id="">
+                                                        <button class="select-label" type="button">전체</button>
+                                                        <ul class="option" id="select-optionss1">
+                                                            <!-- /resouces/js/approval/index.js에서 처리 -->
+                                                            <li class="option-item">분류1</li>
+                                                            <li class="option-item">분류2</li>
+                                                        </ul>                               
+                                                    </div>
+                                                    <button type="button" class="rull-btn">문서등급규칙</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th><span class="tit">부서</span></th>
+                                            <td>로지스올시스템즈 운영혁신담당</td>
+                                            <th><span class="tit">직위</span></th>
+                                            <td>프로</td>
+                                        </tr>
+                                        <tr>
+                                            <th><span class="tit">잔여 연차</span></th>
+                                            <td class="en">
+                                                <span class="ch-blue">5</span> / 20
+                                            </td>
+                                            <th><span class="tit">연사 사용일</span></th>
+                                            <td>15</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+            
+                                <div class="write-area">
+                                    <div class="wr-area-top ft-sum-btn">
+                                        <p class="post-content-tit">결재선</p>
+                                        <button type="button" class="btn-blue popup-open">결재자 지정</button>
+                                    </div>
+            
+                                    <div class="sign-tb">
+                                        <div class="sign-lt">
+                                            <div class="sign-lt-cont">구분</div>
+                                            <div class="sign-lt-cont">소속</div> 
+                                            <div class="sign-lt-cont">직책</div>
+                                            <div class="sign-lt-cont">성명</div>
+                                        </div>
+                                        <div class="sign-rt">
+                                            <!-- data 삽입시 no-data 제거해주세요. -->
+                                            <div class="sign-rt-cont no-data">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="sign-rt-cont no-data">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="sign-rt-cont no-data">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="sign-rt-cont no-data">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="sign-rt-cont no-data">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="sign-rt-cont no-data">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="sign-rt-cont no-data">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="sign-rt-cont no-data">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                    </div>                       
+                                </div>
+            
+                                <div class="write-area">
+                                    <div class="wr-area-top">
+                                        <p class="post-content-tit">결재내용</p>
+                                    </div>
+                                    <div class="post-write-tb-area">
+                                        <table class="post-write-tb">
+                                            <caption>분류, 분류1, 분류2, 분류3, 기간, 첨부파일, 내용이 포함된 표</caption>
+                                            <colgroup>
+                                                <col style="width: 160px;">
+                                                <col style="width: auto;">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <th>
+                                                        <div class="tit">게시판</div>
+                                                    </th>
+                                                    <td>
+                                                        <div class="content-search-item">
+                                                            <div class="select-box">                                
+                                                                <input type="hidden" name="option-value" value="" id="">
+                                                                <button class="select-label" type="button">전체</button>
+                                                                <ul class="option" id="select-optionss">
+                                                                    <!-- /resouces/js/approval/index.js에서 처리 -->
+                                                                    <li class="option-item">분류1</li>
+                                                                    <li class="option-item">분류2</li>
+                                                                </ul>                               
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <div class="tit">분류1</div>
+                                                    </th>
+                                                    <td>
+                                                        <div class="content-search-item">
+                                                            <!-- select-box -->
+                                                            <div class="select-box size-s">                                
+                                                                <input type="hidden" name="option-value" value="" id="">
+                                                                <button class="select-label" type="button">전체</button>
+                                                                <ul class="option" id="select-options1" style="display: none;">
+                                                                    <!-- /resouces/js/approval/index.js에서 처리 -->
+                                                                    <li class="option-item">분류1</li>
+                                                                    <li class="option-item">분류2</li>
+                                                                </ul>                                
+                                                            </div>
+                                                            <!-- // select-box -->
+                                                            <!-- select-box -->
+                                                            <div class="select-box">                                
+                                                                <input type="hidden" name="option-value" value="" id="">
+                                                                <button class="select-label" type="button">전체</button>
+                                                                <ul class="option" id="select-options2" style="display: none;">
+                                                                    <!-- /resouces/js/approval/index.js에서 처리 -->
+                                                                    <li class="option-item">분류1</li>
+                                                                    <li class="option-item">분류2</li>
+                                                                </ul>                                
+                                                            </div>
+                                                            <!-- // select-box -->
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <div class="tit">분류2</div>
+                                                    </th>
+                                                    <td>
+                                                        <div class="chk_list_area">
+                                                            <ul class="list">
+                                                                <li>
+                                                                    <div class="chk_inner">
+                                                                        <input type="checkbox" class="inp_chk" id="inp_chk1" name="inp_chks" title="선택되지 않음">
+                                                                        <label for="inp_chk1" class="radio-a-label">전체</label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="chk_inner">
+                                                                        <input type="checkbox" class="inp_chk" id="inp_chk2" name="inp_chks" title="선택되지 않음">
+                                                                        <label for="inp_chk2" class="radio-a-label">회사공급횡령</label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="chk_inner">
+                                                                        <input type="checkbox" class="inp_chk" id="inp_chk3" name="inp_chks" title="선택되지 않음">
+                                                                        <label for="inp_chk3" class="radio-a-label">근무태만/업무지시불이행</label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="chk_inner">
+                                                                        <input type="checkbox" class="inp_chk" id="inp_chk4" name="inp_chks" title="선택되지 않음">
+                                                                        <label for="inp_chk4" class="radio-a-label"> 폭언/폭행</label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="chk_inner">
+                                                                        <input type="checkbox" class="inp_chk" id="inp_chk5" name="inp_chks" title="선택되지 않음">
+                                                                        <label for="inp_chk5" class="radio-a-label">음주운전</label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="chk_inner">
+                                                                        <input type="checkbox" class="inp_chk" id="inp_chk6" name="inp_chks" title="선택되지 않음">
+                                                                        <label for="inp_chk6" class="radio-a-label"> 데이터가공/조작</label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="chk_inner">
+                                                                        <input type="checkbox" class="inp_chk" id="inp_chk7" name="inp_chks" title="선택되지 않음">
+                                                                        <label for="inp_chk7" class="radio-a-label"> 거래처금품수수</label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="chk_inner">
+                                                                        <input type="checkbox" class="inp_chk" id="inp_chk8" name="inp_chks" title="선택되지 않음">
+                                                                        <label for="inp_chk8" class="radio-a-label"> 성희롱/성추행</label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="chk_inner">
+                                                                        <input type="checkbox" class="inp_chk" id="inp_chk9" name="inp_chks" title="선택되지 않음">
+                                                                        <label for="inp_chk9" class="radio-a-label"> 기타</label>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <div class="tit">분류3</div>
+                                                    </th>
+                                                    <td>
+                                                        <div class="content-search-item">
+                                                            <div class="sum-text-select">
+                                                                <div class="select-box size-s mr10">                                
+                                                                    <input type="hidden" name="option-value" value="" id="">
+                                                                    <button class="select-label" type="button">전체</button>
+                                                                    <ul class="option" id="select-options2" style="display: none;">
+                                                                        <!-- /resouces/js/approval/index.js에서 처리 -->
+                                                                        <li class="option-item">분류1</li>
+                                                                        <li class="option-item">분류2</li>
+                                                                    </ul>                                
+                                                                </div>
+                                                                <div class="input-box ss-size">
+                                                                    <input type="text">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <div class="tit">기간</div>
+                                                    </th>
+                                                    <td>
+                                                        <div class="day-on-off">
+                                                            <div class="datepicker datepicker-multi">
+                                                                <div class="date start-date">2023-02-28</div>
+                                                                <div class="date end-date">2023-02-28</div>
+                                                                <input type="hidden" name="" id="" value="">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr class="add-file-tr no-view">
+                                                    <th>
+                                                        <div class="tit">
+                                                            첨부파일
+                                                            <button type="button" class="more-btn">
+                                                                <img src="../../../../resources/svgs/Icon_arrowdown2.svg" alt="dropdown-icon" class="more-btn-img">
+                                                            </button>
+                                                        </div>
+                                                    </th>
+                                                    <td>
+                                                        <div class="add-file-area">         
+                                                            <div class="add-file-btns">
+                                                                <button type="button" class="r10">내 PC</button>
+                                                                <button type="button">드라이브</button>
+                                                            </div>                       
+                                                            <div class="Small_R --color-grey-80 ">
+                                                                첨부파일 0개 (0MB)
+                                                            </div>                
+                                                        </div>
+                                                        <!-- @note 2023-03-06 -->
+                                                        <div class="file-drag">
+                                                            <div class="file-drag-tp">
+                                                                <button class="file-drag-tp-del">
+                                                                    <img src="../../../../resources/svgs/Icon_close_gray.svg" alt="dropdown-icon" class="more-btn-img">
+                                                                </button>
+                                                                <div class="file-drag-tp-tit">                                                        
+                                                                    <span class="Small_R">파일명</span>
+                                                                </div> 
+                                                                <div class="file-drag-tp-volume">
+                                                                    <span class="Small_R">용량</span>
+                                                                </div>
+                                                            </div>
+            
+                                                            <!-- 파일 끌어오기전 -->
+                                                            <!-- <div class="file-drag-bp af-file Small_R">
+                                                                <img src="../../../../resources/svgs/Icon_file_drag.svg" alt="file_drag">
+                                                                마우스로 파일을 끌어오세요.
+                                                            </div> -->
+                                                            <!-- // 파일 끌어오기전 -->
+            
+                                                            <!-- 파일 끌어오기 후 -->
+                                                            <div class="file-drag-bp bf-file" >
+                                                                <span class="file-drag-bp-list">
+                                                                    <button class="file-drag-bp-del">
+                                                                        <img src="../../../../resources/svgs/Icon_close_gray.svg" alt="dropdown-icon" class="more-btn-img">
+                                                                    </button>
+                                                                    <div class="file-drag-bp-tit ">
+                                                                        <span class="Body6_R">파일명1</span>
+                                                                    </div>
+                                                                    <div class="file-drag-bp-volume ">
+                                                                        <span class="Body6_R">265.1.MB</span>
+                                                                    </div>
+                                                                </span>                                                    
+                                                            </div>
+                                                            <!-- // 파일 끌어오기후 -->
+                                                        </div>
+                                                        <!-- // @note 2023-03-06 -->
+                                                    </td>
+                                                </tr> 
+                                                <tr class="tb-full-line full-size">
+                                                    <td colspan="2">
+                                                        <div class="wr_edit">
+                                                            에디트 영역입니다.
+                                                        </div>
+                                                    </td>
+                                                </tr>    
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+            
+                                <div class="write-area last-wrtie-area">
+                                    <div class="kind-area">
+                                        <div class="write-area-lt">
+                                            <div class="wr-area-top ft-sum-btn">
+                                                <p class="--color-grey-100 Body3_B">분류 타이틀</p>
+                                                <button type="button" class="btn-blue">추가</button>
+                                                <button type="button">삭제</button>
+                                            </div>
+                                            <ul class="wt-kind">
+                                                <li class="tit">
+                                                    <div class="lt">구분</div>
+                                                    <div class="ct">사용시기 지정일</div>
+                                                    <div class="rt">년차/반차 구분</div>
+                                                </li>
+                                                <li class="cont">
+                                                    <div class="lt">-</div>
+                                                    <div class="ct">-</div>
+                                                    <div class="rt">-</div>
+                                                </li>
+                                            </ul>
+            
+                                            <ul class="vew-kind">
+                                                <li class="cont">
+                                                    <div class="lt">-</div>
+                                                    <div class="ct">-</div>
+                                                    <div class="rt">-</div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="write-area-rt">
+                                            <div class="wr-area-top">
+                                                <p class="--color-grey-100 Body3_B"> 사인</p>
+                                            </div>
+                                            <div class="sign-img">
+                                                <div class="img-area">
+                                                    <div class="inner-box">
+                                                        <img src="../../../../resources/svgs/Image_inne_box.jpg" alt="inner-img">
+                                                    </div>
+                                                </div>
+                                                <p>사인 이미지가 보이지 않을 경우  인트라넷 개인정보에서 사인이미지를 등록하세요.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="bottom-btn-row taL">
+                                    <button type="button" class="btn-border left">템플릿저장</button>
+                                    <button type="button" class="btn-border">취소</button>
+                                    <button type="button" class="btn-border">임시저장</button>
+                                    <button type="button" class="btn-blue">요청</button>
+                                </div>
+            
+                            </section>
+               
+                        </div>
+                    </div>
+                </div>
+                <!-- // @note 2023-03-10 -->
+                <script>
+                    $(function() {
+                        $(".more-btn").click(function() {                               
+                            if($(this).parents(".add-file-tr").hasClass("no-view")){
+                                $(this).parents(".add-file-tr").removeClass("no-view");
+                            }else {
+                                $(this).parents(".add-file-tr").addClass("no-view");
+                            }
+
+                            $(this).children('.more-btn-img').toggleClass('rotate');
+                        });
+                    });
+                </script>                    
+            </div>
+            <!-- content end -->
+        </main>
+    </div>
+
+   
+    <div class="dim" style=""></div>
+    <!-- 결재자 지정 레이어팝업 영역-->
+    <div class="layer-popup size-l">
+
+        <div class="sign-tab defult-list">
+            <button type="button" class="tab-btn on">부서</button>
+            <button type="button" class="tab-btn">직급</button>
+            <button type="button" class="tab-btn">직책</button>
+            <button type="button" class="tab-btn">이름</button>
+            <button type="button" class="tab-btn">라인</button>
+        </div>
+        <div class="img-btn">
+            <button type="button" class="popup-close"><img src="../../../../resources/svgs/icon_popup_close.svg" alt=""></button>
+        </div>
+
+        <div class="popup-cont">
+            <div class="popup-tit">
+                <span class="tit Body2_M">결재자지정</span>
+            </div>
+            <div class="cont-box">
+                <div class="box-lt">
+                    <div class="popup-grop">
+                        <div class="popup-tree-box">
+                            <div class="tree-list">
+                                <div class="tree-list-top">
+                                  <div class="select-box">
+                                    <!-- select box -->
+                                    <input type="hidden" name="option-value" value="" id="">
+                                    <button class="select-label" type="button">계열사 선택</button>
+                                    <ul class="option" id="select-options">
+                                      <!-- 바인딩된 data로 jstree 생성하는 부분, /resouces/js/group/index.js에서 처리 -->
+                                      <li class="option-item" id="628" title="로지스올(주)" onclick="get_selected_opts(event)">로지스올(주)</li>
+                                      <li class="option-item" id="254" title="로지스올시스템즈" onclick="get_selected_opts(event)">로지스올시스템즈</li>
+                                      <li class="option-item" id="1320" title="로지스올엔지니어링" onclick="get_selected_opts(event)">로지스올엔지니어링</li>
+                                      <li class="option-item" id="694" title="로지스올컨설팅" onclick="get_selected_opts(event)">로지스올컨설팅</li>
+                                      <li class="option-item" id="1195" title="마타컴퍼니" onclick="get_selected_opts(event)">마타컴퍼니</li>
+                                      <li class="option-item" id="1106" title="물류와환경연구소" onclick="get_selected_opts(event)">물류와환경연구소</li>
+                                      <li class="option-item" id="116" title="사외" onclick="get_selected_opts(event)">사외</li>
+                                      <li class="option-item" id="1137" title="에코로지스" onclick="get_selected_opts(event)">에코로지스</li>
+                                      <li class="option-item" id="477" title="이노로지스" onclick="get_selected_opts(event)">이노로지스</li>
+                                      <li class="option-item" id="1249" title="청도고덕리물류기재유한공사" onclick="get_selected_opts(event)">청도고덕리물류기재유한공사</li>
+                                      <li class="option-item" id="914" title="풀앳홈" onclick="get_selected_opts(event)">풀앳홈</li>
+                                      <li class="option-item" id="45" title="한국로지스풀" onclick="get_selected_opts(event)">한국로지스풀</li>
+                                      <li class="option-item" id="1119" title="한국물류연구원" onclick="get_selected_opts(event)">한국물류연구원</li>
+                                      <li class="option-item" id="1138" title="한국지트로지스" onclick="get_selected_opts(event)">한국지트로지스</li>
+                                      <li class="option-item" id="36" title="한국컨테이너풀" onclick="get_selected_opts(event)">한국컨테이너풀</li>
+                                      <li class="option-item" id="149" title="한국파렛트풀" onclick="get_selected_opts(event)">한국파렛트풀</li>
+                                      <li class="option-item" id="285" title="한국풀네트웍" onclick="get_selected_opts(event)">한국풀네트웍</li>
+                                      <li class="option-item" id="800" title="한국풀운영" onclick="get_selected_opts(event)">한국풀운영</li>
+                                      <li class="option-item" id="1338" title="LogisALLGoldlineVina" onclick="get_selected_opts(event)">LogisALLGoldlineVina</li>
+                                    </ul>
+                                  </div>
+                                  <div class="search">
+                                    <input type="text" placeholder="부서 검색">
+                                    <button class="btn-search">
+                                      <img src="../../../../resources/svgs/Icon_search.svg" alt="search">
+                                    </button>
+                                  </div>
+                                </div>
+                                <div class="vertical-line"></div>
+                                <!-- 바인딩된 data로 jstree 생성하는 부분, /resouces/js/group/index.js에서 처리 -->
+                                <div class="tree-list-bottom jstree jstree-1 jstree-default" id="jstree" role="tree" aria-multiselectable="true" tabindex="0" aria-activedescendant="1137" aria-busy="false">
+                                  <ul class="jstree-container-ul jstree-children jstree-no-dots" role="group">
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="628_anchor" aria-expanded="false" id="628" class="jstree-node  jstree-closed">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="628_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>로지스올(주) </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="254_anchor" aria-expanded="false" id="254" class="jstree-node  jstree-closed">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="254_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>로지스올시스템즈 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="1320_anchor" aria-expanded="false" id="1320" class="jstree-node  jstree-closed">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="1320_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>로지스올엔지니어링 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="694_anchor" aria-expanded="false" id="694" class="jstree-node  jstree-closed">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="694_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>로지스올컨설팅 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="1195_anchor" id="1195" class="jstree-node  jstree-leaf">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="1195_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>마타컴퍼니 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="1106_anchor" aria-expanded="false" id="1106" class="jstree-node  jstree-closed">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="1106_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>물류와환경연구소 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="116_anchor" aria-expanded="false" id="116" class="jstree-node jstree-closed">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor jstree-clicked" href="#" tabindex="-1" id="116_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>사외 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="1137_anchor" id="1137" class="jstree-node  jstree-leaf">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="1137_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>에코로지스 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="477_anchor" aria-expanded="false" id="477" class="jstree-node  jstree-closed">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="477_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>이노로지스 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="1249_anchor" id="1249" class="jstree-node  jstree-leaf">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="1249_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>청도고덕리물류기재유한공사 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="914_anchor" aria-expanded="false" id="914" class="jstree-node  jstree-closed">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="914_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>풀앳홈 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="45_anchor" aria-expanded="false" id="45" class="jstree-node  jstree-closed">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="45_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>한국로지스풀 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="1119_anchor" id="1119" class="jstree-node  jstree-leaf">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="1119_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>한국물류연구원 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="1138_anchor" id="1138" class="jstree-node  jstree-leaf">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="1138_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>한국지트로지스 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="36_anchor" aria-expanded="false" id="36" class="jstree-node  jstree-closed">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="36_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>한국컨테이너풀 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="149_anchor" aria-expanded="false" id="149" class="jstree-node  jstree-closed">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="149_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>한국파렛트풀 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="285_anchor" aria-expanded="false" id="285" class="jstree-node  jstree-closed">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="285_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>한국풀네트웍 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="800_anchor" aria-expanded="false" id="800" class="jstree-node  jstree-closed">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="800_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>한국풀운영 </a>
+                                    </li>
+                                    <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="1338_anchor" id="1338" class="jstree-node  jstree-leaf jstree-last">
+                                      <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                      <a class="jstree-anchor" href="#" tabindex="-1" id="1338_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>LogisALLGoldlineVina </a>
+                                    </li>
+                                  </ul>
+                                  <i src="../../../../resources/svgs/Icon_arrowdown16.svg"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- // popup-tree-box-->
+                    </div>
+                </div>
+                <div class="box-rt">
+                    <div class="box-rt-tit">
+                        <p>부서별 (<span>5</span>)</p>
+                        <button type="button" class="error-btn">모두삭제</button>
+                    </div>
+                    <div class="box-cont-tp">
+                        <div class="box-cont-tr">
+                            <div class="line-tb thumb">
+                                <div class="profile-box">
+                                    <div>
+                                        <img src="../../../../resources/svgs/channel_thumb_sample1.svg" alt="">
+                                    </div>
+                                    <div>김지은</div>
+                                </div>
+                            </div>
+                            <div class="line-tb info">
+                                <span class="Body6_R">12345</span>
+                                <span class="Body6_R">프로</span>
+                                <span class="Body6_R">제 2연구실</span>
+                            </div>
+                            <div class="line-tb but">
+                                <div class="radio-list-box">
+                                    <div class="radio-box">
+                                        <input type="radio" id="appoint1" name="appoint" value="appoint1">
+                                        <label for="appoint1">결재</label>
+                                    </div>
+                                    <div class="radio-box">
+                                        <input type="radio" id="appoint2" name="appoint" value="appoint2">
+                                        <label for="appoint2">수신</label>
+                                    </div>
+                                    <div class="radio-box">
+                                        <input type="radio" id="appoint3" name="appoint" value="appoint3">
+                                        <label for="appoint3">합의</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line-tb close-btn">
+                                <button type="button">
+                                    <img src="../../../../resources/svgs/Icon_file_close.svg" alt="file_close">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-cont-tr">
+                            <div class="line-tb thumb">
+                                <div class="profile-box">
+                                    <div>
+                                        <img src="../../../../resources/svgs/channel_thumb_sample1.svg" alt="">
+                                    </div>
+                                    <div>김지은</div>
+                                </div>
+                            </div>
+                            <div class="line-tb info">
+                                <span class="Body6_R">12345</span>
+                                <span class="Body6_R">프로</span>
+                                <span class="Body6_R">제 2연구실</span>
+                            </div>
+                            <div class="line-tb but">
+                                <div class="radio-list-box">
+                                    <div class="radio-box">
+                                        <input type="radio" id="appoint1" name="appoint" value="appoint1">
+                                        <label for="appoint1">결재</label>
+                                    </div>
+                                    <div class="radio-box">
+                                        <input type="radio" id="appoint2" name="appoint" value="appoint2">
+                                        <label for="appoint2">수신</label>
+                                    </div>
+                                    <div class="radio-box">
+                                        <input type="radio" id="appoint3" name="appoint" value="appoint3">
+                                        <label for="appoint3">합의</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line-tb close-btn">
+                                <button type="button">
+                                    <img src="../../../../resources/svgs/Icon_file_close.svg" alt="file_close">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-cont-tr">
+                            <div class="line-tb thumb">
+                                <div class="profile-box">
+                                    <div>
+                                        <img src="../../../../resources/svgs/channel_thumb_sample1.svg" alt="">
+                                    </div>
+                                    <div>김지은</div>
+                                </div>
+                            </div>
+                            <div class="line-tb info">
+                                <span class="Body6_R">12345</span>
+                                <span class="Body6_R">프로</span>
+                                <span class="Body6_R">제 2연구실</span>
+                            </div>
+                            <div class="line-tb but">
+                                <div class="radio-list-box">
+                                    <div class="radio-box">
+                                        <input type="radio" id="appoint1" name="appoint" value="appoint1">
+                                        <label for="appoint1">결재</label>
+                                    </div>
+                                    <div class="radio-box">
+                                        <input type="radio" id="appoint2" name="appoint" value="appoint2">
+                                        <label for="appoint2">수신</label>
+                                    </div>
+                                    <div class="radio-box">
+                                        <input type="radio" id="appoint3" name="appoint" value="appoint3">
+                                        <label for="appoint3">합의</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line-tb close-btn">
+                                <button type="button">
+                                    <img src="../../../../resources/svgs/Icon_file_close.svg" alt="file_close">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-cont-tr">
+                            <div class="line-tb thumb">
+                                <div class="profile-box">
+                                    <div>
+                                        <img src="../../../../resources/svgs/channel_thumb_sample1.svg" alt="">
+                                    </div>
+                                    <div>김지은</div>
+                                </div>
+                            </div>
+                            <div class="line-tb info">
+                                <span class="Body6_R">12345</span>
+                                <span class="Body6_R">프로</span>
+                                <span class="Body6_R">제 2연구실</span>
+                            </div>
+                            <div class="line-tb but">
+                                <div class="radio-list-box">
+                                    <div class="radio-box">
+                                        <input type="radio" id="appoint1" name="appoint" value="appoint1">
+                                        <label for="appoint1">결재</label>
+                                    </div>
+                                    <div class="radio-box">
+                                        <input type="radio" id="appoint2" name="appoint" value="appoint2">
+                                        <label for="appoint2">수신</label>
+                                    </div>
+                                    <div class="radio-box">
+                                        <input type="radio" id="appoint3" name="appoint" value="appoint3">
+                                        <label for="appoint3">합의</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line-tb close-btn">
+                                <button type="button">
+                                    <img src="../../../../resources/svgs/Icon_file_close.svg" alt="file_close">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-cont-tr">
+                            <div class="line-tb thumb">
+                                <div class="profile-box">
+                                    <div>
+                                        <img src="../../../../resources/svgs/channel_thumb_sample1.svg" alt="">
+                                    </div>
+                                    <div>김지은</div>
+                                </div>
+                            </div>
+                            <div class="line-tb info">
+                                <span class="Body6_R">12345</span>
+                                <span class="Body6_R">프로</span>
+                                <span class="Body6_R">제 2연구실</span>
+                            </div>
+                            <div class="line-tb but">
+                                <div class="radio-list-box">
+                                    <div class="radio-box">
+                                        <input type="radio" id="appoint1" name="appoint" value="appoint1">
+                                        <label for="appoint1">결재</label>
+                                    </div>
+                                    <div class="radio-box">
+                                        <input type="radio" id="appoint2" name="appoint" value="appoint2">
+                                        <label for="appoint2">수신</label>
+                                    </div>
+                                    <div class="radio-box">
+                                        <input type="radio" id="appoint3" name="appoint" value="appoint3">
+                                        <label for="appoint3">합의</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line-tb close-btn">
+                                <button type="button">
+                                    <img src="../../../../resources/svgs/Icon_file_close.svg" alt="file_close">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-cont-bt">
+                        <div class="search-area">
+                            <input type="text" placeholder="라인명 입력하세요.">
+                            <img src="../../../../resources/svgs/Icon_search.svg" alt="search" class="search">
+                        </div>
+                        <button class="btn-blue Body5_M">저장</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="popup-btn-box">
+            <button class="btn-border popup-close Body5_M">닫기</button>
+            <button class="btn-blue Body5_M">적용</button>
+        </div>
+    </div>
+    <!-- // 결재자 지정 레이어팝업 영역-->
+
+    <!-- jQuery -->
+    <script src="../../../../resources/lib/jquery-migrate-1.4.1.min.js"></script>
+    <!-- jsTree -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <!-- datepicker -->
+    <script type="text/javascript" src="../../../../resources/lib/moment.min.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/datepicker.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/timepicker.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../../resources/css/daterangepicker.css" />
+    <!-- data load / functions -->
+    <script src="../../../../resources/js/user/approval/index.js"></script>
+    <!-- <script src="../../../../resources/js/user/group/index.js"></script>  -->
+</body>
+
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../../../../resources/css/mobile/common.css" />
+    <link rel="stylesheet" href="../../../../resources/css/mobile/login.css" />
+    <link rel="stylesheet" href="../../../../resources/css/mobile/header.css">
+    <link rel="stylesheet" href="../../../../resources/css/mobile/nav.css">
+    <!-- <link rel="stylesheet" href="<%=ROOT%>/resources/css/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <!-- 공통 nav Start -->
+    <nav class="nav-menu">
+        <div class="nav-header">
+            <a href="../main/index.html" class="logo"><img src="../../../../resources/white_new_logo.png" alt="logo"/></a>
+            <button type="button" id="nav-close">
+                <img src="../../../../resources/svgs/Icon_close_white.svg" alt="logo"/>
+            </button>
+        </div>
+        <ul class="nav-list">
+            <li id="email" class="nav-list-1nd Body2_M">E-메일</li>
+            <ol class="nav-list-2nd" style="">
+                <li class="list-2nd-item Body5_R">서브메뉴_1 
+                    <span class="alert-red"><em>11</em></span>
+                </li>
+                <li class="list-2nd-item Body5_R">서브메뉴_2
+                    <span class="alert-red"><em>99+</em></span>
+                </li>
+                <li class="list-2nd-item Body5_R">서브메뉴_3</li>
+                <li class="list-2nd-item Body5_R">서브메뉴_4</li>
+                <li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="working-mail" class="nav-list-1nd Body2_M">업무메일</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="message" class="nav-list-1nd Body2_M">쪽지</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="schedule" class="nav-list-1nd Body2_M">일정</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="id-card" class="nav-list-1nd Body2_M">명함</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="board" class="nav-list-1nd Body2_M">게시판</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li>그룹게시판</li>
+                <li>조직문화개선</li>
+                <li>안전보건</li>
+                <li>GlobalBiz게시판</li>
+                <li>사내게시판</li>
+                <li>코로나예방대책본부</li>
+                <li>청도고덕리게시판</li>
+                <li>교육게시판</li>
+                <li>사진함</li>
+            </ol>
+            <li id="work-board" class="nav-list-1nd Body2_M">업무게시판</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="approve" class="nav-list-1nd Body2_M">결재</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="fnq" class="nav-list-1nd Body2_M">설문</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="meeting" class="nav-list-1nd Body2_M">회의실</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="asset" class="nav-list-1nd Body2_M">자산관리</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="esg" class="nav-list-1nd Body2_M">ESG경영</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="logistar" class="nav-list-1nd Body2_M">로지스타</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+        </ul>
+    </nav>    
+    <!-- 공통 Nav End -->
+
+    <div class="main-wrapper login-wrapper">
+
+        <!-- 공용 Header Start -->
+        
+        <!-- 공용 Header End -->
+
+        <!-- content start -->
+        <main>
+            <div class="login-content content">
+
+                <!-- @note 2023-06-12 -->
+                <div class="login-logo-box">
+                    <img src="../../../../resources/svgs/login_new_logo.svg" alt="로고" class="login-logo">
+                    <div class="login-help Body6_R"><button type="button">로그인이 안될때</button></div>
+                </div>
+                
+                <section class="login-box">                   
+                    <div class="input-box">
+                        <input type="text" placeholder="아이디를 입력해 주세요.">
+                    </div>
+                    <div class="input-box password-box">
+                        <input type="password" id="password" placeholder="비밀번호를 입력해 주세요.">
+                        <div class="eyes">
+                            <img src="../../../../resources/svgs/Icon_eyeslash.svg" class="password-hide">
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="핸드폰번호를 입력해 주세요.">
+                    </div>
+                    <div class="check-box-list">
+                        <div class="check_box">
+                            <div class="chk-inner">
+                                <input type="checkbox" class="inp-chk" id="inp_chk1" name="inp_chk" title="선택되지 않음">
+                                <label for="inp_chk1" class=" Small_R">아이디저장</label>
+                            </div>
+                        </div>
+                        <div class="check_box">
+                            <div class="chk-inner">
+                                <input type="checkbox" class="inp-chk" id="inp_chk2" name="inp_chk" title="선택되지 않음">
+                                <label for="inp_chk2" class=" Small_R">로그인 유지</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-btn-row">
+                        <button class="btn-blue">로그인</button>
+                    </div>
+                </section>    
+
+                <section class="roaming-box">
+                    <p class="roaming-tit Body2_M">해외지사 로밍시간</p>
+                    <div class="roaming-slide">
+                        <ul>
+                            <li>
+                                <div class="nation Body3_M en">
+                                    <img src="../../../../resources/svgs/Icon_clock.svg" alt="로고" class="icon_clock">
+                                    USA
+                                </div>
+                                <div class="clock Body2_B">
+                                    오후 11:42
+                                </div>
+                                <div class="day Body6_R">
+                                    2023년 1월 31일
+                                </div>
+                            </li>
+                            <li>
+                                <div class="nation Body3_M en">
+                                    <img src="../../../../resources/svgs/Icon_clock.svg" alt="로고" class="icon_clock">
+                                    JP
+                                </div>
+                                <div class="clock Body2_B">
+                                    오후 11:42
+                                </div>
+                                <div class="day Body6_R">
+                                    2023년 1월 31일
+                                </div>
+                            </li>
+                            <li>
+                                <div class="nation Body3_M en">
+                                    <img src="../../../../resources/svgs/Icon_clock.svg" alt="로고" class="icon_clock">
+                                    USA
+                                </div>
+                                <div class="clock Body2_B">
+                                    오후 11:42
+                                </div>
+                                <div class="day Body6_R">
+                                    2023년 1월 31일
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="login-bot">
+                    <ul>
+                        <li><a href="#" class="Body4_R">logisAll 명함관리</a></li>
+                        <li><a href="#" class="Body4_R">logisTalk</a></li>
+                        <li><a href="#" class="Body4_B">개인정보처리방침</a></li>
+                    </ul>
+                    <p class="ver-naming Body6_R en">logisAll_APK(v5.5)</p>
+                </section>
+            </div>        
+        </main>
+        <!-- content end -->
+
+        <!-- footer -->
+        <footer>
+            <div class="q-menu">
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_home.svg" alt="메인"/>
+                    <span class="Small_R">메인</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_quickmenu.svg" alt="퀵메뉴"/>
+                    <span class="Small_R">퀵메뉴</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/m_Icon_search.svg" alt="통합검색"/>
+                    <span class="Small_R">통합검색</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_user.svg" alt="마이페이지"/>
+                    <span class="Small_R">마이페이지</span>
+                </a>
+            </div>
+        </footer>
+        <!-- // footer -->
+    </div>
+
+    <div class="dim"></div>
+    <div class="layer-popup ver-03">
+        <div class="popup-tit">
+            <span class="tit Body3_B">로그인이 안될 때</span>
+        </div>
+        <div class="popup-cont">
+            <ul class="login-help-list">
+                <li class="Body4_R">휴대폰 번호가 등록되어 있을 경우만 로그인이 가능합니다.</li>
+                <li class="Body4_R">인트라넷 ID/PW를 입력해 주세요.</li>
+                <li class="Body4_R">로밍시에는 ID/PW를 직접 입력해 주세요.</li> 
+                <li class="Body4_R">로그인이 정상적으로 되지 않을 경우 v5.5로 업데이트가 되어있는지 확인해 주세요.</li>
+            </ul>
+        </div>
+        <div class="popup-btn-box">
+            <button class="btn-blue Body5_M popup-close">확인</button>
+        </div>
+    </div>
+
+    <script src="../../../../resources/js/mobile/index.js"></script> <!-- common.js -->
+    <script src="../../../../resources/js/mobile/login/index.js"></script>
+</body>
+
+</html>

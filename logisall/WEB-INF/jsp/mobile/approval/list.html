@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>결재 - 결재자 지정</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../../../../resources/css/mobile/common.css" />
+    <link rel="stylesheet" href="../../../../resources/css/mobile/approval.css" />
+    <link rel="stylesheet" href="../../../../resources/css/mobile/header.css">
+    <link rel="stylesheet" href="../../../../resources/css/mobile/nav.css">
+    <!-- <link rel="stylesheet" href="<%=ROOT%>/resources/css/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <!-- 공통 nav Start -->
+    <nav class="nav-menu">
+        <div class="nav-header">
+            <a href="../main/index.html" class="logo"><img src="../../../../resources/white_new_logo.png" alt="logo"/></a>
+            <button type="button" id="nav-close">
+                <img src="../../../../resources/svgs/Icon_close_white.svg" alt="logo"/>
+            </button>
+        </div>
+        <ul class="nav-list">
+            <li id="email" class="nav-list-1nd Body2_M">E-메일</li>
+            <ol class="nav-list-2nd" style="">
+                <li class="list-2nd-item Body5_R">서브메뉴_1 
+                    <span class="alert-red"><em>11</em></span>
+                </li>
+                <li class="list-2nd-item Body5_R">서브메뉴_2
+                    <span class="alert-red"><em>99+</em></span>
+                </li>
+                <li class="list-2nd-item Body5_R">서브메뉴_3</li>
+                <li class="list-2nd-item Body5_R">서브메뉴_4</li>
+                <li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="working-mail" class="nav-list-1nd Body2_M">업무메일</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="message" class="nav-list-1nd Body2_M">쪽지</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="schedule" class="nav-list-1nd Body2_M">일정</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="id-card" class="nav-list-1nd Body2_M">명함</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="board" class="nav-list-1nd Body2_M">게시판</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li>그룹게시판</li>
+                <li>조직문화개선</li>
+                <li>안전보건</li>
+                <li>GlobalBiz게시판</li>
+                <li>사내게시판</li>
+                <li>코로나예방대책본부</li>
+                <li>청도고덕리게시판</li>
+                <li>교육게시판</li>
+                <li>사진함</li>
+            </ol>
+            <li id="work-board" class="nav-list-1nd Body2_M">업무게시판</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="approve" class="nav-list-1nd Body2_M">결재</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="fnq" class="nav-list-1nd Body2_M">설문</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="meeting" class="nav-list-1nd Body2_M">회의실</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="asset" class="nav-list-1nd Body2_M">자산관리</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="esg" class="nav-list-1nd Body2_M">ESG경영</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="logistar" class="nav-list-1nd Body2_M">로지스타</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+        </ul>
+    </nav>    
+    <!-- 공통 Nav End -->
+
+    <div class="main-wrapper">
+        <!-- 공용 Header Start -->
+        <header> 
+             <!-- 서브 Header Start -->
+             <div class="sub-header header">
+                <a href="../main/index.html" class="back"><img src="../../../../resources/svgs/Icon_header_back.svg" alt="뒤로가기"/></a>
+                <div class="page-title Body2_M">
+                    결재자 지정
+                </div>
+            </div>    
+            <!-- 서브 Header End -->            
+        </header>
+        <!-- 공용 Header End -->
+
+        <!-- content start -->
+        <main >
+            <div class="approval-content content">
+
+                <section class="main-top"></section>
+
+                <section class="approval-group-content">
+                    <div class="tree-list">
+                        <!-- 퍼블리싱용으로 html 하드 코딩 -->
+                        <div class="tree-list-bottom jstree jstree-1 jstree-default" id="jstree" role="tree" aria-multiselectable="true" tabindex="0" aria-activedescendant="758" aria-busy="false">
+                            <ul class="jstree-container-ul jstree-children jstree-no-dots" role="group">
+                                <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="628_anchor" aria-expanded="true" id="628" class="jstree-node jstree-open">
+                                    <i class="jstree-icon jstree-ocl" role="presentation"></i>                                        
+                                    <a class="jstree-anchor" href="#" tabindex="-1" id="628_anchor">
+                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>
+                                        로지스올(주)
+                                    </a>
+                                    <ul role="group" class="jstree-children" style="">
+                                        <li role="treeitem" aria-selected="false" aria-level="2" aria-labelledby="926_anchor" aria-expanded="true" id="926" class="jstree-node jstree-open"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="#" tabindex="-1" id="926_anchor"><i class="jstree-icon jstree-themeicon" role="presentation"></i>글로벌사업개발팀</a>
+                                            <ul role="group" class="jstree-children" style="">
+                                                <li role="treeitem" aria-selected="false" aria-level="3" aria-labelledby="1076_anchor" id="1076" class="jstree-node  jstree-leaf">
+                                                    <i class="jstree-icon jstree-ocl" role="presentation"></i>
+                                                    <!-- NEW 클레스 추가시 -->
+                                                    <a class="jstree-anchor new" href="#" tabindex="-1" id="1076_anchor">
+                                                        <i class="jstree-icon jstree-themeicon" role="presentation"></i>
+                                                        개발1파트
+                                                    </a>
+                                                    <!-- // NEW 클레스 추가시 -->
+                                                </li>
+                                                <li role="treeitem" aria-selected="false" aria-level="3" aria-labelledby="1378_anchor" id="1378" class="jstree-node  jstree-leaf jstree-last"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="#" tabindex="-1" id="1378_anchor"><i class="jstree-icon jstree-themeicon" role="presentation"></i>개발2파트</a></li>
+                                            </ul>
+                                        </li>
+                                        <li role="treeitem" aria-selected="false" aria-level="2" aria-labelledby="701_anchor" aria-expanded="false" id="701" class="jstree-node  jstree-closed jstree-last"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="#" tabindex="-1" id="701_anchor"><i class="jstree-icon jstree-themeicon" role="presentation"></i>글로벌사업부문</a></li>
+                                    </ul>
+                                </li>
+                                <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="254_anchor" aria-expanded="true" id="254" class="jstree-node jstree-last jstree-open"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="#" tabindex="-1" id="254_anchor"><i class="jstree-icon jstree-themeicon" role="presentation"></i>로지스올시스템즈</a>
+                                    <ul role="group" class="jstree-children" style="">
+                                        <li role="treeitem" aria-selected="false" aria-level="2" aria-labelledby="264_anchor" aria-expanded="true" id="264" class="jstree-node jstree-last jstree-open"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="#" tabindex="-1" id="264_anchor"><i class="jstree-icon jstree-themeicon" role="presentation"></i>운영혁신담당</a>
+                                            <ul role="group" class="jstree-children" style="">
+                                                <li role="treeitem" aria-selected="true" aria-level="3" aria-labelledby="758_anchor" id="758" class="jstree-node  jstree-leaf jstree-last"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor jstree-clicked" href="#" tabindex="-1" id="758_anchor"><i class="jstree-icon jstree-themeicon" role="presentation"></i>경영시스템혁신팀</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul><i src="../../../../resources/svgs/Icon_arrowdown16.svg"></i><i src="../../../../resources/svgs/Icon_arrowdown16.svg"></i><i src="../../../../resources/svgs/Icon_arrowdown16.svg"></i><i src="../../../../resources/svgs/Icon_arrowdown16.svg"></i>
+                        </div>
+                        <div id="jstree"></div>
+                        <!-- // 퍼블리싱용으로 html 하드 코딩 -->
+                    </div>
+                </section>
+            </div>        
+        </main>
+        <!-- content end -->
+
+
+        <!-- footer -->
+        <footer>
+            <div class="q-menu">
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_home.svg" alt="메인"/>
+                    <span class="Small_R">메인</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_quickmenu.svg" alt="퀵메뉴"/>
+                    <span class="Small_R">퀵메뉴</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/m_Icon_search.svg" alt="통합검색"/>
+                    <span class="Small_R">통합검색</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_user.svg" alt="마이페이지"/>
+                    <span class="Small_R">마이페이지</span>
+                </a>
+            </div>
+        </footer>
+        <!-- // footer -->
+    </div>
+    <script src="../../../../resources/js/mobile/index.js"></script> <!-- common.js -->
+    <script src="../../../../resources/js/mobile/approval/index.js"></script>
+</body>
+
+</html>

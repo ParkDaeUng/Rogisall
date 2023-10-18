@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>위젯아이콘 편집</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../../../../resources/css/mobile/common.css" />
+    <link rel="stylesheet" href="../../../../resources/css/mobile/main.css" />
+    <link rel="stylesheet" href="../../../../resources/css/mobile/header.css">
+    <link rel="stylesheet" href="../../../../resources/css/mobile/nav.css">
+    <!-- <link rel="stylesheet" href="<%=ROOT%>/resources/css/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <!-- 공통 nav Start -->
+    <nav class="nav-menu">
+        <div class="nav-header">
+            <a href="../main/index.html" class="logo"><img src="../../../../resources/white_new_logo.png" alt="logo"/></a>
+            <button type="button" id="nav-close">
+                <img src="../../../../resources/svgs/Icon_close_white.svg" alt="logo"/>
+            </button>
+        </div>
+        <ul class="nav-list">
+            <li id="email" class="nav-list-1nd Body2_M">E-메일</li>
+            <ol class="nav-list-2nd" style="">
+                <li class="list-2nd-item Body5_R">서브메뉴_1 
+                    <span class="alert-red"><em>11</em></span>
+                </li>
+                <li class="list-2nd-item Body5_R">서브메뉴_2
+                    <span class="alert-red"><em>99+</em></span>
+                </li>
+                <li class="list-2nd-item Body5_R">서브메뉴_3</li>
+                <li class="list-2nd-item Body5_R">서브메뉴_4</li>
+                <li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="working-mail" class="nav-list-1nd Body2_M">업무메일</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="message" class="nav-list-1nd Body2_M">쪽지</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="schedule" class="nav-list-1nd Body2_M">일정</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="id-card" class="nav-list-1nd Body2_M">명함</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="board" class="nav-list-1nd Body2_M">게시판</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li>그룹게시판</li>
+                <li>조직문화개선</li>
+                <li>안전보건</li>
+                <li>GlobalBiz게시판</li>
+                <li>사내게시판</li>
+                <li>코로나예방대책본부</li>
+                <li>청도고덕리게시판</li>
+                <li>교육게시판</li>
+                <li>사진함</li>
+            </ol>
+            <li id="work-board" class="nav-list-1nd Body2_M">업무게시판</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="approve" class="nav-list-1nd Body2_M">결재</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="fnq" class="nav-list-1nd Body2_M">설문</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="meeting" class="nav-list-1nd Body2_M">회의실</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="asset" class="nav-list-1nd Body2_M">자산관리</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="esg" class="nav-list-1nd Body2_M">ESG경영</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="logistar" class="nav-list-1nd Body2_M">로지스타</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+        </ul>
+    </nav>    
+    <!-- 공통 Nav End -->
+
+    <div class="main-wrapper">
+        <!-- 공용 Header Start -->
+        <header>
+            <div class="sub-header header">
+                <a href="../main/index.html" class="back"><img src="../../../../resources/svgs/Icon_header_back.svg" alt="뒤로가기"></a>
+                <div class="page-title Body2_M">
+                    위젯아이콘 편집
+                </div>     
+            </div>
+        </header>
+        <!-- 공용 Header End -->
+
+        <!-- content start -->
+        <main >
+            <div class="main-content content">
+                <!-- 위젯 -->
+                <section class="main-widget">
+                    <div class="widdet-tit-row">
+                        <span class="Body5_R">화면에서 선택된 프로그램만 메인화면에 노출됩니다.</span>
+                    </div>
+                    <div class="widget-icon-wrap edit">
+                        <div class="icon-list">
+                            <div class="list-item">                                
+                                <label class="list-item-label">                                    
+                                    <input type="checkbox" name="item-check" id="item-check1" class="item-check">
+                                    <div class="item">
+                                        <span class="icon txt">
+                                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="14" cy="14" r="14" fill="#E6E8EC"/>
+                                                <path d="M14.5299 19H12.0339L7.99086 11.98H7.93886C7.94753 12.1967 7.95619 12.4177 7.96486 12.643C7.97353 12.8597 7.98219 13.0807 7.99086 13.306C8.00819 13.5227 8.02119 13.7437 8.02986 13.969C8.03853 14.1857 8.04719 14.4067 8.05586 14.632V19H6.30086V9.718H8.78386L12.8139 16.673H12.8529C12.8442 16.4563 12.8355 16.244 12.8269 16.036C12.8182 15.8193 12.8095 15.607 12.8009 15.399C12.8009 15.1823 12.7965 14.97 12.7879 14.762C12.7792 14.5453 12.7705 14.3287 12.7619 14.112V9.718H14.5299V19ZM19.8401 9.718C21.0361 9.718 21.9071 9.978 22.4531 10.498C23.0077 11.0093 23.2851 11.7157 23.2851 12.617C23.2851 13.0243 23.2244 13.4143 23.1031 13.787C22.9817 14.151 22.7781 14.4803 22.4921 14.775C22.2147 15.061 21.8464 15.2863 21.3871 15.451C20.9277 15.6157 20.3601 15.698 19.6841 15.698H18.8391V19H16.8761V9.718H19.8401ZM19.7361 11.33H18.8391V14.086H19.4891C19.8617 14.086 20.1824 14.0383 20.4511 13.943C20.7197 13.8477 20.9277 13.696 21.0751 13.488C21.2224 13.28 21.2961 13.0113 21.2961 12.682C21.2961 12.2227 21.1704 11.8847 20.9191 11.668C20.6677 11.4427 20.2734 11.33 19.7361 11.33Z" fill="#616375"/>
+                                            </svg>                                            
+                                        </span>
+                                        <span class="Body5_M">NPPS</span>
+                                    </div>                                    
+                                </label>                                
+                            </div>
+                            <div class="list-item">                                
+                                <label class="list-item-label">                                    
+                                    <input type="checkbox" name="item-check" id="item-check1" class="item-check">
+                                    <div class="item">
+                                        <span class="icon txt">
+                                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="14" cy="14" r="14" fill="#E6E8EC"/>
+                                                <path d="M14.1712 15.724C14.1712 16.3653 14.0282 16.946 13.7422 17.466C13.4649 17.9773 13.0402 18.3847 12.4682 18.688C11.9049 18.9827 11.1899 19.13 10.3232 19.13C9.09258 19.13 8.15658 18.818 7.51524 18.194C6.87391 17.5613 6.55324 16.7293 6.55324 15.698V9.718H8.51624V15.399C8.51624 16.1617 8.67224 16.699 8.98424 17.011C9.29624 17.323 9.75991 17.479 10.3752 17.479C11.0166 17.479 11.4802 17.31 11.7662 16.972C12.0609 16.634 12.2082 16.1053 12.2082 15.386V9.718H14.1712V15.724ZM20.3834 11.226C19.6294 11.226 19.0531 11.5077 18.6544 12.071C18.2557 12.6343 18.0564 13.4057 18.0564 14.385C18.0564 15.373 18.2384 16.14 18.6024 16.686C18.9751 17.2233 19.5687 17.492 20.3834 17.492C20.7647 17.492 21.1417 17.4487 21.5144 17.362C21.8957 17.2753 22.3074 17.154 22.7494 16.998V18.649C22.3421 18.8137 21.9391 18.935 21.5404 19.013C21.1417 19.091 20.6954 19.13 20.2014 19.13C19.2481 19.13 18.4594 18.935 17.8354 18.545C17.2201 18.1463 16.7651 17.5917 16.4704 16.881C16.1757 16.1617 16.0284 15.3253 16.0284 14.372C16.0284 13.436 16.1974 12.6083 16.5354 11.889C16.8734 11.1697 17.3631 10.6063 18.0044 10.199C18.6544 9.79167 19.4474 9.588 20.3834 9.588C20.8427 9.588 21.3021 9.64867 21.7614 9.77C22.2294 9.88267 22.6757 10.0387 23.1004 10.238L22.4634 11.837C22.1167 11.6723 21.7657 11.5293 21.4104 11.408C21.0637 11.2867 20.7214 11.226 20.3834 11.226Z" fill="#616375"/>
+                                            </svg>
+                                        </span>
+                                        <span class="Body5_M">UCPS</span>
+                                    </div>                                    
+                                </label>                                
+                            </div>
+                            <div class="list-item">                                
+                                <label class="list-item-label">                                    
+                                    <input type="checkbox" name="item-check" id="item-check1" class="item-check">
+                                    <div class="item">
+                                        <span class="icon txt">
+                                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="14" cy="14" r="14" fill="#E6E8EC"/>
+                                                <path d="M13.0223 15.724C13.0223 16.3653 12.8793 16.946 12.5933 17.466C12.316 17.9773 11.8913 18.3847 11.3193 18.688C10.756 18.9827 10.041 19.13 9.17432 19.13C7.94365 19.13 7.00765 18.818 6.36632 18.194C5.72498 17.5613 5.40432 16.7293 5.40432 15.698V9.718H7.36732V15.399C7.36732 16.1617 7.52332 16.699 7.83532 17.011C8.14732 17.323 8.61098 17.479 9.22632 17.479C9.86765 17.479 10.3313 17.31 10.6173 16.972C10.912 16.634 11.0593 16.1053 11.0593 15.386V9.718H13.0223V15.724ZM23.5245 19H21.0285L16.9855 11.98H16.9335C16.9508 12.422 16.9682 12.864 16.9855 13.306C17.0115 13.748 17.0332 14.19 17.0505 14.632V19H15.2955V9.718H17.7785L21.8085 16.673H21.8475C21.8388 16.2397 21.8258 15.8107 21.8085 15.386C21.7912 14.9613 21.7738 14.5367 21.7565 14.112V9.718H23.5245V19Z" fill="#616375"/>
+                                            </svg>
+                                        </span>
+                                        <span class="Body5_M">UNPC</span>
+                                    </div>                                    
+                                </label>                                
+                            </div>
+                            <div class="list-item">                                
+                                <label class="list-item-label">                                    
+                                    <input type="checkbox" name="item-check" id="item-check1" class="item-check">
+                                    <div class="item">
+                                        <span class="icon txt">
+                                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="14" cy="14" r="14" fill="#E6E8EC"/>
+                                                <path d="M13.6236 19H11.1276L7.08461 11.98H7.03261C7.04994 12.422 7.06728 12.864 7.08461 13.306C7.11061 13.748 7.13228 14.19 7.14961 14.632V19H5.39461V9.718H7.87761L11.9076 16.673H11.9466C11.9379 16.2397 11.9249 15.8107 11.9076 15.386C11.8903 14.9613 11.8729 14.5367 11.8556 14.112V9.718H13.6236V19ZM21.6508 19L20.9748 16.79H17.5948L16.9188 19H14.7998L18.0758 9.679H20.4808L23.7698 19H21.6508ZM19.8308 12.981C19.7875 12.8337 19.7311 12.6473 19.6618 12.422C19.5925 12.1967 19.5231 11.967 19.4538 11.733C19.3845 11.499 19.3281 11.2953 19.2848 11.122C19.2415 11.2953 19.1808 11.512 19.1028 11.772C19.0335 12.0233 18.9641 12.266 18.8948 12.5C18.8341 12.7253 18.7865 12.8857 18.7518 12.981L18.0888 15.139H20.5068L19.8308 12.981Z" fill="#616375"/>
+                                            </svg>                                        
+                                        </span>
+                                        <span class="Body5_M">NAMS</span>
+                                    </div>                                    
+                                </label>                                
+                            </div>
+                            <div class="list-item">                                
+                                <label class="list-item-label">                                    
+                                    <input type="checkbox" name="item-check" id="item-check1" class="item-check">
+                                    <div class="item">
+                                        <span class="icon">
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M15.5835 18.7918H6.41683C3.66683 18.7918 1.8335 17.4168 1.8335 14.2085V7.79183C1.8335 4.5835 3.66683 3.2085 6.41683 3.2085H15.5835C18.3335 3.2085 20.1668 4.5835 20.1668 7.79183V14.2085C20.1668 17.4168 18.3335 18.7918 15.5835 18.7918Z" stroke="#616375" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M15.5832 8.25L12.714 10.5417C11.7698 11.2933 10.2207 11.2933 9.2765 10.5417L6.4165 8.25" stroke="#394DC0" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </span>
+                                        <span class="Body5_M">메일</span>
+                                    </div>                                    
+                                </label>                                
+                            </div>
+                            <div class="list-item">                                
+                                <label class="list-item-label">                                    
+                                    <input type="checkbox" name="item-check" id="item-check1" class="item-check">
+                                    <div class="item">
+                                        <span class="icon">
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_917_4025)">
+                                                <path d="M11.0002 20.1668C16.0629 20.1668 20.1668 16.0629 20.1668 11.0002C20.1668 5.93741 16.0629 1.8335 11.0002 1.8335C5.93741 1.8335 1.8335 5.93741 1.8335 11.0002C1.8335 16.0629 5.93741 20.1668 11.0002 20.1668Z" stroke="#616375" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M7.33312 2.75H8.24978C6.46231 8.10477 6.46231 13.8952 8.24978 19.25H7.33312M13.7498 2.75C15.5373 8.10477 15.5373 13.8952 13.7498 19.25" stroke="#616375" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M2.75 13.7498C8.10477 15.5373 13.8952 15.5373 19.25 13.7498M2.75 8.24978C8.10477 6.46231 13.8952 6.46231 19.25 8.24978" stroke="#394DC0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </g>
+                                                <defs>
+                                                <clipPath id="clip0_917_4025">
+                                                <rect width="22" height="22" fill="white"/>
+                                                </clipPath>
+                                                </defs>
+                                            </svg>                                        
+                                        </span>
+                                        <span class="Body5_M">인트라넷</span>
+                                    </div>                                    
+                                </label>                                
+                            </div>
+                            <div class="list-item">                                
+                                <label class="list-item-label">                                    
+                                    <input type="checkbox" name="item-check" id="item-check1" class="item-check">
+                                    <div class="item">
+                                        <span class="icon">
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12.8333 20.1667H8.25C3.66667 20.1667 2.75 18.3334 2.75 14.6667V9.16673C2.75 4.98673 4.28083 3.85006 7.33333 3.68506M14.6667 3.68506C17.7192 3.85006 19.25 4.97756 19.25 9.16673V13.7501M13.75 17.4167V14.6667H16.5M19.25 20.1667L13.7867 14.7034" stroke="#616375" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M9.16683 5.50016H12.8335C14.6668 5.50016 14.6668 4.5835 14.6668 3.66683C14.6668 1.8335 13.7502 1.8335 12.8335 1.8335H9.16683C8.25016 1.8335 7.3335 1.8335 7.3335 3.66683C7.3335 5.50016 8.25016 5.50016 9.16683 5.50016Z" stroke="#394DC0" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>                                            
+                                        </span>
+                                        <span class="Body5_M">무적물류기기제보</span>
+                                    </div>                                    
+                                </label>                                
+                            </div>
+                            <div class="list-item">                                
+                                <label class="list-item-label">                                    
+                                    <input type="checkbox" name="item-check" id="item-check1" class="item-check">
+                                    <div class="item">
+                                        <span class="icon">
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12.8333 20.1667H8.25C3.66667 20.1667 2.75 18.3334 2.75 14.6667V9.16673C2.75 4.98673 4.28083 3.85006 7.33333 3.68506M14.6667 3.68506C17.7192 3.85006 19.25 4.97756 19.25 9.16673V13.7501M13.75 17.4167V14.6667H16.5M19.25 20.1667L13.7867 14.7034" stroke="#616375" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M9.16683 5.50016H12.8335C14.6668 5.50016 14.6668 4.5835 14.6668 3.66683C14.6668 1.8335 13.7502 1.8335 12.8335 1.8335H9.16683C8.25016 1.8335 7.3335 1.8335 7.3335 3.66683C7.3335 5.50016 8.25016 5.50016 9.16683 5.50016Z" stroke="#394DC0" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg> 
+                                        </span>
+                                        <span class="Body5_M">유사물류기기제보</span>
+                                    </div>                                    
+                                </label>                                
+                            </div>
+                            <div class="list-item">                                
+                                <label class="list-item-label">                                    
+                                    <input type="checkbox" name="item-check" id="item-check1" class="item-check">
+                                    <div class="item">
+                                        <span class="icon">
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M7.3335 11.1835H13.7502M7.3335 14.8502H11.3485M9.16683 5.50016H12.8335C14.6668 5.50016 14.6668 4.5835 14.6668 3.66683C14.6668 1.8335 13.7502 1.8335 12.8335 1.8335H9.16683C8.25016 1.8335 7.3335 1.8335 7.3335 3.66683C7.3335 5.50016 8.25016 5.50016 9.16683 5.50016Z" stroke="#616375" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M14.6667 3.68506C17.7192 3.85006 19.25 4.97756 19.25 9.16673V14.6667C19.25 18.3334 18.3333 20.1667 13.75 20.1667H8.25C3.66667 20.1667 2.75 18.3334 2.75 14.6667V9.16673C2.75 4.98673 4.28083 3.85006 7.33333 3.68506" stroke="#616375" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M7.3335 11.1836H13.7502M7.3335 14.8503H11.3485" stroke="#394DC0" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>                                                                                    
+                                        </span>
+                                        <span class="Body5_M">홍보자료</span>
+                                    </div>                                    
+                                </label>                                
+                            </div>
+                            <div class="list-item">                                
+                                <label class="list-item-label">                                    
+                                    <input type="checkbox" name="item-check" id="item-check1" class="item-check">
+                                    <div class="item">
+                                        <span class="icon">
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_917_4062)">
+                                                <path d="M2.90576 6.81982L10.9999 11.504L19.0391 6.84732M10.9999 19.809V11.4948" stroke="#616375" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M19.8093 8.406V13.5943C19.8093 13.6402 19.8093 13.6768 19.8001 13.7227C19.1584 13.1635 18.3334 12.8335 17.4168 12.8335C16.5551 12.8335 15.7576 13.136 15.1251 13.6402C14.6948 13.9821 14.3476 14.4171 14.1094 14.9124C13.8713 15.4077 13.7484 15.9506 13.7501 16.5002C13.7501 17.1877 13.9426 17.8385 14.2818 18.3885C14.3643 18.5352 14.4651 18.6727 14.5751 18.801L12.8976 19.7268C11.8526 20.3135 10.1476 20.3135 9.10258 19.7268L4.20758 17.0135C3.09842 16.3993 2.19092 14.8593 2.19092 13.5943V8.406C2.19092 7.141 3.09842 5.601 4.20758 4.98683L9.10258 2.2735C10.1476 1.68683 11.8526 1.68683 12.8976 2.2735L17.7926 4.98683C18.9018 5.601 19.8093 7.141 19.8093 8.406Z" stroke="#616375" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M21.0833 16.4998C21.0833 17.5998 20.5975 18.5807 19.8367 19.2498C19.1682 19.8394 18.3079 20.1652 17.4167 20.1665C15.3908 20.1665 13.75 18.5257 13.75 16.4998C13.75 15.3448 14.2817 14.309 15.125 13.6398C15.664 13.2078 16.3141 12.9369 17.0004 12.8583C17.6866 12.7797 18.3811 12.8966 19.0039 13.1955C19.6266 13.4944 20.1522 13.9632 20.5201 14.5478C20.888 15.1324 21.0833 15.8091 21.0833 16.4998Z" stroke="#394DC0" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M17.6458 15.354V16.729L16.5 17.4165" stroke="#394DC0" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </g>
+                                                <defs>
+                                                <clipPath id="clip0_917_4062">
+                                                <rect width="22" height="22" fill="white"/>
+                                                </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </span>
+                                        <span class="Body5_M">물류센터대기현황</span>
+                                    </div>                                    
+                                </label>                                
+                            </div>
+                            <div class="list-item">                                
+                                <label class="list-item-label">                                    
+                                    <input type="checkbox" name="item-check" id="item-check1" class="item-check">
+                                    <div class="item">
+                                        <span class="icon">
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_917_4083)">
+                                                <path d="M20.1668 11.0002V8.25016C20.1668 3.66683 18.3335 1.8335 13.7502 1.8335H8.25016C3.66683 1.8335 1.8335 3.66683 1.8335 8.25016V13.7502C1.8335 18.3335 3.66683 20.1668 8.25016 20.1668H11.0002" stroke="#616375" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M19.2132 16.3531L17.719 16.8573C17.3065 16.9948 16.9765 17.3156 16.839 17.7373L16.3349 19.2315C15.904 20.524 14.089 20.4965 13.6857 19.204L11.9899 13.7498C11.6599 12.6681 12.659 11.6598 13.7315 11.999L19.1949 13.6948C20.4782 14.0981 20.4965 15.9223 19.2132 16.3531Z" stroke="#394DC0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </g>
+                                                <defs>
+                                                <clipPath id="clip0_917_4083">
+                                                <rect width="22" height="22" fill="white"/>
+                                                </clipPath>
+                                                </defs>
+                                            </svg>                                            
+                                        </span>
+                                        <span class="Body5_M">문의요청</span>
+                                    </div>                                    
+                                </label>                                
+                            </div>
+                            <div class="list-item">                                
+                                <label class="list-item-label">                                    
+                                    <input type="checkbox" name="item-check" id="item-check1" class="item-check">
+                                    <div class="item">
+                                        <span class="icon">
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M3 8.5H19" stroke="#616375" stroke-width="2" stroke-linecap="round"/>
+                                                <path d="M7 1.5V4.5" stroke="#616375" stroke-width="2" stroke-linecap="round"/>
+                                                <path d="M15 1.5V4.5" stroke="#616375" stroke-width="2" stroke-linecap="round"/>
+                                                <path d="M19.25 9.99683V7.79183C19.25 5.04183 17.875 3.2085 14.6667 3.2085H7.33333C4.125 3.2085 2.75 5.04183 2.75 7.79183V15.5835C2.75 18.3335 4.125 20.1668 7.33333 20.1668H11.0892" stroke="#616375" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M20.0833 16.4998C20.0833 17.5998 19.5975 18.5807 18.8367 19.2498C18.1682 19.8394 17.3079 20.1652 16.4167 20.1665C14.3908 20.1665 12.75 18.5257 12.75 16.4998C12.75 15.3448 13.2817 14.309 14.125 13.6398C14.664 13.2078 15.3141 12.9369 16.0004 12.8583C16.6866 12.7797 17.3811 12.8966 18.0039 13.1955C18.6266 13.4944 19.1522 13.9632 19.5201 14.5478C19.888 15.1324 20.0833 15.8091 20.0833 16.4998Z" stroke="#394DC0" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M15.2998 16.5909L15.9979 17.289L17.4998 15.8999" stroke="#394DC0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>                                         
+                                        </span>
+                                        <span class="Body5_M">연수원예약</span>
+                                    </div>                                    
+                                </label>                                
+                            </div>
+                            <div class="list-item">                                
+                                <label class="list-item-label">                                    
+                                    <input type="checkbox" name="item-check" id="item-check1" class="item-check">
+                                    <div class="item">
+                                        <span class="icon">
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_917_4094)">
+                                                <path d="M20.1668 10.1752V6.32516C20.1668 3.11683 18.8835 1.8335 15.6752 1.8335H11.8252C8.61683 1.8335 7.3335 3.11683 7.3335 6.32516V7.3335H10.1752C13.3835 7.3335 14.6668 8.61683 14.6668 11.8252V14.6668H15.6752C18.8835 14.6668 20.1668 13.3835 20.1668 10.1752Z" stroke="#616375" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M14.6668 15.6752V11.8252C14.6668 8.61683 13.3835 7.3335 10.1752 7.3335H6.32516C3.11683 7.3335 1.8335 8.61683 1.8335 11.8252V15.6752C1.8335 18.8835 3.11683 20.1668 6.32516 20.1668H10.1752C13.3835 20.1668 14.6668 18.8835 14.6668 15.6752Z" stroke="#616375" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M5.57324 13.7499L7.36074 15.5374L10.9266 11.9624" stroke="#394DC0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </g>
+                                                <defs>
+                                                <clipPath id="clip0_917_4094">
+                                                <rect width="22" height="22" fill="white"/>
+                                                </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </span>
+                                        <span class="Body5_M">구독</span>
+                                    </div>                                    
+                                </label>                                
+                            </div>
+                            <div class="list-item">                                
+                                <label class="list-item-label">                                    
+                                    <input type="checkbox" name="item-check" id="item-check1" class="item-check">
+                                    <div class="item">
+                                        <span class="icon">                                        
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_917_4105)">
+                                                <path d="M20.1393 16.8027C20.1393 17.1327 20.066 17.4718 19.9102 17.8018C19.7543 18.1318 19.5527 18.4435 19.2868 18.7368C18.8377 19.2318 18.3427 19.5893 17.7835 19.8185C17.2335 20.0477 16.6377 20.1668 15.996 20.1668C15.061 20.1668 14.0618 19.9468 13.0077 19.4977C11.9535 19.0485 10.8993 18.4435 9.85433 17.6827C8.78926 16.9036 7.78421 16.0456 6.84766 15.116C5.9207 14.1828 5.06575 13.1808 4.29016 12.1185C3.5385 11.0735 2.9335 10.0285 2.4935 8.99266C2.0535 7.94766 1.8335 6.9485 1.8335 5.99516C1.8335 5.37183 1.9435 4.776 2.1635 4.226C2.3835 3.66683 2.73183 3.1535 3.21766 2.69516C3.80433 2.11766 4.446 1.8335 5.12433 1.8335C5.381 1.8335 5.63766 1.8885 5.86683 1.9985C6.10516 2.1085 6.316 2.2735 6.481 2.51183L8.60766 5.50933C8.77266 5.7385 8.89183 5.94933 8.97433 6.151C9.05683 6.3435 9.10266 6.536 9.10266 6.71016C9.10266 6.93016 9.0385 7.15016 8.91016 7.361C8.791 7.57183 8.61683 7.79183 8.39683 8.01183L7.70016 8.736C7.59933 8.83683 7.5535 8.956 7.5535 9.10266C7.5535 9.176 7.56266 9.24016 7.581 9.3135C7.6085 9.38683 7.636 9.44183 7.65433 9.49683C7.81933 9.79933 8.1035 10.1935 8.50683 10.6702C8.91933 11.1468 9.35933 11.6327 9.836 12.1185C10.331 12.6043 10.8077 13.0535 11.2935 13.466C11.7702 13.8693 12.1643 14.1443 12.476 14.3093C12.5218 14.3277 12.5768 14.3552 12.641 14.3827C12.7143 14.4102 12.7877 14.4193 12.8702 14.4193C13.026 14.4193 13.1452 14.3643 13.246 14.2635L13.9427 13.576C14.1718 13.3468 14.3918 13.1727 14.6027 13.0627C14.8135 12.9343 15.0243 12.8702 15.2535 12.8702C15.4277 12.8702 15.611 12.9068 15.8127 12.9893C16.0143 13.0718 16.2252 13.191 16.4543 13.3468L19.4885 15.501C19.7268 15.666 19.8918 15.8585 19.9927 16.0877C20.0843 16.3168 20.1393 16.546 20.1393 16.8027Z" stroke="#616375" stroke-width="2" stroke-miterlimit="10"/>
+                                                <path d="M14.2085 5.50016H18.7918M16.5002 7.79183V3.2085" stroke="#394DC0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </g>
+                                                <defs>
+                                                <clipPath id="clip0_917_4105">
+                                                <rect width="22" height="22" fill="white"/>
+                                                </clipPath>
+                                                </defs>
+                                            </svg>                                            
+                                        </span>
+                                        <span class="Body5_M">연락처 등록</span>
+                                    </div>                                    
+                                </label>                                
+                            </div>
+                            <div class="list-item">                                
+                                <label class="list-item-label">                                    
+                                    <input type="checkbox" name="item-check" id="item-check1" class="item-check">
+                                    <div class="item">
+                                        <span class="icon">                                          
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M3.31823 7.78218C5.12406 -0.156157 16.8849 -0.14699 18.6816 7.79134C19.7357 12.448 16.8391 16.3897 14.2999 18.828C13.4125 19.6835 12.2279 20.1616 10.9953 20.1616C9.76269 20.1616 8.5781 19.6835 7.69073 18.828C5.16073 16.3897 2.26406 12.4388 3.31823 7.78218Z" stroke="#616375" stroke-width="2"/>
+                                                <path d="M8.479 10.5417L9.854 11.9167L13.5207 8.25" stroke="#394DC0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>                                          
+                                        </span>
+                                        <span class="Body5_M">직출/직퇴</span>
+                                    </div>                                    
+                                </label>                                
+                            </div>
+                            <div class="list-item">                                
+                                <label class="list-item-label">                                    
+                                    <input type="checkbox" name="item-check" id="item-check1" class="item-check">
+                                    <div class="item">
+                                        <span class="icon">
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_917_4110)">
+                                                <path d="M8.25016 20.1663H13.7502C18.3335 20.1663 20.1668 18.333 20.1668 13.7497V8.24967C20.1668 3.66634 18.3335 1.83301 13.7502 1.83301H8.25016C3.66683 1.83301 1.8335 3.66634 1.8335 8.24967V13.7497C1.8335 18.333 3.66683 20.1663 8.25016 20.1663Z" stroke="#616375" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M6.71924 13.2828L8.9009 10.4503C9.21257 10.0469 9.79007 9.97361 10.1934 10.2853L11.8709 11.6053C12.2742 11.9169 12.8517 11.8436 13.1634 11.4494L15.2809 8.71777" stroke="#394DC0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </g>
+                                                <defs>
+                                                <clipPath id="clip0_917_4110">
+                                                <rect width="22" height="22" fill="white"/>
+                                                </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </span>
+                                        <span class="Body5_M">영업관리 시스템</span>
+                                    </div>                                    
+                                </label>                                
+                            </div>                            
+                        </div>
+                        <div class="widget-btn">
+                            <button class="btn-border">취소</button>
+                            <button class="btn-blue">저장</button>
+                        </div>
+                    </div>
+
+                </section>
+            </div>        
+        </main>
+        <!-- content end -->
+
+
+        <!-- footer -->
+        <footer>
+            <div class="q-menu">
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_home.svg" alt="메인"/>
+                    <span class="Small_R">메인</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_quickmenu.svg" alt="퀵메뉴"/>
+                    <span class="Small_R">퀵메뉴</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/m_Icon_search.svg" alt="통합검색"/>
+                    <span class="Small_R">통합검색</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_user.svg" alt="마이페이지"/>
+                    <span class="Small_R">마이페이지</span>
+                </a>
+            </div>
+        </footer>
+        <!-- // footer -->
+    </div>
+    <script src="../../../../resources/js/mobile/index.js"></script> <!-- common.js -->
+    <script src="../../../../resources/js/mobile/main/index.js"></script>
+</body>
+
+</html>

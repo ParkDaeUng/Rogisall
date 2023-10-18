@@ -1,0 +1,1298 @@
+
+/* @note 2023-03-10 */
+.asset-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 60px;
+    overflow-y: overlay;  
+}
+.asset-wrapper .asset-content{
+    display: flex;
+    gap: 30px;
+}
+.asset-wrapper .asset-content .asset-content-left{
+    height: 100%;
+    flex:0 0 270px;
+}
+.asset-wrapper .asset-content .asset-content-left .asset-group-content{
+    height: 100%;
+    max-height: 800px;
+    background-color: #fff;
+    padding: 5px 0px 20px 20px;
+    border-radius: 10px;
+}
+.asset-wrapper .asset-content .asset-content-left .asset-group-content.color_bg{
+    background: var(--color-bg);
+}
+/* @note 2023-03-15 */
+.asset-wrapper .asset-top{
+    max-width: 1660px;
+    display: flex;
+    margin: 33px 0 17px;
+    justify-content: space-between;
+}
+.asset-wrapper .asset-top .date-select{
+    display: flex;
+    align-items: center;
+}
+.asset-wrapper .asset-top .date-select .date-txt{
+    margin-right:16px;
+    font-family: var(--font-en);
+
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 24px;
+    color: var(--color-navy-100);
+}
+.asset-wrapper .asset-top .date-select .date-select-btn{
+    display: flex;
+    gap:16px;
+}
+.asset-wrapper .asset-top .date-select .date-select-btn button{
+    display: flex;    
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid var(--color-grey-20);
+    align-items: center;
+    justify-content: center;
+}
+.asset-wrapper .asset-top .list-change-btn{
+    display: flex;
+    height: 40px;
+    gap: 7px;
+    font-family: var(--font-kr);
+    letter-spacing:var(--font-kr-spacing);
+    align-items: center;
+    padding: 11px 17px;
+    background: #FFFFFF;
+    border: 1px solid var(--color-grey-20);
+    border-radius: 10px;
+}
+/* // @note 2023-03-10 */
+
+/* 목록형 */
+/* @note 2023-03-10 */
+.asset-wrapper .asset-list{
+    display: flex;
+    gap: 30px;
+    height: calc(100% - 212px);
+    max-height: 630px;
+    flex-wrap: wrap;
+    overflow-y: overlay;
+    padding-bottom: 50px;
+}
+
+.asset-wrapper .asset-list .place{
+    position: relative;
+    flex: 0 0 calc(50% - 15px);
+    height: 388px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+/* // @note 2023-03-10 */
+.asset-wrapper .asset-list .place .place-tit{
+    display: flex;
+    margin-bottom: 30px;
+    align-items: center;
+    justify-content: space-between;
+}
+.asset-wrapper .asset-list .place .place-tit .tit{
+    font-family: var(--font-kr);
+    letter-spacing:var(--font-kr-spacing);
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 34px;    
+    cursor: pointer;
+}
+.asset-wrapper .asset-list .place .place-tit .tit.font-blue{
+    font-weight: 700;
+    color: var(--color-blue-100);
+}
+.asset-wrapper .asset-list .place .place-tit .place-tit-right{
+    display: flex;
+    gap: 10px;
+}
+.asset-wrapper .asset-list .place .place-tit .place-tit-right .place-tit-btn{
+    width: 50px;
+    height: 40px;
+    background: #ffffff;
+    border: 1px solid var(--color-grey-20);
+    border-radius: 10px;
+    font-family: var(--font-kr);
+letter-spacing:var(--font-kr-spacing);
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    
+    color: var(--color-grey-80);
+}
+
+.asset-wrapper .asset-list .place .place-cont{
+    display: flex;
+    flex-direction: column;
+}
+.asset-wrapper .asset-list .place .place-cont .reserve-list{
+    display: flex;
+    margin-bottom: 12px;
+    gap: 12px;
+    flex-direction: column;
+}
+.asset-wrapper .asset-list .place .place-cont .reserve-list > li{
+    display: flex;
+    width: 100%;
+    padding: 6px 7px;
+    background: #FBFBFB;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.asset-wrapper .asset-list .place .place-cont .reserve-list > li.bg-blue{
+    background-color: var(--color-blue-10);
+}
+.asset-wrapper .asset-list .place .place-cont .reserve-list > li .day-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    margin-right: 11px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.asset-wrapper .asset-list .place .place-cont .reserve-list > li .day-box span{
+    font-family: var(--font-en);
+
+    font-size: 12px;
+    line-height: 17px;
+    text-align: center;
+}
+.asset-wrapper .asset-list .place .place-cont .reserve-list > li .day-box .month{
+    font-weight: 400;
+    color: var(--color-grey-80);
+}
+.asset-wrapper .asset-list .place .place-cont .reserve-list > li .day-box .day{
+    font-weight: 700;
+    color: var(--color-navy-100);
+}
+.asset-wrapper .asset-list .place .place-cont .reserve-list > li .tit-box{
+    display: flex;
+}
+.asset-wrapper .asset-list .place .place-cont .reserve-list > li .tit-box .tit{
+    margin-right: 16px;
+    /* Body3_M */
+    font-family: var(--font-kr);
+letter-spacing:var(--font-kr-spacing);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 23px;
+    color: var(--color-navy-100);
+}
+.asset-wrapper .asset-list .place .place-cont .reserve-list > li .tit-box .time{
+    font-family: var(--font-en);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 23px;
+    color: #888888;
+}
+
+.asset-wrapper .asset-list .place .place-cont .reserve-add{
+    display: flex;
+    height: 46px;
+    background: #FFFFFF;
+    border: 1px dashed var(--color-navy-20);
+    border-radius: 10px;
+    font-family: var(--font-kr);
+letter-spacing:var(--font-kr-spacing);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #888888;
+    justify-content: center;
+    align-items: center;
+}
+.asset-wrapper .asset-list .place .place-cont .reserve-add img{
+    margin-right: 5px;
+}
+
+.asset-wrapper .asset-list .place .place-popup {
+    display: none;
+    position: absolute;
+    top: 80px;
+    width: 300px;
+    height: 283px;
+    padding: 30px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.asset-wrapper .asset-list .place .place-popup .popup-close{
+    position: absolute;
+    top: 23px;
+    right: 17.25px;
+    background: #ffffff;
+    border: none;
+}
+.asset-wrapper .asset-list .place .place-popup .place-popup-tit{
+    display: block;
+    margin-bottom: 16px;
+    font-family: var(--font-kr);
+    letter-spacing:var(--font-kr-spacing);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--color-navy-100);;
+}
+
+.asset-wrapper .asset-list .place .place-popup .date-box{
+    display: flex;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--color-grey-20);
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.asset-wrapper .asset-list .place .place-popup .date-box .date{
+    font-family: var(--font-kr);
+letter-spacing:var(--font-kr-spacing);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 26px;
+    color: var(--color-grey-80);
+}
+.asset-wrapper .asset-list .place .place-popup .date-box .date-box-btn{
+    display: flex;
+    gap: 5px;
+}
+.asset-wrapper .asset-list .place .place-popup .date-box .date-box-btn button{
+    display: flex;
+    width: 16px;
+    height: 16px;
+    background: #FFFFFF;
+    border: 1px solid var(--color-grey-20);
+    border-radius: 3px;
+    align-items: center;
+    justify-content: center;
+}
+
+.asset-wrapper .asset-list .place .place-popup .reserve-list{
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+.asset-wrapper .asset-list .place .place-popup .reserve-list > li{
+    display: flex;    
+}
+.asset-wrapper .asset-list .place .place-popup .reserve-list > li .time{
+    margin-right: 10px;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    color: var(--color-navy-100);
+}
+.asset-wrapper .asset-list .place .place-popup .reserve-list > li .tit{
+    font-family: var(--font-kr);
+    letter-spacing:var(--font-kr-spacing);
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: -0.05em;
+    color: var(--color-navy-100);
+}
+
+
+/* @note 2023-03-10 */
+/* @note 2023-03-15 */
+/* 캘린더형 */
+.asset-wrapper .asset-celendar{
+    position: relative;
+    width: 100%;
+    height: calc(100% - 212px);
+    max-height: 635px;
+    border-radius: 10px;
+    background: white;
+    flex-direction: column;
+    overflow: auto;
+}
+/* // @noet 2023-03-10 */
+.asset-wrapper .asset-celendar .celendar-list-top{
+    position: sticky;
+    top: 0;
+    display: flex;
+    width:calc((107px * 13) + 270px);
+    height: 60px;
+    background-color: #fff;
+    border-bottom: 1px solid var(--color-grey-10);
+    z-index: 103;
+}
+
+.asset-wrapper .asset-celendar .celendar-list-top .celendar-list-tit{
+    position: sticky;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex:0 0 270px;
+    height: 59px;
+    padding: 0px 14px;    
+    align-items: center;
+    background: white;
+    border-right: 1px solid var(--color-grey-20);
+    z-index: 105;
+}
+.asset-wrapper .asset-celendar .celendar-list-top .celendar-list-tit span{
+    font-family: 'Noto Sans KR';
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 30px;
+    letter-spacing: -0.05em;
+    color: #1D203A;
+}
+.asset-wrapper .asset-celendar .celendar-list-top .celendar-list-time{
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex: 0 0 calc(107px * 13);
+    z-index: 100;
+}
+.asset-wrapper .asset-celendar .celendar-list-top .celendar-list-time .time{
+    position: relative;
+    display: flex;
+    width: 107px;
+    flex-direction: column;
+    justify-content: center;
+}
+.asset-wrapper .asset-celendar .celendar-list-top .celendar-list-timeline{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(107px * 13);
+    height: 59px;
+}
+
+.asset-wrapper .asset-celendar .celendar-list-top .nowTimeLine{
+    position: absolute;
+    top: 65px;
+    width: 1px;
+    border: 1px dashed var(--color-blue-100);
+    z-index: 100;
+    
+}
+.asset-wrapper .asset-celendar .celendar-list-top .nowTimeLine::before{
+    content: '';
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--color-blue-100);
+    transform: translateX(-50%);
+
+}
+.asset-wrapper .asset-celendar .celendar-list-top .celendar-list-time .time .line{
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 41px;
+    width: 1px;
+    height: 18px;
+    background-color: var(--color-grey-10);
+}
+.asset-wrapper .asset-celendar .celendar-list-top .celendar-list-time .time:last-of-type .line{
+    display: none;
+}
+.asset-wrapper .asset-celendar .celendar-list-top .celendar-list-time .time span{
+    font-family: Noto Sans KR;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.05em;
+    text-align: center;
+    color: #AAAAAA;
+}
+.asset-wrapper .asset-celendar .celendar-list-top .celendar-list-time .time .txt2{
+    font-size: 16px;
+    font-weight: 500;
+    color: #888888;
+}
+.asset-wrapper .asset-celendar .celendar-list-top .celendar-list-time .time.now span{
+    color: #394DC0;
+}
+/* @noet 2023-03-10 */
+.asset-wrapper .asset-celendar .celendar-list-place{
+    /* position: relative; */
+    display: flex;
+    width:calc((107px * 13) + 270px);
+    height: 100%;
+    flex-direction: column;
+}
+/* // @noet 2023-03-10 */
+.asset-wrapper .asset-celendar .celendar-list-place .place-row{
+    display: flex;
+    height: 82px;
+    border-bottom: 1px solid var(--color-grey-10);
+    background-color: #fff;
+}
+.asset-wrapper .asset-celendar .celendar-list-place .place-row:last-child{
+    border-bottom: none;
+    border-radius: 0 0 10px 10px;
+}
+.asset-wrapper .asset-celendar .celendar-list-place .place-row .place-name-box{
+    position: sticky;
+    left: 0;
+    top: 0;
+    display: flex;
+    width: 270px;
+    padding: 10px 20px;
+    background: white;
+    border-right: 1px solid var(--color-grey-20);
+    flex-direction: column;
+    z-index: 102;
+}
+.asset-wrapper .asset-celendar .celendar-list-place .place-row .place-name-box .place-name{
+    margin-bottom: 8px;
+    font-family: 'Noto Sans KR';
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: -0.05em;
+}
+.asset-wrapper .asset-celendar .celendar-list-place .place-row .place-name-box .place-btn-box{
+    display: flex;
+    gap: 10px;
+}
+.asset-wrapper .asset-celendar .celendar-list-place .place-row .place-name-box .place-btn-box .place-btn{
+    width: 50px;
+    height: 32px;
+    background: #ffffff;
+    border: 1px solid var(--color-grey-20);
+    border-radius: 10px;
+    font-family: var(--font-kr);
+    letter-spacing: var(--font-kr-spacing);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: var(--color-grey-80);
+}
+.asset-wrapper .asset-celendar .celendar-list-place .place-row .place-name-box .place-btn-box .place-btn.reserve-add{
+    border-color: var(--color-blue-100);
+    color: var(--color-blue-100);
+}
+.asset-wrapper .asset-celendar .celendar-list-place .place-row .place-reserve-row{
+    position: relative;
+    width: 100%;
+    background-image: url("../svgs/vertical.png");
+}
+.asset-wrapper .asset-celendar .celendar-list-place .place-row .place-reserve-row .place-reserve-time{
+    position: absolute;
+    top: 12px;
+    display: flex;
+    width: 120px;
+    height: 58px;
+    padding: 0 20px;
+    background: #F4F5FE;
+    border-radius: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+    z-index: 101;
+}
+
+.asset-wrapper .asset-celendar .celendar-list-place .place-row .place-reserve-row .place-reserve-time .tit{
+    margin-right: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.asset-wrapper .asset-celendar .celendar-list-place .place-row .place-reserve-row .place-reserve-time .time{
+    color: #888888;
+}
+.asset-wrapper .asset-celendar .celendar-list-place .place-row .place-reserve-row .place-reserve-time.pd {
+    padding: 0 10px;
+}
+.asset-wrapper .asset-celendar .celendar-list-place .place-row .place-reserve-row .place-reserve-time.pd .tit{
+    margin-right: 0;
+}
+
+
+
+
+
+/* 캘린더 상세 페이지 */
+.asset-wrapper .asset-view-content .place-select{
+    display: flex;
+}
+.asset-wrapper .asset-view-content .place-select .select-box {
+    position: relative;
+    display: flex;
+    width: auto;
+    border: none;
+    padding: 0;
+    
+    justify-content: space-between;
+    align-items: center;
+}
+.asset-wrapper .asset-view-content .place-select .select-box.selected {
+    border: none !important;
+    border-radius: 0 !important; 
+    border-bottom: none !important;
+    background-color: white;
+}
+.asset-wrapper .asset-view-content .place-select .select-box .select-label {
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: none;
+    padding: 0 30px 0 0;
+    font-weight: var(--font-bold-weight);
+    font-size: 22px;
+    line-height: 32px;
+    color: #000000;
+}
+
+.asset-wrapper .asset-view-content .place-select .select-box .select-label::after {
+    content: "";
+    top:12px;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    right: 0px;
+    background: url("../svgs/Icon-place-select.svg") center no-repeat;
+    transform: translate(0);
+
+}
+.asset-wrapper .asset-view-content .place-select .select-box.selected .select-label::after {
+    transform: rotate(180deg);
+    transform-origin: center center;
+}
+
+.asset-wrapper .asset-view-content .place-select .select-box ul.option {
+    display: none;
+    position: absolute;
+    left: -1px;
+    top: calc(100% + 10px);
+    width: 100%;
+    max-height: 80px;
+    z-index: 10;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 20px rgb(0 0 0 / 10%);
+    border-radius: 10px;
+    border:none;
+    background: #fff;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.asset-wrapper .asset-view-content .place-select .select-box ul.option::-webkit-scrollbar {
+    width: 4px;
+    background-color: transparent;
+    overflow:overlay;
+}
+
+.asset-wrapper .asset-view-content .place-select .select-box ul.option::-webkit-scrollbar-thumb {
+    width: 2px;
+    height: 40px;
+    background-color: var(--color-grey-20);
+    border: 3px solid transparent;
+    border-radius: 30px;
+}
+
+.asset-wrapper .asset-view-content .place-select .select-box li.option-item {
+    padding: 11px 15px;
+    color: #777777;
+    background-color: white;
+}
+
+.asset-wrapper .asset-view-content .place-select .select-box li.option-item:last-child {
+    border-radius: 0 0 10px 10px;
+}
+
+.asset-wrapper .asset-view-content .place-select .select-box li.option-item:hover {
+    color: var(--color-blue-100);
+    cursor: pointer;
+}
+
+
+/* 주간 스케줄 */
+.wrapper-scroll .asset-view-content{
+    height: auto;
+}
+.asset-view-content{
+    height: 100%;
+}
+.asset-wrapper .asset-view-content .place-reserve-week{
+    display: flex;
+    height: calc(100% - 212px);
+    max-height: 691px;
+    margin-bottom: 40px;
+    flex-direction: column;
+    overflow: hidden;
+}
+.asset-wrapper .asset-view-content .place-reserve-week .place-reserve-top{
+    display: flex;
+    background-color: var(--color-grey-5);
+    border-bottom: 1px solid var(--color-grey-40);
+}
+/* @note 2023-03-10 */
+.asset-wrapper .asset-view-content .place-reserve-week .place-reserve-top .place-reserve-tit{
+    display: flex;
+    width: 170px;
+    height: 60px;
+    padding: 0px 20px;    
+    align-items: center;
+    border-right: 1px solid var(--color-grey-40);
+}
+/* @note 2023-03-15 */
+.asset-wrapper .asset-view-content .place-reserve-week .place-reserve-top .place-reserve-week-day{
+    width: calc(100% - 170px);
+    display: flex;
+}
+/* @note 2023-03-15 */
+.asset-wrapper .asset-view-content .place-reserve-week .place-reserve-top .place-reserve-week-day .day{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.asset-wrapper .asset-view-content .place-reserve-week .place-reserve-top .place-reserve-week-day .day.rad{
+    color: #FF0000;
+}
+
+.asset-wrapper .asset-view-content .place-reserve-week .place-reserve-cont {
+    display: flex;
+    overflow: overlay;
+}
+.asset-wrapper .asset-view-content .place-reserve-week .place-reserve-cont .time-table{
+    display: flex;
+    width: 170px;
+    height: 780px;
+    flex-direction: column;
+}
+.asset-wrapper .asset-view-content .place-reserve-week .place-reserve-cont .time-table .time{
+    position: relative;
+    display: flex;
+    width: 170px;
+    height: 60px;
+    padding: 20px;
+    align-items: flex-end;
+    border-right: 1px solid var(--color-grey-40);
+}
+
+.asset-wrapper .asset-view-content .place-reserve-week .place-reserve-cont .time-table .time::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 1360px;
+    height: 1px;
+    background:var(--color-grey-10);
+
+}
+/* @note 2023-03-15 */
+.asset-wrapper .asset-view-content .place-reserve-week .place-reserve-cont .time-table .long::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 1550px;
+    height: 1px;
+    background:var(--color-grey-10);
+
+}
+.asset-wrapper .asset-view-content .place-reserve-week .place-reserve-cont .time-table .time span{
+    padding-left: 3px;
+    color: rgba(136, 136, 136, 1);
+}
+.asset-wrapper .asset-view-content .place-reserve-week .place-reserve-cont .time-table .time.now{
+    color: var(--color-blue-100);
+}
+/* @note 2023-03-15 */
+.asset-wrapper .asset-view-content .place-reserve-week .place-reserve-cont .reserve-table{
+    width: 100%;
+    display: flex;
+    height: 780px;
+}
+/* @note 2023-03-15 */
+.asset-wrapper .asset-view-content .place-reserve-week .place-reserve-cont .reserve-table .day{
+    width: 100%;
+    position: relative;
+    display: flex;
+    padding: 0 20px;
+}
+/* @note 2023-03-15 */
+.asset-wrapper .asset-view-content .place-reserve-week .place-reserve-cont .reserve-table .day .reserve{
+    position: absolute;
+    display: flex;
+    width: calc(100% - 40px);
+    padding: 10px;
+    background-color: var(--color-blue-10);
+    border-radius: 5px;
+    flex-direction: column;
+}
+.asset-wrapper .asset-view-content .bottom-btn-row{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+.asset-wrapper .asset-view-content .bottom-btn-row button{
+    width: 150px;
+    height: 50px;
+}
+.asset-wrapper .asset-view-content .bottom-btn-row button.left{
+    margin-right: auto;
+}
+
+
+/* 일간 스케줄 */
+.asset-wrapper .asset-view-content .place-reserve-day{
+    display: block;
+    margin-bottom: 40px;
+}
+
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-top{
+    display: flex;
+    width: 100%;
+    height: 50px;
+    background-color: #fff; 
+    border-bottom: 1px solid var(--color-grey-10);
+}
+
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-top .celendar-list-tit{
+    display: flex;
+    width: 125px;
+    padding: 0px 20px;    
+    align-items: center;
+    background: var(--color-grey-5);
+    
+}
+/* @note 2023-03-15 */
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-top .celendar-list-time{
+    position: relative;
+    display: flex;
+    width: calc(100% - 125px);
+}
+/* @note 2023-03-15 */
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-top .celendar-list-time .time{
+    position: relative;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-top .celendar-list-time .time .line{
+    position: absolute;
+    right: 0;
+    top: 30px;
+    width: 1px;
+    background-color: var(--color-grey-10);
+}
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-top .celendar-list-time .time:last-of-type .line{
+    display: none;
+}
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-top .celendar-list-time .time span{
+    text-align: center;
+}
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-top .celendar-list-time .time .txt2{
+    color: #888888;
+}
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-top .celendar-list-time .time.now span{
+    color: #394DC0;
+}
+
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-place .place-row{
+    position: relative;
+    display: flex;
+}
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-place .place-row .place-name-box{
+    display: flex;
+    width: 125px;
+    height: 82px;
+    padding: 10px 20px;
+    background: var(--color-grey-5);
+    flex-direction: column;
+    justify-content: center;
+}
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-place .place-row .place-reserve-row{
+    position: relative;
+    width: calc(100% - 125px);   
+}
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-place .place-row .place-reserve-row .place-reserve-time{
+    position: absolute;
+    top: 12px;
+    display: flex;
+    width: 120px;
+    height: 58px;
+    padding: 0 20px;
+    background: #F4F5FE;
+    border-radius: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-place .place-row .place-reserve-row .place-reserve-time .tit{
+    margin-right: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-place .place-row .place-reserve-row .place-reserve-time .time{
+    color: #888888;
+}
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-place .place-row .place-reserve-row .place-reserve-time.pd {
+    padding: 0 10px;
+}
+.asset-wrapper .asset-view-content .place-reserve-day .celendar-list-place .place-row .place-reserve-row .place-reserve-time.pd .tit{
+    margin-right: 0;
+}
+
+
+/* 월간 스케줄 */
+
+.asset-wrapper .asset-view-content .place-reserve-month{
+    margin-bottom: 40px;
+}
+
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-top{
+    width: 100%;
+    display: flex;    
+    background-color: var(--color-grey-5);
+    border-bottom: 1px solid var(--color-grey-40);
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-top .day{
+    display: flex;
+    /* width: 200px; */
+    width: 100%;
+    height: 40px;    
+    align-items: center;
+    justify-content: center;
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-top .day.weekend{
+    width: 180px;
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-top .day.color-r{
+    color: #FF0000;
+}
+/* @note 2023-03-15 */
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+/* @note 2023-03-15 */
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row{
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid var(--color-grey-10);
+}
+/* @note 2023-03-15 */
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box{
+    position: relative;
+    width: 100%;
+    /* width: 200px; */
+    height: 150px;
+    padding: 10px;
+    border-right: 1px solid var(--color-grey-10);
+    
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box:last-of-type{
+    border-right: none !important;
+}
+
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box.weekend{
+    width: 180px;
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box.bg-blue{
+    background-color: var(--color-blue-10);
+}
+
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box.none{
+    border-right: none !important;
+    cursor: inherit;
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .none.last{
+    border-right: 1px solid var(--color-grey-10) !important;
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box .number{
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box .reserve_list{
+    height: 66px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box .reserve_list > li{
+    display: flex;
+    margin-bottom: 3px;
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box .reserve_list > li .time{
+    margin-right: 10px;
+}
+/* @note 2023-03-15 */
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box .reserve_list > li .tit{
+    max-width: 45%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box .dotdot{
+    display: block;
+    width: 3px;
+    height: 14px;
+    background: url('/logisall/resources/svgs/dotdot.svg') no-repeat;
+    margin: 0 auto;
+
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box .place-popup {
+    display: none;
+    position: absolute;
+    top: -10px;
+    left: 100%;
+    width: 300px;
+    height: 283px;
+    padding: 30px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 2;
+    cursor: auto;
+}
+/* @note 2023-04-04 */
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box:nth-child(n+6) .place-popup{
+    left: auto;
+    right: 90%;
+}
+/* @note 2023-04-04 */
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box .place-popup .popup-close{
+    position: absolute;
+    top: 23px;
+    right: 17.25px;
+    background: #ffffff;
+    border: none;
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box .place-popup .place-popup-tit{
+    display: block;
+    margin-bottom: 16px;    
+}
+
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box .place-popup .date-box{
+    display: flex;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--color-grey-20);
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box .place-popup .date-box .date{
+    color: var(--color-grey-80);
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box .place-popup .date-box .date-box-btn{
+    display: flex;
+    gap: 5px;
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box .place-popup .date-box .date-box-btn button{
+    display: flex;
+    width: 16px;
+    height: 16px;
+    background: #FFFFFF;
+    border: 1px solid var(--color-grey-20);
+    border-radius: 3px;
+    align-items: center;
+    justify-content: center;
+}
+
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box .place-popup .reserve-list{
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box .place-popup .reserve-list > li{
+    display: flex;    
+}
+.asset-wrapper .asset-view-content .place-reserve-month .celendar-list-cont .week-row .box .place-popup .reserve-list > li .time{
+    margin-right: 10px;
+    
+}
+.layer-popup{
+    width: 500px;
+}
+.layer-popup .popup-cont .popup-data-write .data-write-row .write-box .datepicker{
+    width: 134px;
+}
+
+.layer-popup .popup-cont .popup-data-write .data-write-row .write-box .btn-box{
+    display: flex;
+    gap: 8px;
+}
+.layer-popup .popup-cont .popup-data-write .data-write-row .write-box .reserve-list{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+.layer-popup .popup-cont .popup-data-write .data-write-row .write-box .reserve-list > li{
+    display: flex;    
+    align-items: baseline;
+}
+.layer-popup .popup-cont .popup-data-write .data-write-row .write-box .reserve-list > li span{
+    margin-right: 10px;
+}
+.layer-popup .popup-cont .popup-data-write .data-write-row .write-box .reserve-list > li span:nth-child(2){
+    margin-right: 0;
+}
+.layer-popup .popup-cont .popup-data-write .data-write-row .write-box .reserve-list > li button{
+    width: 25px;
+    height: 25px;
+    border: none;
+    background: none;
+    padding: 0;
+    line-height: 0;
+}
+.layer-popup .popup-cont .popup-data-write .data-write-row .write-box .reserve-list > li button img{
+    position: relative;
+    top: -1px;
+    width: 12px;
+    height: 12px;
+}
+
+
+.asset-search .content-search-row .content-search-item .btn-border{
+    width: 60px;
+    margin-left: 10px;
+}
+
+
+
+
+
+
+
+/* @note 2023-03-10 */
+.asset-content{
+    display: flex;
+    gap: 30px;
+}
+.asset-content .asset-content-left{
+    width: 270px;
+}
+.asset-wrapper .asset-content .asset-group-content{
+    height: calc(100vh - 272px);
+    max-height: 800px;
+    background-color: #fff;
+    padding: 5px 0px 20px 20px;
+    border-radius: 10px;
+}
+/* @note 2023-03-15 */
+.asset-content .asset-content-right{
+    width: calc(100% - 300px);
+    max-width: 1550px;
+}
+
+
+/* @note 2023-03-10 */
+/* tree 라이브러리 커스텀 */
+/* jstree 아이콘 커스텀 */
+.tree-list i.jstree-icon.jstree-ocl {
+    display: none;
+}
+
+.tree-list a.jstree-anchor {
+    width: 100% !important;
+}
+
+.tree-list i.jstree-icon.jstree-themeicon {
+    display: none;
+}
+
+/* 닫힌 항목 */
+.tree-list li[aria-expanded="false"]>a {
+    position: relative;
+}
+
+.tree-list li[aria-expanded="false"]>a::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    background: url('../svgs/Icon_arrowDown_.svg');
+    transform: translate(0, -50%);
+    margin: 0;
+}
+
+
+
+/* 조직도 */
+/* 열린 항목 */
+.tree-list li[aria-expanded="true"]>a {
+    position: relative;
+}
+
+.tree-list li[aria-expanded="true"]>a::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    background: url('../svgs/Icon_arrowUp_.svg');
+    transform: translate(0, -50%);
+}
+
+/* 하위항목 */
+.tree-list li[aria-level="2"]::after {
+    right: 8px !important;
+}
+
+.tree-list li[aria-level="2"]>a::after {
+    right: 8px;
+}
+
+.tree-list li[aria-level="3"]::after {
+    right: 16px !important;
+}
+
+.tree-list li[aria-level="3"]>a::after {
+    right: 16px;
+}
+
+.tree-list li[aria-level="4"]::after {
+    right: 24px !important;
+}
+
+.tree-list li[aria-level="4"]>a::after {
+    right: 24px;
+}
+
+.tree-list li[aria-level="5"]::after {
+    right: 32px !important;
+}
+
+.tree-list li[aria-level="5"]>a::after {
+    right: 32px;
+}
+
+.tree-list li.jstree-node:not([aria-level="1"]) {
+    margin-left: 12px;
+}
+
+
+/* jstree  */
+.tree-list {
+    height: 100%;
+    max-height: 1000px;
+}
+
+.jstree-container-ul {
+    margin-right: 20px;
+}
+.jstree-default .jstree-anchor{
+    color: #555555;
+}
+.tree-list .jstree-default .jstree-clicked {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+.tree-list .jstree-default .jstree-clicked:active {
+    color: var(--color-blue-100);
+}
+
+.tree-list div.tree-list-bottom {
+    padding: 15px 20px 0 0;
+    height: 100%;
+    overflow: overlay;
+}
+
+.tree-list ul.jstree-container-ul.jstree-children.jstree-no-dots>li {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 26px;
+    letter-spacing: -0.05em;
+    color: #777777;
+    width: 93%;
+    margin-left: 2.5%;
+}
+
+.tree-list ul.jstree-container-ul.jstree-children.jstree-no-dots>li+li {
+    margin-top: 12px;
+}
+
+.tree-list ul.jstree-container-ul.jstree-children.jstree-no-dots>li[aria-expanded="true"]>a {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 26px;
+    letter-spacing: -0.05em;
+    color: #1D203A;
+}
+
+.tree-list ul.jstree-container-ul.jstree-children.jstree-no-dots li[aria-level="2"] {
+    margin-top: 12px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.05em;
+    color: #555555;
+}
+
+.tree-list ul.jstree-container-ul.jstree-children.jstree-no-dots li[aria-level="3"] {
+    margin-top: 12px;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.05em;
+    /* color: #777777; */
+}
+
+.tree-list ul.jstree-container-ul.jstree-children.jstree-no-dots li[aria-level="4"] {
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: -0.05em;
+    color: #777777;
+}
+
+.tree-list ul.jstree-container-ul.jstree-children.jstree-no-dots li[aria-level="5"] {
+    margin-top: 4px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: -0.05em;
+    color: #777777;
+}
+
+
+.jstree-children li[aria-selected="true"].jstree-leaf > a { color: var(--color-blue-100); }
+
+.tree-list li.jstree-node.jstree-open[aria-level="1"] {
+    padding-bottom: 12px;
+    ;
+    border-bottom: 1px solid #E3E3E3;
+}
+
+.tree-list .vertical-line {
+    height: 1px;
+    width: 100%;
+    background: #E3E3E3;
+}
+
+.tree-list a.jstree-hovered {
+    background: none !important;
+    border: none;
+}
+
+
+
+
+/* @note 2023-03-10 */

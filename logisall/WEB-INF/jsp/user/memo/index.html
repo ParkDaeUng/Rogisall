@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=UTF-8'>
+    <link rel="stylesheet" href="../../../../resources/css/common.css" />
+    <link rel="stylesheet" href="../../../../resources/css/memo.css" />
+    <link rel="stylesheet" href="../../../../resources/css/header.css">
+    <link rel="stylesheet" href="../../../../resources/css/nav.css">
+    <!-- <link rel="stylesheet" href="<%=ROOT%>/resources/css/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+
+    
+    
+        /**
+         * 그래프 데이터 입력
+         * : 미수금현황(도넛 그래프), 업무관리 진행바 데이터 입력은 해당 html 태그에서 진행
+         * /
+         
+        /* 바 그래프 데이터셋 */
+        let barData = {
+            labels: ['2020', '2021', '2022'],  // 연도 순서대로 입력
+            datasets: [
+                {
+                    label: '복리후생비',
+                    data: [70, 75, 90],  // 데이터 순서대로 입력
+                    borderRadius: 3,
+                    backgroundColor: '#394DC0',
+                    maxBarThickness: 40,
+                    datalabels: {
+                        color: '#394DC0',
+                    },
+                },
+                {
+                    label: '접대비',
+                    data: [30, 25, 10],  // 데이터 순서대로 입력
+                    borderRadius: 3,
+                    backgroundColor: '#FEAA12',
+                    maxBarThickness: 40,
+                    datalabels: {
+                        color: '#FEAA12'
+                    },
+                },
+            ]
+        }
+
+        // Profile DropDown Start
+        $(document).ready(function() {
+            // quick-menu dropDown
+            $('#quick-menu').click(function(e) {
+                e.stopPropagation();
+                $(".quickmenu-wrapper").toggle();
+            });
+            
+            $(document).click(function(e) {
+                if (!$(e.target).closest('#quick-menu').length &&
+                    !$(e.target).closest('.quickmenu-wrapper').length) {
+                        $('.quickmenu-wrapper').css({'display': 'none'});
+                };
+            });
+
+            // profile dropDown
+            $('#more-menu').click(function(e) {
+                e.stopPropagation();
+                $(".drop-wrapper").toggle();
+                $('#dropdown-icon').toggleClass('rotate');
+            });
+
+            $(document).click(function(e) {
+                if (!$(e.target).closest('#more-menu').length &&
+                    !$(e.target).closest('.drop-wrapper').length) {
+                        $('.drop-wrapper').css({'display': 'none'});
+                        $('#dropdown-icon').removeClass('rotate');
+                };
+            });
+
+            // profile-contents dropDown
+            $(".menu-contents").hide();
+            $(".menu-title").click(function() {
+                $(this).next(".menu-contents").toggle();
+                $(this).children('.drop-btn').toggleClass('rotate');
+            });
+
+        });
+        // Profile DropDown End
+
+        // Nav menu DropDown End
+        $(document).ready(function() {
+            // nav hide show
+            $(".slider_btn").click(function (e) {
+                if ($(".slider_btn").hasClass("slider_chk")) {
+                    $(".nav-menu").animate({
+                        left: "0px",
+                    }, 500);
+                    $(".main-wrapper").animate({
+                        paddingLeft: "240px",
+                    }, 500);
+                    $(".slider_btn").removeClass("slider_chk");
+                } else {
+                    $(".nav-menu").animate({
+                        left: "-200px",
+                    }, 500);
+                    $(".main-wrapper").animate({
+                        paddingLeft: "40px",
+                    }, 500);
+                    $(".slider_btn").addClass("slider_chk");
+                }
+            });
+            
+            // nav dropDown
+            $('.nav-list-2nd').hide();
+            $('.nav-list-1nd').click(function() {
+                $('.list-2nd-item').removeClass('select');
+                $('.sub-content').css({'display':'none'});
+                $(this).toggleClass('select');
+                $('.nav-list-1nd').not(this).removeClass('select');
+                $(this).next('.nav-list-2nd').slideToggle(300);
+                $('.nav-list-1nd').not(this).next('.nav-list-2nd').slideUp(300);
+            });
+        
+            // nav-sub dropDown
+            $('.list-2nd-item').click(function(e) {
+                let viewY = window.innerHeight;
+                let targetY = Math.floor(e.target.getBoundingClientRect().top);
+                let popupHeight = $('.sub-content').outerHeight()
+
+
+                $(this).toggleClass('select');
+                $('.list-2nd-item').not(this).removeClass('select');
+                if($('.list-2nd-item').hasClass('select')) {
+                    if((viewY - popupHeight) > (targetY + 10)) {
+                        $('.sub-content').css({'display':'block', 'top':targetY, 'bottom':''});
+                    }else {
+                        $('.sub-content').css({'display':'block', 'top':'', 'bottom':viewY - targetY - 30});
+                    }
+                }else {
+                    $('.sub-content').css({'display':'none'});
+                }
+            });
+
+            $(document).click(function(e) {
+                if (!$(e.target).closest('.list-2nd-item').length &&
+                    !$(e.target).closest('.sub-content').length) {
+                        $('.sub-content').css({'display': 'none'});
+                        $('.list-2nd-item').removeClass('select');
+                };
+            });
+        });
+        // Nav menu DropDown End
+    </script>
+</head>
+
+<body>
+    <!-- 공통 nav Start -->
+    <nav class="nav-menu">
+        <div class="slider_btn ">
+            <img src="../../../../resources/svgs/Icon_arrowdownx20.svg" />
+        </div>
+        <a href="../main/index.html" class="logo"><img src="../../../../resources/white_new_logo.png" alt="logo"/></a>
+        <ul class="nav-list">
+            <li id="email" class="nav-list-1nd">E-메일</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="working-mail" class="nav-list-1nd">업무메일</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="message" class="nav-list-1nd">쪽지</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="schedule" class="nav-list-1nd">일정</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="id-card" class="nav-list-1nd">명함</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="board" class="nav-list-1nd">게시판</li>
+            <ol class="nav-list-2nd">
+                <li>그룹게시판</li>
+                <li>조직문화개선</li>
+                <li>안전보건</li>
+                <li>GlobalBiz게시판</li>
+                <li>사내게시판</li>
+                <li>코로나예방대책본부</li>
+                <li>청도고덕리게시판</li>
+                <li>교육게시판</li>
+                <li>사진함</li>
+            </ol>
+            <li id="work-board" class="nav-list-1nd">업무게시판</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="approve" class="nav-list-1nd">결재</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="fnq" class="nav-list-1nd">설문</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="meeting" class="nav-list-1nd">회의실</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="asset" class="nav-list-1nd">자산관리</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="esg" class="nav-list-1nd">ESG경영</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="logistar" class="nav-list-1nd">로지스타</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+        </ul>
+
+        <div class="nav-setting">
+            <img src="../../../../resources/svgs/setting2.svg" alt="widget-setting"/>
+            <p>위젯설정</p>
+        </div>
+    </nav>
+    <div class="sub-content">
+        <ul>
+            <li>서브컨텐츠_1</li>
+            <li>서브컨텐츠_2</li>
+            <li>서브컨텐츠_3</li>
+            <li>서브컨텐츠_4</li>
+            <li>서브컨텐츠_5</li>
+        </ul>
+    </div>
+    <!-- 공통 Nav End -->
+
+    <div class="main-wrapper bgW">
+        <!-- 공통 Header Start -->
+        <header>
+            <div class="header-search">
+                <input type="text" placeholder="검색어를 입력해주세요" />
+                <img src="../../../../resources/svgs/Icon_search.svg" alt="search" class="search"/>
+            </div>
+            <div class="header-middle"></div>
+            <div class="header-options">
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_mail_new.svg" alt="mail"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 1</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_messagecircle.svg" alt="message"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 2</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_talk.svg" alt="messanger"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 3</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_clipboard.svg" alt="clipboard"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 4</span>
+                </div>
+                <div class="division"></div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_quickmenu.svg" alt="quick-menu" id="quick-menu"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 5</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_notification_new.svg" alt="alert"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 6</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_usersearch.svg" alt="search-user"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 7</span>
+                </div>
+                <div id="more-menu" class="more-menu">
+                    <div class="profile-img">
+                        <img src="../../../../resources/svgs/profile.jfif" alt="profile-img"/>
+                    </div>
+                    <img src="../../../../resources/svgs/Icon_arrowdown.svg" alt="dropdown-icon" id="dropdown-icon"/>
+                </div>
+            </div>
+            <!-- QuickMenu Start -->
+            <div class="quickmenu-wrapper">
+                <div class="quick-box">
+                    <div class="quick-contents">
+                        <a href="#"><p>온라인연수원</p></a>
+                        <a href="#"><p>사내추천</p></a>
+                        <a href="#"><p>담당업무</p></a>
+                        <a href="#"><p>일반업무</p></a>
+                        <a href="#"><p>업무용SW다운</p></a>
+                        <a href="#"><p>지원센터</p></a>
+                        <a href="#"><p>전산자료실</p></a>
+                        <a href="#"><p>전산담당자</p></a>
+                    </div>
+                    <div class="quick-contents">
+                        <a href="#"><p>담당자별 사무보조</p></a>
+                        <a href="#"><p>노사협의회</p></a>
+                        <a href="#"><p>건의함</p></a>
+                        <a href="#"><p>연구회</p></a>
+                        <a href="#"><p>문의요청</p></a>
+                        <a href="#"><p>실비보험</p></a>
+                        <a href="#"><p>콘도예약</p></a>
+                        <a href="#"><p>메인설정</p></a>
+                    </div>
+                </div>
+            </div>
+            <!-- QuickMenu End -->
+            <!-- Profile DropDown Start -->
+            <div class="drop-wrapper">
+                <div class="dorp-my-profile">
+                    <div class="profile-box">
+                        <img src="../../../../resources/svgs/profile.jfif" alt="profile-img"/>
+                        <div class="my-profile">
+                            <div>노지은</div>
+                            <div>ULN 경영시스템 | 운영관리팀</div>
+                        </div>
+                        <img src="../../../../resources/svgs/Icon_setting.svg" alt="setting-icon">
+                    </div>
+                    <div class="info-box">
+                        <div>마지막 접속일 : 2022.12.09</div>
+                        <button type="button" class="logout-btn">로그아웃</button>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>커뮤니티</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_mail.svg"><p class="content-title">메일</p></div>
+                            <div class="community-right"><p class="txt-blue">129<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_messagecircle.svg"><p class="content-title">쪽지</p></div>
+                            <div class="community-right"><p class="txt-blue">9<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_talk.svg"><p class="content-title">로지스톡</p></div>
+                            <div class="community-right"><p class="txt-blue">34<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg"><p class="content-title">결재</p></div>
+                            <div class="community-right"><p class="txt-blue">86<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>일정관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full bg-blue-10 h-84">
+                            <div class="cal-box">
+                                <div class="cal">
+                                    <p class="day">Mon</p>
+                                    <p class="date">09</p>
+                                </div>
+                                <div class="schedule">
+                                    <div class="schedule-time">공유<span class="line"></span>15:00</div>
+                                    <div class="schedule-title content-title">운영관리팀 회의</div>
+                                </div>
+                            </div>
+                            <div class="date-count">today</div>
+                        </div>
+                        <div class="con-full h-84">
+                            <div  class="cal-box">
+                                <div class="cal">
+                                    <p class="day">Wed</p>
+                                    <p class="date">11</p>
+                                </div>
+                                <div class="schedule">
+                                    <div class="schedule-time">개인<span class="line"></span>10:00</div>
+                                    <div class="schedule-title content-title">포스팟 미팅</div>
+                                </div>
+                            </div>
+                            <div class="date-count">today</div>
+                        </div>
+                        <button class="add-btn">일정등록<img src="../../../../resources/svgs/Icon_add.svg"></button>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>휴가 사용현황</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-56">
+                            <div class="content-title">연차</div>
+                            <p class="txt-bold"><span class="s-navy100" style="margin-right: 10px;">총 10일 중</span>10<span class="s-navy100"> 일 남음</span></p>
+                        </div>
+                        <div class="con-full h-56">
+                            <div class="content-title">하계휴가</div>
+                            <p class="txt-bold"><span class="s-navy100" style="margin-right: 10px;">총 10일 중</span>0<span class="s-navy100"> 일 남음</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>교육이수</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents flex-left">
+                        <div class="con-auto bg-y content-title">어학</div>
+                        <div class="con-auto bg-p content-title">물류</div>
+                        <div class="con-auto bg-b content-title">마케팅</div>
+                        <span class="s-gray60">개인정보관리 > 인사정보 > <a href="#">진급/교육과정필수정보</a> 에서 반드시 상세정보를 확인하시길 바랍니다.</span>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>자산관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">자산</p>
+                            </div>
+                            <p class="txt-blue">3<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg" alt="icon"/>
+                                <p class="content-title">관리</p>
+                            </div>
+                            <p class="txt-blue">29<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>물품관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">신청</p>
+                            </div>
+                            <p class="txt-blue">3<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg" alt="icon"/>
+                                <p class="content-title">결재</p>
+                            </div>
+                            <p class="txt-blue">29<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>콘도예약</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">신청</p>
+                            </div>
+                            <p class="txt-blue">75<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_calendar.svg" alt="icon"/>
+                                <p class="content-title">예약</p>
+                            </div>
+                            <p class="txt-blue">176<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Profile DropDown End -->
+        </header>
+        <!-- 공통 Header End -->
+
+        <!-- content start -->
+        <main>
+            <div class="memo-wrapper">
+                <section class="routes">
+                    <img src="../../../../resources/svgs/home2.svg">
+                    <ul>
+                        <li class="">쪽지</li>
+                        <li class=""><img src="../../../../resources/svgs/arrowright2.svg">채널 쪽지함</li>
+                    </ul>
+                </section>
+                <section class="wrapper-title">
+                    <h1 class="title ph1">채널쪽지함</h1>
+                    <div class="right-btn">
+                        <button type="button" class="btn-blue">쪽지 쓰기</button>
+                    </div>
+                </section>
+                <!-- @note 2023-03-10 -->
+                <section class="memo-content">
+                    <!-- 좌측 추가 사항 -->
+                    <div class="memo-content-left">                        
+                        <section class="memo-group-content color_bg">
+                            <div class="tree-list">
+                                <!-- 바인딩된 data로 jstree 생성하는 부분, /resouces/js/memo/index.js에서 처리 -->
+                                <div class="tree-list-bottom" id="jstree">
+                                    <ul class="menu-list"></ul>
+                                </div>
+                            </div>                            
+                        </section>                        
+                    </div>
+                    <!-- // 좌측 추가 사항 -->
+                    <div class="channel-content memo-content-right">
+                        <div class="inner-cont left">
+                            <div class="inner-cont-top">
+                                <span class="tit">채널목록</span>
+                                <button type="button" class="btn-icon-right Body5_R">
+                                    최신순
+                                    <img src="../../../../resources/svgs/Icon_filter_new.svg" alt="Icon_board_lt">
+                                </button>
+                            </div>
+                            <div class="inner-cont-bottom">
+                                <ul class="channel-list">
+                                    <li class="bg">
+                                        <div class="left">
+                                            <div class="thumb">
+                                                <img src="../../../../resources/svgs/channel_thumb_sample1.svg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <div class="info">
+                                                <span class="name Body3_B">고은영</span>
+                                                <span class="time Body6_M en en">오전 11:15</span>
+                                            </div>
+                                            <div class="txt Body4_R">마지막 발송된 쪽지 내용입니다.</div>
+                                        </div>
+                                    </li> 
+                                    <li>
+                                        <div class="left">
+                                            <div class="thumb">
+                                                <img src="../../../../resources/svgs/channel_thumb_img.svg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <div class="info">
+                                                <span class="name Body3_B">경영시스템 혁신팀<em class="number Body3_M en">2</em></span>
+                                                <span class="time Body6_M en en">오전 11:15</span>
+                                            </div>
+                                            <div class="txt Body4_R">내부적으로 조직도 디자인 시안 확정 회의가 필요합니다.</div>
+                                        </div>
+                                    </li>    
+                                    <li>
+                                        <div class="left">
+                                            <div class="thumb">
+                                                <img src="../../../../resources/svgs/channel_thumb_sample2.svg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <div class="info">
+                                                <span class="name Body3_B">김보혜</span>
+                                                <span class="time Body6_M en en">오전 11:15</span>
+                                            </div>
+                                            <div class="txt Body4_R">내부적으로 조직도 디자인 시안 확정 회의가 필요합니다.</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="left">
+                                            <div class="thumb">
+                                                <img src="../../../../resources/svgs/channel_thumb_img.svg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <div class="info">
+                                                <span class="name Body3_B">이름<em class="number Body3_M en">2</em></span>
+                                                <span class="time Body6_M en en">오전 11:15</span>
+                                            </div>
+                                            <div class="txt Body4_R">쪽지 내용 반영</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="left">
+                                            <div class="thumb">
+                                                <img src="../../../../resources/svgs/channel_thumb_img.svg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <div class="info">
+                                                <span class="name Body3_B">이름<em class="number Body3_M en">2</em></span>
+                                                <span class="time Body6_M en en">오전 11:15</span>
+                                            </div>
+                                            <div class="txt Body4_R">쪽지 내용 반영</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="left">
+                                            <div class="thumb">
+                                                <img src="../../../../resources/svgs/channel_thumb_img.svg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <div class="info">
+                                                <span class="name Body3_B">이름<em class="number Body3_M en">2</em></span>
+                                                <span class="time Body6_M en en">오전 11:15</span>
+                                            </div>
+                                            <div class="txt Body4_R">쪽지 내용 반영</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="left">
+                                            <div class="thumb">
+                                                <img src="../../../../resources/svgs/channel_thumb_img.svg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <div class="info">
+                                                <span class="name Body3_B">이름<em class="number Body3_M en">2</em></span>
+                                                <span class="time Body6_M en en">오전 11:15</span>
+                                            </div>
+                                            <div class="txt Body4_R">쪽지 내용 반영</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="left">
+                                            <div class="thumb">
+                                                <img src="../../../../resources/svgs/channel_thumb_img.svg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <div class="info">
+                                                <span class="name Body3_B">이름<em class="number Body3_M en">2</em></span>
+                                                <span class="time Body6_M en en">오전 11:15</span>
+                                            </div>
+                                            <div class="txt Body4_R">쪽지 내용 반영</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="left">
+                                            <div class="thumb">
+                                                <img src="../../../../resources/svgs/channel_thumb_img.svg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <div class="info">
+                                                <span class="name Body3_B">이름<em class="number Body3_M en">2</em></span>
+                                                <span class="time Body6_M en en">오전 11:15</span>
+                                            </div>
+                                            <div class="txt Body4_R">쪽지 내용 반영</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="left">
+                                            <div class="thumb">
+                                                <img src="../../../../resources/svgs/channel_thumb_img.svg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <div class="info">
+                                                <span class="name Body3_B">이름<em class="number Body3_M en">2</em></span>
+                                                <span class="time Body6_M en en">오전 11:15</span>
+                                            </div>
+                                            <div class="txt Body4_R">쪽지 내용 반영</div>
+                                        </div>
+                                    </li>
+                                    
+                                           
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="inner-cont right">
+                            <div class="inner-cont-top">
+                                <span class="tit">발송기록</span>
+                                <div class="search">
+                                    <input type="text" placeholder="발송내용을 입력하세요." name="manager">
+                                    <button class="btn-search">
+                                        <img src="../../../../resources/svgs/Icon_search.svg" alt="search">
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="inner-cont-bottom">
+                                <div class="send-record">
+                                    <div class="sender">
+                                        <div class="sender-info">
+                                            <div class="left">
+                                                <div class="thumb">
+                                                    <img src="../../../../resources/svgs/channel_thumb_sample1.svg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="info">
+                                                    <span class="name Body3_B">고은영</span>
+                                                </div>
+                                                <div class="txt Body6_R">경영시스템 혁신팀</div>
+                                            </div>
+                                        </div>
+                                        <div class="sender-info-btn">
+                                            <div class="icon-btn"><img src="../../../../resources/svgs/Icon_bold_mail2.svg"></div>
+                                            <div class="icon-btn"><img src="../../../../resources/svgs/Icon_bold_messagecircle2.svg"></div>
+                                        </div>
+                                    </div>
+                                    <div class="message-list">
+                                        <!-- 상대방 쪽지  message-left -->
+                                        <div class="message-row message-left">
+                                            <div class="left">
+                                                <div class="thumb">
+                                                    <img src="../../../../resources/svgs/channel_thumb_sample1.svg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="info">
+                                                    <span class="name Body5_M">고은영</span>
+                                                </div>
+                                                <div class="message">
+                                                    <div class="message-txt Body5_R">상대가 발송한 쪽지 내용입니다.</div>
+                                                    <div class="time Body6_M en">오전 9:30</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- // 상대방 쪽지  message-left -->
+    
+                                        <!-- 내가 보낸 쪽지 message-right -->
+                                        <dvi class="message-row message-right">
+                                            <div class="message">
+                                                <div class="message-txt Body5_R">
+                                                    내가 발송한 쪽지 내용입니다.내가 발송한 쪽지 내용입니다.내가 발송한 쪽지 내용입니다.내가 발송한 쪽지 내용입니다.
+                                                </div>
+                                                <div class="time Body6_M en">오전 9:30</div>
+                                            </div>
+                                        </dvi>
+                                        <!-- // 내가 보낸 쪽지 message-right -->
+                                        <!-- 내가 보낸 쪽지 - 파일 -->
+                                        <dvi class="message-row message-right">
+                                            <div class="right">
+                                                <div class="message">
+                                                    <div class="message-txt">
+                                                        <span class="file Body5_R">
+                                                            <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                                            로지스올_메인시안.pptx
+                                                        </span>
+                                                    </div>
+                                                    <div class="time Body6_M en">오전 9:30</div>
+                                                </div>
+                                                <button type="button" class="file-down Body6_M en">드라이브에 저장</button>
+                                            </div>                                        
+                                        </dvi>
+                                        <!-- // 내가 보낸 쪽지 - 파일 -->                                    
+                                        <div class="message-row message-left">
+                                            <div class="left">
+                                                <div class="thumb">
+                                                    <img src="../../../../resources/svgs/channel_thumb_sample1.svg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="info">
+                                                    <span class="name Body5_M">고은영</span>
+                                                </div>
+                                                <div class="message">
+                                                    <div class="message-txt">
+                                                        <span class="file Body5_R">
+                                                            <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                                            로지스올_메인시안.pptx
+                                                        </span>
+                                                    </div>
+                                                    <div class="time Body6_M en">오전 9:30</div>
+                                                </div>
+                                                <button type="button" class="file-down Body6_M en">드라이브에 저장</button>
+                                            </div>
+                                        </div>
+                                        <dvi class="message-row message-right">
+                                            <div class="message">
+                                                <div class="message-txt Body5_R">
+                                                    내가 발송한 쪽지 내용입니다.내가 발송한 쪽지 내용입니다.내가 발송한 쪽지 내용입니다.내가 발송한 쪽지 내용입니다.
+                                                </div>
+                                                <div class="time Body6_M en">오전 9:30</div>
+                                            </div>
+                                        </dvi>
+                                        <div class="message-row message-left">
+                                            <div class="left">
+                                                <div class="thumb">
+                                                    <img src="../../../../resources/svgs/channel_thumb_sample1.svg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="info">
+                                                    <span class="name Body5_M">고은영</span>
+                                                </div>
+                                                <div class="message">
+                                                    <div class="message-txt Body5_R">상대가 발송한 쪽지 내용입니다.</div>
+                                                    <div class="time Body6_M en">오전 9:30</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <dvi class="message-row message-right">
+                                            <div class="message">
+                                                <div class="message-txt Body5_R">
+                                                    내가 발송한 쪽지 내용입니다.내가 발송한 쪽지 내용입니다.내가 발송한 쪽지 내용입니다.내가 발송한 쪽지 내용입니다.
+                                                </div>
+                                                <div class="time Body6_M en">오전 9:30</div>
+                                            </div>
+                                        </dvi>
+                                        <div class="message-row message-left">
+                                            <div class="left">
+                                                <div class="thumb">
+                                                    <img src="../../../../resources/svgs/channel_thumb_sample1.svg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="info">
+                                                    <span class="name Body5_M">고은영</span>
+                                                </div>
+                                                <div class="message">
+                                                    <div class="message-txt Body5_R">상대가 발송한 쪽지 내용입니다.</div>
+                                                    <div class="time Body6_M en">오전 9:30</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <dvi class="message-row message-right">
+                                            <div class="message">
+                                                <div class="message-txt Body5_R">
+                                                    내가 발송한 쪽지 내용입니다.내가 발송한 쪽지 내용입니다.내가 발송한 쪽지 내용입니다.내가 발송한 쪽지 내용입니다.
+                                                </div>
+                                                <div class="time Body6_M en">오전 9:30</div>
+                                            </div>
+                                        </dvi>
+                                        <div class="message-row message-left">
+                                            <div class="left">
+                                                <div class="thumb">
+                                                    <img src="../../../../resources/svgs/channel_thumb_sample1.svg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="info">
+                                                    <span class="name Body5_M">고은영</span>
+                                                </div>
+                                                <div class="message">
+                                                    <div class="message-txt Body5_R">상대가 발송한 쪽지 내용입니다.</div>
+                                                    <div class="time Body6_M en">오전 9:30</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <dvi class="message-row message-right">
+                                            <div class="message">
+                                                <div class="message-txt Body5_R">
+                                                    내가 발송한 쪽지 내용입니다.내가 발송한 쪽지 내용입니다.내가 발송한 쪽지 내용입니다.내가 발송한 쪽지 내용입니다.
+                                                </div>
+                                                <div class="time Body6_M en">오전 9:30</div>
+                                            </div>
+                                        </dvi>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>      
+                </section>                
+                <!-- // @note 2023-03-10 -->          
+            </div>
+            <!-- content end -->
+        </main>
+    </div>
+    <!-- jQuery -->
+    <script src="../../../../resources/lib/jquery-migrate-1.4.1.min.js"></script>
+    <!-- jsTree -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <!-- @note 2023-03-10 -->
+    <!-- datepicker -->
+    <script type="text/javascript" src="../../../../resources/lib/moment.min.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../../resources/css/daterangepicker.css" />
+    <!-- // @note 2023-03-10 -->
+    <!-- data load / functions -->
+    <script src="../../../../resources/js/user/memo/index.js"></script>
+</body>
+
+</html>

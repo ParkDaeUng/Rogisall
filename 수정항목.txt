@@ -1,0 +1,27 @@
+[소스]
+/WEB-INF/jsp/index.html
+/WEB-INF/jsp/user/main/index.html
+/WEB-INF/jsp/user/login/index.html
+/WEB-INF/jsp/mobile/login/index.html
+
+/resources/css/common.css
+/resources/css/login.css
+/resources/css/nav.css
+/resources/css/mobile/login.css
+
+/resources/lib/datepicker.js
+
+[추가]
+/resources/white_new_logo.png
+/resources/svgs/login_new_logo.svg
+
+/resources/js/mobile/search/index.js
+/resources/css/mobile/search.css
+/WEB-INF/jsp/mobile/search/index.html
+
+
+공통 - Logo 변경
+
+[주석(검색)] 
+@note 2023-06-12
+@note 2023-06-14

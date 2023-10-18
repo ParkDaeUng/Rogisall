@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>작업 페이지 리스트</title>
+    <!-- <link rel="stylesheet" href="<%=ROOT%>/resources/css/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/easy-pie-chart@2.1.7/dist/jquery.easypiechart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <style>
+        body{padding: 30px 40px 0 0 ;}
+        h2{margin-bottom: 30px;}
+        h3{font-weight: 300; font-size: 20px;}
+        b{color: red; font-size: 12px;}
+
+        .df{display: flex; }
+        .df > div {min-width: 350px; padding:0 50px 0 30px; border-right: 1px solid #000;}
+        
+        ul {padding-left: 15px;}
+        ul .depth2{margin-bottom: 35px;padding-left: 20px; font-size: 16px;}
+        ul .depth2 > li {margin-bottom: 4px;}
+        ul .depth2 a{color: gray; font-weight: normal;}                
+        ul .depth2 a[href]{margin-bottom: 10px; font-weight: bold; color: #337ab7;}
+        ul .depth2 a.ing:after{content: ' - 작업중'; font-size: 12px;}
+        
+        ul .depth2 a.complete:after{content: '- 완료'; color: red; font-size: 12px;}
+
+        li.accordion_list{margin-bottom: 20px;}
+        li.accordion_list li{list-style: none;}
+        li.accordion_list .date {font-size: 19px; cursor: pointer; text-decoration: underline;}
+        li.accordion_list > ul {display: none;}        
+        
+    </style>
+</head>
+
+
+<body>
+    
+    <div class="df">
+        <div>
+            <h2>PC 페이지 정리</h2>
+            <ul class="depth1">
+                <li>
+                    <h3>메인 - main</h3>
+                    <ul class="depth2">
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/main/widget.html" target="_blank" class="complete">위젯관리</a></li>                       
+                    </ul>
+                </li>
+                <li>
+                    <h3>게시판폼 - board</h3>
+                    <ul class="depth2">
+                        <!-- 
+                        [알림 - 작업 상태에 따른 a 태그 추가]
+                        1. 작업 중 = a 태그에 href 추가 
+                            - <a href="/jsp/user/board/index.html" target="_blank">작업 중</a>
+
+                        2. 작업 예정 = 'a' 태그에 href 삭제 
+                            - <a>작업 예정</a>
+
+                        3. 작업 완료 = a 태그에 class="complete" 추가 
+                            - <a class="complete">작업 완료</a> 
+                        -->
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/board/index.html" target="_blank" class="complete">게시판 기본 폼</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/board/media.html" target="_blank"class="complete">갤러리형1</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/board/media_2.html" target="_blank"class="complete">갤러리형2</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/board/media_3.html" target="_blank" class="complete">갤러리형3</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/board/post_view.html" target="_blank" class="complete">상세 페이지</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/board/post_write.html" target="_blank"class="complete" >작성 페이지</a></li>               
+                    </ul>
+                </li>
+                <li>
+                    <h3>결재 - approval</h3>
+                    <ul class="depth2">
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/approval/index.html" target="_blank" class="complete">결재_메인</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/approval/approval_list.html" target="_blank" class="complete">리스트</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/approval/approval_view.html" target="_blank" class="complete">상세 페이지</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/approval/approval_write.html" target="_blank" class="complete">작성 페이지</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>쪽지 - memo</h3>
+                    <ul class="depth2">
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/memo/index.html" target="_blank" class="complete">채널쪽지함</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/memo/note.html" target="_blank" class="complete">받은쪽지함</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>자산관리 - asset</h3>
+                    <ul class="depth2">
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/asset/index.html" target="_blank" class="complete">자산관리 목록형</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/asset/calendar.html" target="_blank" class="complete">자산관리 달력형</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/asset/calendar_week.html" target="_blank" class="complete">상세페이지 주간</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/asset/calendar_day.html" target="_blank" class="complete">상세페이지 일간</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/asset/calendar_month.html" target="_blank" class="complete">상세페이지 월간</a></li>
+                    </ul>
+                </li>
+                <li class="">
+                    <h3 class="">통합검색 - search </h3>
+                    <ul class="depth2">
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/search/index.html" target="_blank" class="complete">통합검색 </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h2>모바일 페이지 정리</h2>
+            <ul>
+                <ul class="depth1">
+                <li>
+                    <h3>모바일페이지 샘플</h3>
+                    <ul class="depth2">                       
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/board/sample.html" target="_blank" class="ready">샘플</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>로그인 - login</h3>
+                    <ul class="depth2">                       
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/login/index.html" target="_blank" class="complete">로그인</a></li>
+                        <!-- <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/login/index.html" target="_blank" class="ready" target="_blank" class="ready">로그인 - 팝업</a></li> -->
+                    </ul>
+                </li>
+                <li>
+                    <h3>조직도 - group</h3>
+                    <ul class="depth2">                       
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/group/index.html" target="_blank" class="complete">조직도</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/group/info.html" target="_blank" class="complete">조직원 정보</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>메인 - main</h3>
+                    <ul class="depth2">                       
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/main/index.html" target="_blank" class="complete">메인 - 결재</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/main/index_memo.html" target="_blank" class="complete">메인 - 쪽지</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/main/index_mail.html" target="_blank" class="complete">메인 - 메일</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/main/widget.html" target="_blank" class="complete">메인 - 아이콘 편집</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/main/index.html" target="_blank" class="complete">메뉴</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>게시판폼 - board</h3>
+                    <ul class="depth2">                       
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/board/index.html" target="_blank" class="complete" >게시판 메뉴</a></li>
+                        <!-- <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/board/index.html" target="_blank" class="ready" >게시판 상세검색 팝업</a></li> -->
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/board/list1.html" target="_blank" class="complete">게시판 리스트1</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/board/list2.html" target="_blank" class="complete" >게시판 리스트2</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/board/list3.html" target="_blank" class="complete">게시판 리스트3</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/board/view.html" target="_blank"  class="complete"> 게시판 상세</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/board/write.html" target="_blank"  class="complete"> 게시물 작성</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>결재 - approval</h3>
+                    <ul class="depth2">
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/approval/index.html" target="_blank" class="complete">결재 메인</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/approval/write.html" target="_blank" class="complete">결재 작성</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/approval/list.html" target="_blank" class="complete">결재자 지정</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/approval/write2.html" target="_blank" class="complete">결재자 지정리스트</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/approval/write3.html" target="_blank" class="complete">결재자 확인</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>쪽지 - memo</h3>
+                    <ul class="depth2">
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/memo/index.html" target="_blank" class="complete"> 받은쪽지함</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/memo/write.html" target="_blank" class="complete">쪽지쓰기</a></li>
+                        <!-- <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/user/memo/index.html" target="_blank" class="ready">쪽지쓰기 팝업</a></li> -->
+                    </ul>
+                </li>
+                <li>
+                    <h3>자산관리 - asset</h3>
+                    <ul class="depth2">
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/asset/index.html" target="_blank" class="complete">자산관리 목록형</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/asset/list_day.html" target="_blank" class="complete">자산관리 일간</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/asset/list_week.html" target="_blank" class="complete">자산관리 주간</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/asset/list_month.html" target="_blank" class="complete">자산관리 월간</a></li>
+                    </ul>
+                </li>
+                <li class="">
+                    <h3 class="">제보등록 - report </h3>
+                    <ul class="depth2">
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/report/report_1.html" target="_blank" class="complete">사내제보</a></li>
+                        <li><a href="https://nam2189.cafe24.com/logisall/WEB-INF/jsp/mobile/report/report_2.html" target="_blank" class="complete">무적등록</a></li>
+                    </ul>
+                </li>
+            </ul>
+            </ul>
+        </div>
+        <div class="modify">
+            <h2>수정내역</h2>
+            <ul class="">
+                <li class="accordion_list">
+                    <p class="date">2023-03-06</p>
+                    <ul>
+                        <li>/WEB-INF/jsp/user/board/index.html</li>
+                        <li>/WEB-INF/jsp/user/board/media.html</li>
+                        <li>/WEB-INF/jsp/user/board/media_2.html</li>
+                        <li>/WEB-INF/jsp/user/board/media_3.html</li>
+                        <li>/WEB-INF/jsp/user/board/post_write.html</li>
+                        <li>/WEB-INF/jsp/user/main/widget.html</li>
+                        <li>/WEB-INF/jsp/user/approval/index.html</li>
+                        <li>/WEB-INF/jsp/user/approval/approval_write.html</li>
+                        <li>/WEB-INF/jsp/user/board/post_view.html</li>
+                        <li>/resources/css/approval.css</li>
+                        <li>/resources/css/board.css</li>
+                        <li>/resources/css/common.css</li>
+                        <li>/resources/css/main.css</li>
+                    </ul>
+                </li>
+                <li class="accordion_list">
+                    <p class="date">2023-03-09</p>
+                    <ul>
+                        <li>/WEB-INF/jsp/user/board/post_write.html</li>
+                        <li>/WEB-INF/jsp/user/board/post_view.html</li>
+                        <li>/resources/css/board.css</li>
+                    </ul>
+                </li>
+                <li class="accordion_list">
+                    <p class="date">2023-03-10</p>
+                    <ul>
+                        <li>/WEB-INF/jsp/user/memo/index.html</li>
+                        <li>/WEB-INF/jsp/user/memo/note.html</li>
+                        <hr>
+                        <li>/WEB-INF/jsp/user/asset/index.html</li>
+                        <li>/WEB-INF/jsp/user/asset/calendar.html</li>
+                        <li>/WEB-INF/jsp/user/asset/calendar_week.html</li>
+                        <li>/WEB-INF/jsp/user/asset/calendar_month.html</li>
+                        <li>/WEB-INF/jsp/user/asset/calendar_day.html</li>
+                        <hr>
+                        <li>/WEB-INF/jsp/user/approval/index.html</li>
+                        <li>/WEB-INF/jsp/user/approval/approval_view.html</li>
+                        <li>/WEB-INF/jsp/user/approval/approval_write.html</li>
+                        <li>/WEB-INF/jsp/user/approval/approval_list.html</li>
+                        <hr>
+                        <li>/resources/css/memo.css</li>
+                        <li>/resources/css/asset.css</li>
+                        <li>/resources/css/approval.css</li>
+                        <li>/resources/css/common.css</li>
+                        <hr>
+                        <li>/resources/js/memo.js</li>
+                        <li>/resources/js/asset.js</li>
+                        <li>/resources/js/approval.js</li>
+                    </ul>
+                </li>
+                <li class="accordion_list">
+                    <p class="date">2023-04-04</p>
+                    <ul>
+                        <li>/WEB-INF/jsp/user/asset/calendar_month.html</li>
+                        <li>/WEB-INF/jsp/mobile/asset/list_month.html</li>
+                        <hr>
+                        <li>/resources/css/asset.css</li>
+                        <li>/resources/css/mobile/header.css</li>
+                        <li>/resources/css/mobile/login.css</li>
+                        <hr>
+                        <li>/resources/js/mobile/asset/index.js</li>
+                    </ul>
+                </li>
+            </ul>
+            <script>
+                $('.accordion_list .date').on('click',function(){
+                    $(this).next('ul').slideToggle();
+                });
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

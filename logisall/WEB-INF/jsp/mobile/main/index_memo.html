@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>메인 - 쪽지</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../../../../resources/css/mobile/common.css" />
+    <link rel="stylesheet" href="../../../../resources/css/mobile/main.css" />
+    <link rel="stylesheet" href="../../../../resources/css/mobile/header.css">
+    <link rel="stylesheet" href="../../../../resources/css/mobile/nav.css">
+    <!-- <link rel="stylesheet" href="<%=ROOT%>/resources/css/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <!-- 공통 nav Start -->
+    <nav class="nav-menu">
+        <div class="nav-header">
+            <a href="../main/index.html" class="logo"><img src="../../../../resources/white_new_logo.png" alt="logo"/></a>
+            <button type="button" id="nav-close">
+                <img src="../../../../resources/svgs/Icon_close_white.svg" alt="logo"/>
+            </button>
+        </div>
+        <ul class="nav-list">
+            <li id="email" class="nav-list-1nd Body2_M">E-메일</li>
+            <ol class="nav-list-2nd" style="">
+                <li class="list-2nd-item Body5_R">서브메뉴_1 
+                    <span class="alert-red"><em>11</em></span>
+                </li>
+                <li class="list-2nd-item Body5_R">서브메뉴_2
+                    <span class="alert-red"><em>99+</em></span>
+                </li>
+                <li class="list-2nd-item Body5_R">서브메뉴_3</li>
+                <li class="list-2nd-item Body5_R">서브메뉴_4</li>
+                <li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="working-mail" class="nav-list-1nd Body2_M">업무메일</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="message" class="nav-list-1nd Body2_M">쪽지</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="schedule" class="nav-list-1nd Body2_M">일정</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="id-card" class="nav-list-1nd Body2_M">명함</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="board" class="nav-list-1nd Body2_M">게시판</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li>그룹게시판</li>
+                <li>조직문화개선</li>
+                <li>안전보건</li>
+                <li>GlobalBiz게시판</li>
+                <li>사내게시판</li>
+                <li>코로나예방대책본부</li>
+                <li>청도고덕리게시판</li>
+                <li>교육게시판</li>
+                <li>사진함</li>
+            </ol>
+            <li id="work-board" class="nav-list-1nd Body2_M">업무게시판</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="approve" class="nav-list-1nd Body2_M">결재</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="fnq" class="nav-list-1nd Body2_M">설문</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="meeting" class="nav-list-1nd Body2_M">회의실</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="asset" class="nav-list-1nd Body2_M">자산관리</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="esg" class="nav-list-1nd Body2_M">ESG경영</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="logistar" class="nav-list-1nd Body2_M">로지스타</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+        </ul>
+    </nav>    
+    <!-- 공통 Nav End -->
+
+    <div class="main-wrapper">
+        <!-- 공용 Header Start -->
+        <header>
+            <!-- 기본 Header Start -->
+            <div class="default-header header">
+                <a href="../main/index.html" class="logo"><img src="../../../../resources/white_new_logo.png" alt="logo"/></a>
+                <div class="header-btn">
+                    <a href=""><img src="../../../../resources/svgs/Icon_notification_none.svg" alt="알림"/></a>
+                    <a href=""><img src="../../../../resources/svgs/Icon_usersearch.svg" alt="찾기"/></a>
+                    <button type="button" id="nav-open"><img src="../../../../resources/svgs/Icon_menu.svg" alt="메뉴 열기"/></button>
+                </div>               
+            </div>    
+            <!-- 기본 Header End -->      
+            
+        </header>
+        <!-- 공용 Header End -->
+
+        <!-- content start -->
+        <main >
+            <div class="main-content content">
+                <!-- 사용자 정보 -->
+                <section class="main-top">
+                    <div class="user-change ">
+                        <span class="ph4">계정전환</span>                        
+                        <img src="../../../../resources/svgs/Icon_user_change.svg" alt="">
+                    </div>
+                    <div class="user-info">
+                        <div class="user-info-profile">
+                            <div class="cont-thumb">
+                                <img src="../../../../resources/svgs/channel_thumb_sample1.svg" alt="">
+                            </div>
+                            <div class="cont-txt">
+                                <span class="name Body3_B">노지은</span>
+                                <div class="cont-txt-sub">
+                                    <span class="team-1 Body6_M">ULN 경영시스템</span>
+                                    <span class="team-2 Body6_M">운영관리팀</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-info-state">
+                            <span class="state-txt Body5_M">현재 계정 근무상태</span>                            
+                            <div class="select-state">
+                                <!-- @note 클레스 변경 예시
+                                    내근 : bg_graph5
+                                    외근 : bg_graph3
+                                -->
+                                <div class="select-box bg_graph5">
+                                    <input type="hidden" name="option-value" value="" id="select-input">
+                                    <button class="select-label Small_M" type="button">내근</button>
+                                    <ul class="option" id="select-options2" style="display: none;">
+                                        <!-- /resouces/js/mobile/index.js에서 처리 -->
+                                        <li class="option-item Small_R">외근</li>
+                                        <li class="option-item Small_R">미팅</li>
+                                    </ul> 
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="user-info-option">
+                            <img src="../../../../resources/svgs/Icon-user-info-option.svg" alt="">
+                        </div>
+                    </div>
+                </section>     
+
+                <!-- 게시물 -->
+                <section class="main-board-wrap">
+                    <!-- 탭 -->
+                    <div class="sign-tab defult-list">
+                        <button type="button" class="tab-btn">결재(32건)</button>
+                        <button type="button" class="tab-btn on">쪽지(20건)</button>
+                        <button type="button" class="tab-btn">메일(4건)</button>
+                    </div>
+                    <div class="board-list-cont">
+                        <ul class="board-list mail">
+                            <!-- 리스트 반복 -->
+                            <li>      
+                                <!-- 작성자, 날짜, 시간  -->
+                                <div class="data-list">
+                                    <span class="name Body6_R">홍길동</span>
+                                    <span class="date Body6_R en">2023.01.09</span>
+                                    <span class="tiem Body6_R en">13:31</span>
+                                </div>              
+
+                                <!-- 받는 사람 -->
+                                <div class="recipient-cont Body5_M">
+                                    받는사람 : 운영혁신담당
+                                </div>
+                                
+                                <!-- 내용보기 버튼 -->
+                                <div class="cont-box">
+                                    <div class="bottom-btn-row taL">
+                                        <button type="button" class="btn-grey left cont-btn">내용보기</button>
+                                        <button class="btn-border">전달</button>
+                                        <button class="btn-border">답장</button>
+                                    </div>
+                                    <div class="cont">
+                                        <div class="text-cont Body4_M">
+                                            차세대 인트라넷 메뉴목록 정리한 파일 입니다. 확인부탁드립니다.
+                                        </div>
+                                        <div class="file">
+                                            <p class="Body5_R">첨부파일 1개</p>
+                                            <div class="file-box">
+                                                <button class="file-each Body5_R en">
+                                                    <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                                    <p class="file-name">22046_202252141728_KakaoTalk_20220502_140816459.jpg</p>
+                                                    <em class="file-capacity Body5_R en">1.5MB</em>
+                                                    <span class="downicon">
+                                                        <img src="../../../../resources/svgs/Icon_file_download.svg" alt="file_download">
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </li>                            
+                            <!-- // 리스트 반복 -->
+                            <li>      
+                                <!-- 작성자, 날짜, 시간  -->
+                                <div class="data-list">
+                                    <span class="name Body6_R">홍길동</span>
+                                    <span class="date Body6_R en">2023.01.09</span>
+                                    <span class="tiem Body6_R en">13:31</span>
+                                </div>         
+
+                                <!-- 받는 사람 -->
+                                <div class="recipient-cont Body5_M">
+                                    받는사람 : 운영혁신담당
+                                </div>
+                                
+                                <!-- 내용보기 버튼 -->
+                                <div class="cont-box">
+                                    <div class="bottom-btn-row taL">
+                                        <button type="button" class="btn-grey left cont-btn">내용보기</button>
+                                        <button class="btn-border">전달</button>
+                                        <button class="btn-border">답장</button>
+                                    </div>
+                                    <div class="cont">
+                                        <div class="text-cont Body4_M">
+                                            차세대 인트라넷 메뉴목록 정리한 파일 입니다. 확인부탁드립니다.
+                                        </div>
+                                        <div class="file">
+                                            <p class="Body5_R">첨부파일 1개</p>
+                                            <div class="file-box">
+                                                <button class="file-each Body5_R en">
+                                                    <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                                    <p class="file-name">22046_202252141728_KakaoTalk_20220502_140816459.jpg</p>
+                                                    <em class="file-capacity Body5_R en">1.5MB</em>
+                                                    <span class="downicon">
+                                                        <img src="../../../../resources/svgs/Icon_file_download.svg" alt="file_download">
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </li>  
+                            <li>      
+                                <!-- 작성자, 날짜, 시간  -->
+                                <div class="data-list">
+                                    <span class="name Body6_R">홍길동</span>
+                                    <span class="date Body6_R en">2023.01.09</span>
+                                    <span class="tiem Body6_R en">13:31</span>
+                                </div>         
+
+                                <!-- 받는 사람 -->
+                                <div class="recipient-cont Body5_M">
+                                    받는사람 : 운영혁신담당
+                                </div>
+                                
+                                <!-- 내용보기 버튼 -->
+                                <div class="cont-box">
+                                    <div class="bottom-btn-row taL">
+                                        <button type="button" class="btn-grey left cont-btn">내용보기</button>
+                                        <button class="btn-border">전달</button>
+                                        <button class="btn-border">답장</button>
+                                    </div>
+                                    <div class="cont">
+                                        <div class="text-cont Body4_M">
+                                            차세대 인트라넷 메뉴목록 정리한 파일 입니다. 확인부탁드립니다.
+                                        </div>
+                                        <div class="file">
+                                            <p class="Body5_R">첨부파일 1개</p>
+                                            <div class="file-box">
+                                                <button class="file-each Body5_R en">
+                                                    <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                                    <p class="file-name">22046_202252141728_KakaoTalk_20220502_140816459.jpg</p>
+                                                    <em class="file-capacity Body5_R en">1.5MB</em>
+                                                    <span class="downicon">
+                                                        <img src="../../../../resources/svgs/Icon_file_download.svg" alt="file_download">
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </li> 
+                        </ul>
+                        <div class="button-wrapper">
+                            <button class="btn-txt more-btn">
+                                <span class="Body5_M">29개의 쪽지 더보기</span>
+                                <img src="../../../../resources/svgs/Icon_mo_more_btn.svg" alt="더보기 버튼">
+                            </button>
+                        </div>
+                    </div>
+                    
+                </section>           
+            </div>        
+        </main>
+        <!-- content end -->
+
+        <script>
+            $(".cont-btn").click(function() {                               
+                if($(this).parents(".cont-box").hasClass("no-view")){
+                    $(this).parents(".cont-box").removeClass("no-view");
+                    $(this).text('내용보기');
+                }else {
+                    $(this).parents(".cont-box").addClass("no-view");
+                    $(this).text('내용닫기');
+                }
+            });
+        </script>    
+
+        <!-- footer -->
+        <footer>
+            <div class="q-menu">
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_home.svg" alt="메인"/>
+                    <span class="Small_R">메인</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_quickmenu.svg" alt="퀵메뉴"/>
+                    <span class="Small_R">퀵메뉴</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/m_Icon_search.svg" alt="통합검색"/>
+                    <span class="Small_R">통합검색</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_user.svg" alt="마이페이지"/>
+                    <span class="Small_R">마이페이지</span>
+                </a>
+            </div>
+        </footer>
+        <!-- // footer -->
+    </div>
+    <script src="../../../../resources/js/mobile/index.js"></script> <!-- common.js -->
+    <script src="../../../../resources/js/mobile/main/index.js"></script>
+</body>
+
+</html>

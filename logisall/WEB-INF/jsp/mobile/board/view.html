@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>게시판폼 - 게시판 상세</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../../../../resources/css/mobile/common.css" />
+    <link rel="stylesheet" href="../../../../resources/css/mobile/board.css" />
+    <link rel="stylesheet" href="../../../../resources/css/mobile/header.css">
+    <link rel="stylesheet" href="../../../../resources/css/mobile/nav.css">
+    <!-- <link rel="stylesheet" href="<%=ROOT%>/resources/css/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <!-- 공통 nav Start -->
+    <nav class="nav-menu">
+        <div class="nav-header">
+            <a href="../main/index.html" class="logo"><img src="../../../../resources/white_new_logo.png" alt="logo"/></a>
+            <button type="button" id="nav-close">
+                <img src="../../../../resources/svgs/Icon_close_white.svg" alt="logo"/>
+            </button>
+        </div>
+        <ul class="nav-list">
+            <li id="email" class="nav-list-1nd Body2_M">E-메일</li>
+            <ol class="nav-list-2nd" style="">
+                <li class="list-2nd-item Body5_R">서브메뉴_1 
+                    <span class="alert-red"><em>11</em></span>
+                </li>
+                <li class="list-2nd-item Body5_R">서브메뉴_2
+                    <span class="alert-red"><em>99+</em></span>
+                </li>
+                <li class="list-2nd-item Body5_R">서브메뉴_3</li>
+                <li class="list-2nd-item Body5_R">서브메뉴_4</li>
+                <li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="working-mail" class="nav-list-1nd Body2_M">업무메일</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="message" class="nav-list-1nd Body2_M">쪽지</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="schedule" class="nav-list-1nd Body2_M">일정</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="id-card" class="nav-list-1nd Body2_M">명함</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="board" class="nav-list-1nd Body2_M">게시판</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li>그룹게시판</li>
+                <li>조직문화개선</li>
+                <li>안전보건</li>
+                <li>GlobalBiz게시판</li>
+                <li>사내게시판</li>
+                <li>코로나예방대책본부</li>
+                <li>청도고덕리게시판</li>
+                <li>교육게시판</li>
+                <li>사진함</li>
+            </ol>
+            <li id="work-board" class="nav-list-1nd Body2_M">업무게시판</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="approve" class="nav-list-1nd Body2_M">결재</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="fnq" class="nav-list-1nd Body2_M">설문</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="meeting" class="nav-list-1nd Body2_M">회의실</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="asset" class="nav-list-1nd Body2_M">자산관리</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="esg" class="nav-list-1nd Body2_M">ESG경영</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="logistar" class="nav-list-1nd Body2_M">로지스타</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+        </ul>
+    </nav>    
+    <!-- 공통 Nav End -->
+
+    <div class="main-wrapper">
+        <!-- 공용 Header Start -->
+        <header>  
+            <!-- 서브 Header Start -->
+            <div class="sub-header header">
+                <a href="../main/index.html" class="back"><img src="../../../../resources/svgs/Icon_header_back.svg" alt="뒤로가기"/></a>
+                <div class="page-title Body2_M">
+                    그룹게시판
+                </div>
+            </div>    
+            <!-- 서브 Header End -->  
+        </header>
+        <!-- 공용 Header End -->
+
+        <!-- content start -->
+        <main >
+            <div class="board-content content">
+                <div class="top-btn-row taL">
+                    <button type="button" class="btn-border btn-l left">목록</button>
+                    <button type="button" class="btn-border btn-m">삭제</button>
+                    <button type="button" class="btn-border btn-m">수정</button>
+                    <button type="button" class="btn-border btn-m">답글</button>
+                </div>
+                <section class="main-top"></section>         
+
+                <div class="post-view-area">
+                    <div class="post-view-top">
+                        <p class="tit ph4">
+                            <span>[분류]</span>
+                            메인시안 및 디자인 가이드 문서 파일 전달 내역
+                        </p>
+                        <div class="post-write-info">
+                            <div class="profile-box">
+                                <div>
+                                    <img src="../../../../resources/svgs/profile.jfif" alt="profile-img">
+                                </div>
+                                <div class="my-profile">
+                                    <div class="Body4_B">김지은</div>
+                                    <div>
+                                        <span class="date Body6_R en">2023.01.01 14:00</span> 
+                                        <span class="state Body6_R">읽음 3</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="list">
+                            <li class="list-item">
+                                <div class="box">
+                                    <div class="pt-tit Body3_R">
+                                        <button type="button" class="pt-btn">
+                                               업체명
+                                        </button>
+                                    </div>
+                                    <div class="pt-cont Body2_R">
+                                            포스팟
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-item">
+                                <div class="box">
+                                    <div class="pt-tit Body3_R">
+                                        <button type="button" class="pt-btn">
+                                            연락처
+                                        </button>
+                                    </div>
+                                    <div class="pt-cont Body2_R">
+                                        010-1234-5678
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-item">
+                                <div class="box">
+                                    <div class="pt-tit Body3_R">
+                                        <button type="button" class="pt-btn">
+                                            이메일
+                                        </button>
+                                    </div>
+                                    <div class="pt-cont Body2_R">
+                                        이메일
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-item">
+                                <div class="box">
+                                    <div class="pt-tit Body3_R">
+                                        <button type="button" class="pt-btn">
+                                            상태
+                                        </button>
+                                    </div>
+                                    <div class="pt-cont Body2_R">
+                                        상태
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="post-view-cont">
+
+                        <div class="post-view-con">
+                            <div class="post-content-tit Body2_B">내용</div>
+                            <div class="post-view-editor Body3_M">
+                                음봉면 동암리 486 / 기천농산 토종 한우 직판장 뒤 주차장 전봇대 옆에 있음
+                                위에 종량제 및 분리수거 쓰레기 올려두는것으로 보이며 제 예상이나 지속적으로 해당용도로 사용한 듯 보임
+                                길가이며 주변 파렛트 사용하는 곳은 없어보이며 별도 문의는 못하였습니다. 우선 제보드립니다.
+                            </div>
+                            <div class="file">
+                                <p class="Body5_R">첨부파일 1개</p>
+                                <div class="file-box">
+                                    <button class="file-each Body5_R en">
+                                        <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                        <p class="file-name">22046_202252141728_KakaoTalk_20220502_140816459.jpg</p>
+                                        <em class="file-capacity Body5_R en">1.5MB</em>
+                                        <span class="downicon">
+                                            <img src="../../../../resources/svgs/Icon_file_download.svg" alt="file_download">
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="post-view-con">
+                            <div class="post-content-tit Body2_B">처리내역</div>
+                            <div class="result-tb-box">
+                                <table class="result-tb">
+                                    <caption>담당구분, 담당자, 상태, 일시, 내용, 첨부파일 내용이 담겨있는 표</caption>
+                                    <colgroup>
+                                        <col style="width: 179px;">
+                                        <col style="width: 179px;">
+                                        <col style="width: 139px;">
+                                        <col style="width: 179px;">
+                                        <col style="width: 540px;">
+                                        <col style="width: 139px;">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">담당구분</th>
+                                            <th scope="col">담당자</th>
+                                            <th scope="col">상태</th>
+                                            <th scope="col">일시</th>
+                                            <th scope="col">내용</th>
+                                            <th scope="col">첨부파일</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr> 
+                                        <tr>
+                                            <td>회수담당자</td>
+                                            <td>곽대한(아산지점)</td>
+                                            <!-- 
+                                                mark1 - > 완료
+                                            -->
+                                            <td class="mark1">완료</td>
+                                            <td>2023.02.09 11:00</td>
+                                            <td class="cont">5/3 N11 1매 회수 완료</td>
+                                            <td class="file">
+                                                <button type="button">
+                                                    <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon"> 
+                                                    1
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>회수담당자</td>
+                                            <td>곽대한(아산지점)</td>
+                                            <!-- 
+                                                mark1 - > 완료
+                                            -->
+                                            <td class="mark1">완료</td>
+                                            <td>2023.02.09 11:00</td>
+                                            <td class="cont">5/3 N11 1매 회수 완료</td>
+                                            <td class="file">
+                                                <button type="button">
+                                                    <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon"> 
+                                                    1
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="post-view-con">
+                            <div class="post-content-tit Body2_B">댓글 1</div>
+                            <div class="reply-box">
+                                <div class="reply-box-tp">
+                                    <p class="wr-name Body4_B">김지은 (id123***)</p>
+                                    <textarea placeholder="20자 이내로 댓글을 입력해주세요. " title="댓글 입력란" class="Body3_R"></textarea>
+                                </div>
+                                <div class="reply-box-bt">
+                                    <button class="reply-file btn-icon border">
+                                        <img src="../../../../resources/svgs/Icon_reply_file.svg" alt="reply_file_icon">
+                                    </button>
+                                    <button type="button" class="btn-white cont-btn">댓글등록</button>
+                                </div>
+                            </div>
+                            <div class="reply-list-box">
+                                <div class="reply-list">
+                                    <div class="reply-write-info">
+                                        <div class="profile-box">
+                                            <div>
+                                                <img src="../../../../resources/svgs/profile.jfif" alt="profile-img">
+                                            </div>
+                                            <div class="my-profile">
+                                                <div class="Body4_B">김지은</div>
+                                                <div>
+                                                    <span class="date Body6_R en">2023.01.01 14:00</span> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="reply-remove-btn">
+                                            <button type="button" class="popup-close"><img src="../../../../resources/svgs/icon_popup_close.svg" alt=""></button>
+                                        </div>
+                                    </div>
+                                    <div class="reply-write-cont Body3_R mt10">
+                                        입력된 댓글입니다.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // reply-view-list  -->
+                        </div>
+
+                    </div>
+                </div>
+                <!-- // post-view-area -->
+            </div>
+        </main>
+        <!-- content end -->
+
+        <script>    
+
+            $(".pt-tit").click(function() {                               
+                if($(this).parents(".list-item").hasClass("on")){
+                    $(this).parents(".list-item").removeClass("on");
+                }else {
+                    $(this).parents(".list-item").addClass("on");
+                }
+            });
+
+        </script>
+
+        <!-- footer -->
+        <footer>
+            <div class="q-menu">
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_home.svg" alt="메인"/>
+                    <span class="Small_R">메인</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_quickmenu.svg" alt="퀵메뉴"/>
+                    <span class="Small_R">퀵메뉴</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/m_Icon_search.svg" alt="통합검색"/>
+                    <span class="Small_R">통합검색</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_user.svg" alt="마이페이지"/>
+                    <span class="Small_R">마이페이지</span>
+                </a>
+            </div>
+        </footer>
+        <!-- // footer -->
+    </div>
+
+    <script src="../../../../resources/js/mobile/index.js"></script> <!-- common.js -->
+    <script src="../../../../resources/js/mobile/board/index.js"></script>
+
+     <!-- datepicker -->
+     <script type="text/javascript" src="../../../../resources/lib/moment.min.js"></script>
+     <script type="text/javascript" src="../../../../resources/lib/datepicker.js"></script>
+     <script type="text/javascript" src="../../../../resources/lib/timepicker.js"></script>
+     <script type="text/javascript" src="../../../../resources/lib/daterangepicker.js"></script>
+     <link rel="stylesheet" type="text/css" href="../../../../resources/css/daterangepicker.css" />
+</body>
+
+</html>

@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>결재</title>
+    <meta charset=UTF-8>
+    <link rel="stylesheet" href="../../../../resources/css/common.css" />
+    <link rel="stylesheet" href="../../../../resources/css/approval.css" />
+    <link rel="stylesheet" href="../../../../resources/css/header.css">
+    <link rel="stylesheet" href="../../../../resources/css/nav.css">
+    <!-- <link rel="stylesheet" href="<%=ROOT%>/resources/css/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/easy-pie-chart@2.1.7/dist/jquery.easypiechart.min.js"></script>
+    <script>
+        // Profile DropDown Start
+        $(document).ready(function() {
+            // quick-menu dropDown
+            $('#quick-menu').click(function(e) {
+                e.stopPropagation();
+                $(".quickmenu-wrapper").toggle();
+            });
+            
+            $(document).click(function(e) {
+                if (!$(e.target).closest('#quick-menu').length &&
+                    !$(e.target).closest('.quickmenu-wrapper').length) {
+                        $('.quickmenu-wrapper').css({'display': 'none'});
+                };
+            });
+
+            // profile dropDown
+            $('#more-menu').click(function(e) {
+                e.stopPropagation();
+                $(".drop-wrapper").toggle();
+                $('#dropdown-icon').toggleClass('rotate');
+            });
+
+            $(document).click(function(e) {
+                if (!$(e.target).closest('#more-menu').length &&
+                    !$(e.target).closest('.drop-wrapper').length) {
+                        $('.drop-wrapper').css({'display': 'none'});
+                        $('#dropdown-icon').removeClass('rotate');
+                };
+            });
+
+            // profile-contents dropDown
+            $(".menu-contents").hide();
+            $(".menu-title").click(function() {
+                $(this).next(".menu-contents").toggle();
+                $(this).children('.drop-btn').toggleClass('rotate');
+            });
+
+        });
+        // Profile DropDown End
+
+        // Nav menu DropDown End
+        $(document).ready(function() {
+            // nav hide show
+            $(".slider_btn").click(function (e) {
+                if ($(".slider_btn").hasClass("slider_chk")) {
+                    $(".nav-menu").animate({
+                        left: "0px",
+                    }, 500);
+                    $(".main-wrapper").animate({
+                        paddingLeft: "240px",
+                    }, 500);
+                    $(".slider_btn").removeClass("slider_chk");
+                } else {
+                    $(".nav-menu").animate({
+                        left: "-200px",
+                    }, 500);
+                    $(".main-wrapper").animate({
+                        paddingLeft: "40px",
+                    }, 500);
+                    $(".slider_btn").addClass("slider_chk");
+                }
+            });
+
+            // nav dropDown
+            $('.nav-list-2nd').hide();
+            $('.nav-list-1nd').click(function() {
+                $('.list-2nd-item').removeClass('select');
+                $('.sub-content').css({'display':'none'});
+                $(this).toggleClass('select');
+                $('.nav-list-1nd').not(this).removeClass('select');
+                $(this).next('.nav-list-2nd').slideToggle(300);
+                $('.nav-list-1nd').not(this).next('.nav-list-2nd').slideUp(300);
+            });
+        
+            // nav-sub dropDown
+            $('.list-2nd-item').click(function(e) {
+                let viewY = window.innerHeight;
+                let targetY = Math.floor(e.target.getBoundingClientRect().top);
+                let popupHeight = $('.sub-content').outerHeight()
+
+
+                $(this).toggleClass('select');
+                $('.list-2nd-item').not(this).removeClass('select');
+                if($('.list-2nd-item').hasClass('select')) {
+                    if((viewY - popupHeight) > (targetY + 10)) {
+                        $('.sub-content').css({'display':'block', 'top':targetY, 'bottom':''});
+                    }else {
+                        $('.sub-content').css({'display':'block', 'top':'', 'bottom':viewY - targetY - 30});
+                    }
+                }else {
+                    $('.sub-content').css({'display':'none'});
+                }
+            });
+
+            $(document).click(function(e) {
+                if (!$(e.target).closest('.list-2nd-item').length &&
+                    !$(e.target).closest('.sub-content').length) {
+                        $('.sub-content').css({'display': 'none'});
+                        $('.list-2nd-item').removeClass('select');
+                };
+            });
+        });
+        // Nav menu DropDown End
+    </script>
+</head>
+
+<body>
+    <!-- 공통 nav Start -->
+    <nav class="nav-menu">
+        <div class="slider_btn ">
+            <img src="../../../../resources/svgs/Icon_arrowdownx20.svg" />
+        </div>
+        <a href="../main/index.html" class="logo"><img src="../../../../resources/white_new_logo.png" alt="logo"/></a>
+        <ul class="nav-list">
+            <li id="email" class="nav-list-1nd">E-메일</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="working-mail" class="nav-list-1nd">업무메일</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="message" class="nav-list-1nd">쪽지</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="schedule" class="nav-list-1nd">일정</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="id-card" class="nav-list-1nd">명함</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="board" class="nav-list-1nd">게시판</li>
+            <ol class="nav-list-2nd">
+                <li>그룹게시판</li>
+                <li>조직문화개선</li>
+                <li>안전보건</li>
+                <li>GlobalBiz게시판</li>
+                <li>사내게시판</li>
+                <li>코로나예방대책본부</li>
+                <li>청도고덕리게시판</li>
+                <li>교육게시판</li>
+                <li>사진함</li>
+            </ol>
+            <li id="work-board" class="nav-list-1nd">업무게시판</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="approve" class="nav-list-1nd">결재</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="fnq" class="nav-list-1nd">설문</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="meeting" class="nav-list-1nd">회의실</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="asset" class="nav-list-1nd">자산관리</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="esg" class="nav-list-1nd">ESG경영</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="logistar" class="nav-list-1nd">로지스타</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+        </ul>
+
+        <div class="nav-setting">
+            <img src="../../../../resources/svgs/setting2.svg" alt="widget-setting"/>
+            <p>위젯설정</p>
+        </div>
+    </nav>
+    <div class="sub-content">
+        <ul>
+            <li>서브컨텐츠_1</li>
+            <li>서브컨텐츠_2</li>
+            <li>서브컨텐츠_3</li>
+            <li>서브컨텐츠_4</li>
+            <li>서브컨텐츠_5</li>
+        </ul>
+    </div>
+    <!-- 공통 Nav End -->
+
+    <div class="main-wrapper">
+        <!-- 공통 Header Start -->
+        <header>
+            <div class="header-search">
+                <input type="text" placeholder="검색어를 입력해주세요" />
+                <img src="../../../../resources/svgs/Icon_search.svg" alt="search" class="search"/>
+            </div>
+            <div class="header-middle"></div>
+            <div class="header-options">
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_mail_new.svg" alt="mail"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 1</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_messagecircle.svg" alt="message"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 2</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_talk.svg" alt="messanger"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 3</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_clipboard.svg" alt="clipboard"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 4</span>
+                </div>
+                <div class="division"></div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_quickmenu.svg" alt="quick-menu" id="quick-menu"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 5</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_notification_new.svg" alt="alert"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 6</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_usersearch.svg" alt="search-user"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 7</span>
+                </div>
+                <div id="more-menu" class="more-menu">
+                    <div class="profile-img">
+                        <img src="../../../../resources/svgs/profile.jfif" alt="profile-img"/>
+                    </div>
+                    <img src="../../../../resources/svgs/Icon_arrowdown.svg" alt="dropdown-icon" id="dropdown-icon"/>
+                </div>
+            </div>
+            <!-- QuickMenu Start -->
+            <div class="quickmenu-wrapper">
+                <div class="quick-box">
+                    <div class="quick-contents">
+                        <a href="#"><p>온라인연수원</p></a>
+                        <a href="#"><p>사내추천</p></a>
+                        <a href="#"><p>담당업무</p></a>
+                        <a href="#"><p>일반업무</p></a>
+                        <a href="#"><p>업무용SW다운</p></a>
+                        <a href="#"><p>지원센터</p></a>
+                        <a href="#"><p>전산자료실</p></a>
+                        <a href="#"><p>전산담당자</p></a>
+                    </div>
+                    <div class="quick-contents">
+                        <a href="#"><p>담당자별 사무보조</p></a>
+                        <a href="#"><p>노사협의회</p></a>
+                        <a href="#"><p>건의함</p></a>
+                        <a href="#"><p>연구회</p></a>
+                        <a href="#"><p>문의요청</p></a>
+                        <a href="#"><p>실비보험</p></a>
+                        <a href="#"><p>콘도예약</p></a>
+                        <a href="#"><p>메인설정</p></a>
+                    </div>
+                </div>
+            </div>
+            <!-- QuickMenu End -->
+            <!-- Profile DropDown Start -->
+            <div class="drop-wrapper">
+                <div class="dorp-my-profile">
+                    <div class="profile-box">
+                        <img src="../../../../resources/svgs/profile.jfif" alt="profile-img"/>
+                        <div class="my-profile">
+                            <div>노지은</div>
+                            <div>ULN 경영시스템 | 운영관리팀</div>
+                        </div>
+                        <img src="../../../../resources/svgs/Icon_setting.svg" alt="setting-icon">
+                    </div>
+                    <div class="info-box">
+                        <div>마지막 접속일 : 2022.12.09</div>
+                        <button type="button" class="logout-btn">로그아웃</button>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>커뮤니티</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_mail.svg"><p class="content-title">메일</p></div>
+                            <div class="community-right"><p class="txt-blue">129<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_messagecircle.svg"><p class="content-title">쪽지</p></div>
+                            <div class="community-right"><p class="txt-blue">9<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_talk.svg"><p class="content-title">로지스톡</p></div>
+                            <div class="community-right"><p class="txt-blue">34<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg"><p class="content-title">결재</p></div>
+                            <div class="community-right"><p class="txt-blue">86<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>일정관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full bg-blue-10 h-84">
+                            <div class="cal-box">
+                                <div class="cal">
+                                    <p class="day">Mon</p>
+                                    <p class="date">09</p>
+                                </div>
+                                <div class="schedule">
+                                    <div class="schedule-time">공유<span class="line"></span>15:00</div>
+                                    <div class="schedule-title content-title">운영관리팀 회의</div>
+                                </div>
+                            </div>
+                            <div class="date-count">today</div>
+                        </div>
+                        <div class="con-full h-84">
+                            <div  class="cal-box">
+                                <div class="cal">
+                                    <p class="day">Wed</p>
+                                    <p class="date">11</p>
+                                </div>
+                                <div class="schedule">
+                                    <div class="schedule-time">개인<span class="line"></span>10:00</div>
+                                    <div class="schedule-title content-title">포스팟 미팅</div>
+                                </div>
+                            </div>
+                            <div class="date-count">today</div>
+                        </div>
+                        <button class="add-btn">일정등록<img src="../../../../resources/svgs/Icon_add.svg"></button>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>휴가 사용현황</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-56">
+                            <div class="content-title">연차</div>
+                            <p class="txt-bold"><span class="s-navy100" style="margin-right: 10px;">총 10일 중</span>10<span class="s-navy100"> 일 남음</span></p>
+                        </div>
+                        <div class="con-full h-56">
+                            <div class="content-title">하계휴가</div>
+                            <p class="txt-bold"><span class="s-navy100" style="margin-right: 10px;">총 10일 중</span>0<span class="s-navy100"> 일 남음</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>교육이수</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents flex-left">
+                        <div class="con-auto bg-y content-title">어학</div>
+                        <div class="con-auto bg-p content-title">물류</div>
+                        <div class="con-auto bg-b content-title">마케팅</div>
+                        <span class="s-gray60">개인정보관리 > 인사정보 > <a href="#">진급/교육과정필수정보</a> 에서 반드시 상세정보를 확인하시길 바랍니다.</span>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>자산관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">자산</p>
+                            </div>
+                            <p class="txt-blue">3<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg" alt="icon"/>
+                                <p class="content-title">관리</p>
+                            </div>
+                            <p class="txt-blue">29<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>물품관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">신청</p>
+                            </div>
+                            <p class="txt-blue">3<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg" alt="icon"/>
+                                <p class="content-title">결재</p>
+                            </div>
+                            <p class="txt-blue">29<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>콘도예약</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">신청</p>
+                            </div>
+                            <p class="txt-blue">75<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_calendar.svg" alt="icon"/>
+                                <p class="content-title">예약</p>
+                            </div>
+                            <p class="txt-blue">176<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Profile DropDown End -->
+        </header>
+        <!-- 공통 Header End -->
+
+        <!-- content start -->
+        <main>
+            <div class="approval-wrapper wrapper-scroll">
+                <section class="wrapper-title">
+                    <h1 class="title ph1">결재</h1>
+                    <div class="right-btn">
+                        <button type="button" class="btn-blue popup-open">편집</button>
+                    </div>
+                </section>
+                <section class="approval-cont">
+                    <!-- @note 2023-03-10 -->
+                    <div class="approval-cont-row">                        
+                        <!-- 좌측 추가 사항 -->
+                        <div class="approval-content-left">                        
+                            <section class="approval-group-content">
+                                <div class="tree-list">
+                                    <!-- 바인딩된 data로 jstree 생성하는 부분, /resouces/js/approval/index.js에서 처리 -->
+                                    <div class="tree-list-bottom" id="jstree">
+                                    </div>
+                                </div>                            
+                            </section>                        
+                        </div>
+                        <!-- // 좌측 추가 사항 -->
+                        <div class="approval-content-right">
+                            <div class="box-row">
+                                <!-- 미결재 -->
+                                <div class="box number ">
+                                    <div class="box-cont active">
+                                        <div class="cont-left">
+                                            <div class="cont-box-tit ph4">
+                                                미결재
+                                            </div>                                    
+                                            <div class="approval-length">
+                                                <span class="num ph2">129</span>                                        
+                                                <span class="txt Body6_R">건</span>
+                                            </div>
+                                        </div>
+                                        <div class="cont-right">
+                                            <ul class="approval-list">
+                                                <li>
+                                                    <div class="top-area">
+                                                        <span class="sort Body6_M">인트라넷</span>
+                                                        <span class="tit Body3_M">미수금결재</span>
+                                                    </div>                                            
+                                                    <div class="bottom-area">
+                                                        <span class="num ph3">129</span>
+                                                        <span class="txt Body6_R">건</span>
+                                                    </div>
+                                                </li>    
+                                                <li>
+                                                    <div class="top-area">
+                                                        <span class="sort Body6_M">KPP</span>
+                                                        <span class="tit Body3_M">물류센터 거래명세서 결재</span>
+                                                    </div> 
+                                                    <div class="bottom-area">
+                                                        <span class="num ph3">1</span>
+                                                        <span class="txt Body6_R">건</span>
+                                                    </div>
+                                                </li> 
+                                                <li>
+                                                    <div class="top-area">
+                                                        <span class="sort Body6_M">KPP</span>
+                                                        <span class="tit Body3_M">전자계약</span>
+                                                    </div> 
+                                                    <div class="bottom-area">
+                                                        <span class="num ph3">1</span>
+                                                        <span class="txt Body6_R">건</span>
+                                                    </div>
+                                                </li> 
+                                                <li>
+                                                    <div class="top-area">
+                                                        <span class="sort Body6_M">KPN </span>
+                                                        <span class="tit Body3_M">배차요청</span>
+                                                    </div> 
+                                                    <div class="bottom-area">
+                                                        <span class="num ph3">9</span>
+                                                        <span class="txt Body6_R">건</span>
+                                                    </div>
+                                                </li> 
+                                                <li>
+                                                    <div class="top-area">
+                                                        <span class="sort Body6_M">KPN </span>
+                                                        <span class="tit Body3_M">미수금결재</span>
+                                                    </div> 
+                                                    <div class="bottom-area">
+                                                        <span class="num ph3">9</span>
+                                                        <span class="txt Body6_R">건</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 미결재 참조 -->
+                                <div class="box number">
+                                    <div class="box-cont ">
+                                        <div class="cont-left">
+                                            <div class="cont-box-tit ph4">
+                                                미결재 참조
+                                            </div>                                    
+                                            <div class="approval-length">
+                                                <span class="num ph2">129</span>                                        
+                                                <span class="txt Body6_R">건</span>
+                                            </div>
+                                        </div>
+                                        <div class="cont-right">
+                                            <ul class="approval-list">
+                                                <li>
+                                                    <div class="top-area">
+                                                        <span class="sort Body6_M">인트라넷</span>
+                                                        <span class="tit Body3_M">미수금결재</span>
+                                                    </div>                                            
+                                                    <div class="bottom-area">
+                                                        <span class="num ph3">129</span>
+                                                        <span class="txt Body6_R">건</span>
+                                                    </div>
+                                                </li>    
+                                                <li>
+                                                    <div class="top-area">
+                                                        <span class="sort Body6_M">KPP</span>
+                                                        <span class="tit Body3_M">물류센터 거래명세서 결재</span>
+                                                    </div> 
+                                                    <div class="bottom-area">
+                                                        <span class="num ph3">1</span>
+                                                        <span class="txt Body6_R">건</span>
+                                                    </div>
+                                                </li> 
+                                                <li>
+                                                    <div class="top-area">
+                                                        <span class="sort Body6_M">KPP</span>
+                                                        <span class="tit Body3_M">전자계약</span>
+                                                    </div> 
+                                                    <div class="bottom-area">
+                                                        <span class="num ph3">1</span>
+                                                        <span class="txt Body6_R">건</span>
+                                                    </div>
+                                                </li> 
+                                                <li>
+                                                    <div class="top-area">
+                                                        <span class="sort Body6_M">KPN </span>
+                                                        <span class="tit Body3_M">배차요청</span>
+                                                    </div> 
+                                                    <div class="bottom-area">
+                                                        <span class="num ph3">9</span>
+                                                        <span class="txt Body6_R">건</span>
+                                                    </div>
+                                                </li> 
+                                                <li>
+                                                    <div class="top-area">
+                                                        <span class="sort Body6_M">KPN </span>
+                                                        <span class="tit Body3_M">미수금결재</span>
+                                                    </div> 
+                                                    <div class="bottom-area">
+                                                        <span class="num ph3">9</span>
+                                                        <span class="txt Body6_R">건</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>                     
+                                    </div>                            
+                                </div>
+                                <!-- 결재기안(미완료) -->
+                                <div class="box number">
+                                    <div class="box-cont ">
+                                        <div class="cont-left">
+                                            <div class="cont-box-tit ph4">
+                                                결재기안(미완료)
+                                            </div>                                    
+                                            <div class="approval-length">
+                                                <span class="num ph2">129</span>                                        
+                                                <span class="txt Body6_R">건</span>
+                                            </div>
+                                        </div>       
+                                        <div class="cont-right">
+                                            <ul class="approval-list">
+                                                <li>
+                                                    <div class="top-area">
+                                                        <span class="sort Body6_M">인트라넷</span>
+                                                        <span class="tit Body3_M">미수금결재</span>
+                                                    </div>                                            
+                                                    <div class="bottom-area">
+                                                        <span class="num ph3">129</span>
+                                                        <span class="txt Body6_R">건</span>
+                                                    </div>
+                                                </li>    
+                                                <li>
+                                                    <div class="top-area">
+                                                        <span class="sort Body6_M">KPP</span>
+                                                        <span class="tit Body3_M">물류센터 거래명세서 결재</span>
+                                                    </div> 
+                                                    <div class="bottom-area">
+                                                        <span class="num ph3">1</span>
+                                                        <span class="txt Body6_R">건</span>
+                                                    </div>
+                                                </li> 
+                                                <li>
+                                                    <div class="top-area">
+                                                        <span class="sort Body6_M">KPP</span>
+                                                        <span class="tit Body3_M">전자계약</span>
+                                                    </div> 
+                                                    <div class="bottom-area">
+                                                        <span class="num ph3">1</span>
+                                                        <span class="txt Body6_R">건</span>
+                                                    </div>
+                                                </li> 
+                                                <li>
+                                                    <div class="top-area">
+                                                        <span class="sort Body6_M">KPN </span>
+                                                        <span class="tit Body3_M">배차요청</span>
+                                                    </div> 
+                                                    <div class="bottom-area">
+                                                        <span class="num ph3">9</span>
+                                                        <span class="txt Body6_R">건</span>
+                                                    </div>
+                                                </li> 
+                                                <li>
+                                                    <div class="top-area">
+                                                        <span class="sort Body6_M">KPN </span>
+                                                        <span class="tit Body3_M">미수금결재</span>
+                                                    </div> 
+                                                    <div class="bottom-area">
+                                                        <span class="num ph3">9</span>
+                                                        <span class="txt Body6_R">건</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>                  
+                                    </div>                            
+                                </div>
+                            </div>
+                            <div class="box-row">
+                                <!-- 최신 미결재 건 -->
+                                <div class="box table">
+                                    <div class="cont-box-tit ph4">
+                                        최신 미결재 건
+                                    </div>
+                                    <div class="box-cont">
+                                        <div class="tb-list-area">
+                                            <table class="tb_board">
+                                                <caption>NO. 분류 제목 작성일 작성자 첨부파일 조회수 내용이 담겨있는 표</caption>
+                                                <colgroup>
+                                                    <col style="width: 80px;">
+                                                    <col style="width: 150px;">
+                                                    <col style="width: 160px;">
+                                                    <col style="width: 200px;">
+                                                    <col style="width: 350px;">
+                                                    <col style="width: 120px;">
+                                                    <col style="width: 120px;">
+                                                    <col style="width: 120px;">
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">번호</th>
+                                                        <th scope="col">시스템구분</th>
+                                                        <th scope="col">구분</th>
+                                                        <th scope="col">문서분류</th>
+                                                        <th scope="col">제목</th>
+                                                        <th scope="col">기안자</th>
+                                                        <th scope="col">기안일</th>
+                                                        <th scope="col">상태</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>                                            
+                                                    <tr>
+                                                        <td class="num" data-th="번호">70</td>
+                                                        <td class="kind" data-th="시스템구분">시스템구분</td>
+                                                        <td class="kind" data-th="구분">구분1</td>
+                                                        <td class="kind" data-th="문서분류">문서분류</td>
+                                                        <td class="tit " data-th="제목">
+                                                            <a href="#">미결재함 게시판 제목입니다.</a>
+                                                        </td>
+                                                        <td class="wrtie" data-th="기안자">김철수</td>
+                                                        <td class="day" data-th="기안일">2022.12.01</td>
+                                                        <td class="view" data-th="상태">4912</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="num" data-th="번호">70</td>
+                                                        <td class="kind" data-th="시스템구분">시스템구분</td>
+                                                        <td class="kind" data-th="구분">구분1</td>
+                                                        <td class="kind" data-th="문서분류">문서분류</td>
+                                                        <td class="tit " data-th="제목">
+                                                            <a href="#">미결재함 게시판 제목입니다.</a>
+                                                        </td>
+                                                        <td class="wrtie" data-th="기안자">김철수</td>
+                                                        <td class="day" data-th="기안일">2022.12.01</td>
+                                                        <td class="view" data-th="상태">4912</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="num" data-th="번호">70</td>
+                                                        <td class="kind" data-th="시스템구분">시스템구분</td>
+                                                        <td class="kind" data-th="구분">구분1</td>
+                                                        <td class="kind" data-th="문서분류">문서분류</td>
+                                                        <td class="tit " data-th="제목">
+                                                            <a href="#">미결재함 게시판 제목입니다.</a>
+                                                        </td>
+                                                        <td class="wrtie" data-th="기안자">김철수</td>
+                                                        <td class="day" data-th="기안일">2022.12.01</td>
+                                                        <td class="view" data-th="상태">4912</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="num" data-th="번호">70</td>
+                                                        <td class="kind" data-th="시스템구분">시스템구분</td>
+                                                        <td class="kind" data-th="구분">구분1</td>
+                                                        <td class="kind" data-th="문서분류">문서분류</td>
+                                                        <td class="tit " data-th="제목">
+                                                            <a href="#">미결재함 게시판 제목입니다.</a>
+                                                        </td>
+                                                        <td class="wrtie" data-th="기안자">김철수</td>
+                                                        <td class="day" data-th="기안일">2022.12.01</td>
+                                                        <td class="view" data-th="상태">4912</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="num" data-th="번호">70</td>
+                                                        <td class="kind" data-th="시스템구분">시스템구분</td>
+                                                        <td class="kind" data-th="구분">구분1</td>
+                                                        <td class="kind" data-th="문서분류">문서분류</td>
+                                                        <td class="tit " data-th="제목">
+                                                            <a href="#">미결재함 게시판 제목입니다.</a>
+                                                        </td>
+                                                        <td class="wrtie" data-th="기안자">김철수</td>
+                                                        <td class="day" data-th="기안일">2022.12.01</td>
+                                                        <td class="view" data-th="상태">4912</td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="box-row">
+                        <!-- 결재 통계 -->
+                        <div class="box graph bar">
+                            <div class="cont-top">
+                                <div class="cont-box-tit ph4">
+                                    결재 통계
+                                </div>
+                                <div class="right_select">
+                                    <div class="select-box ">
+                                        <input type="hidden" name="option-value" value="" id="select-input">
+                                        <button class="select-label" type="button">2023년 01월</button>
+                                        <ul class="option" id="select-options2" style="display: none;">
+                                            <!-- /resouces/js/borad/index.js에서 처리 -->
+                                            <li class="option-item">분류1</li>
+                                            <li class="option-item">분류2</li>
+                                        </ul>
+                                    </div>
+                                    <div class="select-box ">
+                                        <input type="hidden" name="option-value" value="" id="select-input">
+                                        <button class="select-label" type="button">1주차</button>
+                                        <ul class="option" id="select-options2" style="display: none;">
+                                            <!-- /resouces/js/borad/index.js에서 처리 -->
+                                            <li class="option-item">분류1</li>
+                                            <li class="option-item">분류2</li>
+                                        </ul> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cont-bottom">
+                                <div class="sign-tab">
+                                    <button type="button" class="tab-btn on">미결재함</button>
+                                    <button type="button" class="tab-btn">미결재함(참조)</button>
+                                    <button type="button" class="tab-btn">결재기안(미완료)</button>
+                                </div>
+                                <div class="chart-wrapper">
+                                    <canvas id="barChart" width="1140px" height="340"></canvas>
+                                </div>
+                            </div>  
+                        </div>
+                        <!-- 자주 사용하는 결재문서 -->
+                        <div class="box document">
+                            <div class="cont-box-tit ph4">
+                                자주 사용하는 결재문서
+                            </div>
+                            <div class="document_list">
+                                <ul>
+                                    <!-- 리스트 반복 -->
+                                    <li class="file-each">
+                                        <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                        문서양식1.xlsx
+                                        <button type="button">
+                                            <img src="../../../../resources/svgs/Icon_file_download.svg" alt="file_download">
+                                        </button>
+                                    </li>
+                                    <!-- // 리스트 반복 -->
+                                    <li class="file-each">
+                                        <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                        미사용연차확인 및 연차사용계획서.xlsx
+                                        <button type="button">
+                                            <img src="../../../../resources/svgs/Icon_file_download.svg" alt="file_download">
+                                        </button>
+                                    </li>
+                                    <li class="file-each">
+                                        <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                        미사용연차확인 및 연차사용계획서.xlsx
+                                        <button type="button">
+                                            <img src="../../../../resources/svgs/Icon_file_download.svg" alt="file_download">
+                                        </button>
+                                    </li>
+                                    <li class="file-each">
+                                        <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                        미사용연차확인 및 연차사용계획서.xlsx
+                                        <button type="button">
+                                            <img src="../../../../resources/svgs/Icon_file_download.svg" alt="file_download">
+                                        </button>
+                                    </li>
+                                    <li class="file-each">
+                                        <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                        미사용연차확인 및 연차사용계획서.xlsx
+                                        <button type="button">
+                                            <img src="../../../../resources/svgs/Icon_file_download.svg" alt="file_download">
+                                        </button>
+                                    </li>
+                                    <li class="file-each">
+                                        <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                        미사용연차확인 및 연차사용계획서.xlsx
+                                        <button type="button">
+                                            <img src="../../../../resources/svgs/Icon_file_download.svg" alt="file_download">
+                                        </button>
+                                    </li>
+                                    <li class="file-each">
+                                        <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                        미사용연차확인 및 연차사용계획서.xlsx
+                                        <button type="button">
+                                            <img src="../../../../resources/svgs/Icon_file_download.svg" alt="file_download">
+                                        </button>
+                                    </li>
+                                    <li class="file-each">
+                                        <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                        미사용연차확인 및 연차사용계획서.xlsx
+                                        <button type="button">
+                                            <img src="../../../../resources/svgs/Icon_file_download.svg" alt="file_download">
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>               
+            </div>
+            <!-- content end -->
+        </main>
+    </div>
+
+    <!-- 레이어 팝업 영역 -->
+    <div class="dim" style=""></div>
+    <!-- @note 2023-03-06 -->
+    <div class="layer-popup dashboard-popup">
+        <div class="popup-tit">
+            <span class="tit Body2_M">결재 대시보드 편집</span>
+        </div>
+        <div class="popup-cont borderB">
+            <ul class="popup-data-write ">
+                <li class="data-write-row">
+                    <div class="label-box">
+                        <span class="Body4_R">결재함 관리</span>
+                    </div>
+                    <div class="write-box">
+                        <ul class="chk_list_area">
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk1" name="inp_chks" title="선택되지 않음" checked>
+                                    <label for="inp_chk1" class="radio-a-label">미결재함</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk2" name="inp_chks" title="선택되지 않음">
+                                    <label for="inp_chk2" class="radio-a-label">미결재함(참조)</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk3" name="inp_chks" title="선택되지 않음">
+                                    <label for="inp_chk3" class="radio-a-label">결재기안(미완료)</label>
+                                </div>
+                            </li>
+                        </ul>
+                        <span class="noti-txt Small_R">※ 체크된 결재함은 대시보드에 반영됩니다.</span>
+                    </div>
+                </li>
+                <li class="data-write-row">
+                    <div class="label-box">
+                        <span class="Body4_R">최신 미결재 건 설정</span>
+                    </div>
+                    <div class="write-box">
+                        <ul class="chk_list_area">
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk1_1" name="inp_chk1_s" title="선택되지 않음">
+                                    <label for="inp_chk1_1" class="radio-a-label">전체</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk1_2" name="inp_chk1_s" title="선택되지 않음">
+                                    <label for="inp_chk1_2" class="radio-a-label">인트라넷</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk1_3" name="inp_chk1_s" title="선택되지 않음">
+                                    <label for="inp_chk1_3" class="radio-a-label">KPP</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk1_4" name="inp_chk1_s" title="선택되지 않음">
+                                    <label for="inp_chk1_4" class="radio-a-label">KCP</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk1_5" name="inp_chk1_s" title="선택되지 않음">
+                                    <label for="inp_chk1_5" class="radio-a-label">NAMS</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk1_6" name="inp_chk1_s" title="선택되지 않음">
+                                    <label for="inp_chk1_6" class="radio-a-label">KPN</label>
+                                </div>
+                            </li>
+                        </ul>
+                        <span class="noti-txt Small_R">※ 체크된 시스템만 리스트에 반영됩니다.</span>
+                    </div>
+                </li>
+                <li class="data-write-row">
+                    <div class="label-box">
+                        <span class="Body4_R">결재문서 설정</span>
+                    </div>
+                    <div class="write-box">
+                        <ul class="chk_list_area">
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk2_1" name="inp_chk2_s" title="선택되지 않음">
+                                    <label for="inp_chk2_1" class="radio-a-label">문서양식1</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk2_2" name="inp_chk2_s" title="선택되지 않음">
+                                    <label for="inp_chk2_2" class="radio-a-label">미사용연차확인 및 연차사용계획서</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk2_3" name="inp_chk2_s" title="선택되지 않음">
+                                    <label for="inp_chk2_3" class="radio-a-label">계약서 품의</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk2_4" name="inp_chk2_s" title="선택되지 않음">
+                                    <label for="inp_chk2_4" class="radio-a-label">전산처리요청서</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk2_5" name="inp_chk2_s" title="선택되지 않음">
+                                    <label for="inp_chk2_5" class="radio-a-label">온라인스마트회의</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk2_6" name="inp_chk2_s" title="선택되지 않음">
+                                    <label for="inp_chk2_6" class="radio-a-label">품의서</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk2_7" name="inp_chk2_s" title="선택되지 않음">
+                                    <label for="inp_chk2_7" class="radio-a-label">회의록</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="chk_inner">
+                                    <input type="checkbox" class="inp_chk" id="inp_chk2_8" name="inp_chk2_s" title="선택되지 않음">
+                                    <label for="inp_chk2_8" class="radio-a-label">문서양식2</label>
+                                </div>
+                            </li>
+                        </ul>
+                        <span class="noti-txt Small_R">※ 체크된 문서는 ‘자주 사용하는 결재문서’로 반영됩니다.</span>
+                    </div>
+                </li>
+                
+            </ul>
+        </div>
+        <div class="popup-btn-box">
+            <button class="btn-border popup-close Body5_M">닫기</button>
+            <button class="btn-blue Body5_M">저장</button>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="../../../../resources/lib/jquery-migrate-1.4.1.min.js"></script>
+    <!-- jsTree -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <!-- datepicker -->
+    <script type="text/javascript" src="../../../../resources/lib/moment.min.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/datepicker.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/timepicker.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../../resources/css/daterangepicker.css" />
+    <!-- data load / functions -->
+    <script src="../../../../resources/js/user/approval/index.js"></script>
+</body>
+
+</html>

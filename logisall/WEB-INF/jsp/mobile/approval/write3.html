@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>결재확인</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../../../../resources/css/mobile/common.css" />
+    <link rel="stylesheet" href="../../../../resources/css/mobile/approval.css" />
+    <link rel="stylesheet" href="../../../../resources/css/mobile/header.css">
+    <link rel="stylesheet" href="../../../../resources/css/mobile/nav.css">
+    <!-- <link rel="stylesheet" href="<%=ROOT%>/resources/css/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <!-- 공통 nav Start -->
+    <nav class="nav-menu">
+        <div class="nav-header">
+            <a href="../main/index.html" class="logo"><img src="../../../../resources/white_new_logo.png" alt="logo"/></a>
+            <button type="button" id="nav-close">
+                <img src="../../../../resources/svgs/Icon_close_white.svg" alt="logo"/>
+            </button>
+        </div>
+        <ul class="nav-list">
+            <li id="email" class="nav-list-1nd Body2_M">E-메일</li>
+            <ol class="nav-list-2nd" style="">
+                <li class="list-2nd-item Body5_R">서브메뉴_1 
+                    <span class="alert-red"><em>11</em></span>
+                </li>
+                <li class="list-2nd-item Body5_R">서브메뉴_2
+                    <span class="alert-red"><em>99+</em></span>
+                </li>
+                <li class="list-2nd-item Body5_R">서브메뉴_3</li>
+                <li class="list-2nd-item Body5_R">서브메뉴_4</li>
+                <li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="working-mail" class="nav-list-1nd Body2_M">업무메일</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="message" class="nav-list-1nd Body2_M">쪽지</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="schedule" class="nav-list-1nd Body2_M">일정</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="id-card" class="nav-list-1nd Body2_M">명함</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="board" class="nav-list-1nd Body2_M">게시판</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li>그룹게시판</li>
+                <li>조직문화개선</li>
+                <li>안전보건</li>
+                <li>GlobalBiz게시판</li>
+                <li>사내게시판</li>
+                <li>코로나예방대책본부</li>
+                <li>청도고덕리게시판</li>
+                <li>교육게시판</li>
+                <li>사진함</li>
+            </ol>
+            <li id="work-board" class="nav-list-1nd Body2_M">업무게시판</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="approve" class="nav-list-1nd Body2_M">결재</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="fnq" class="nav-list-1nd Body2_M">설문</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="meeting" class="nav-list-1nd Body2_M">회의실</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="asset" class="nav-list-1nd Body2_M">자산관리</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="esg" class="nav-list-1nd Body2_M">ESG경영</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="logistar" class="nav-list-1nd Body2_M">로지스타</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+        </ul>
+    </nav>    
+    <!-- 공통 Nav End -->
+
+    <div class="main-wrapper">
+        <!-- 공용 Header Start -->
+        <header> 
+             <!-- 서브 Header Start -->
+             <div class="sub-header header">
+                <a href="../main/index.html" class="back"><img src="../../../../resources/svgs/Icon_header_back.svg" alt="뒤로가기"/></a>
+                <div class="page-title Body2_M">
+                    결재확인
+                </div>
+                <div class="header-btn">
+                    <button type="button" id="search-open"><img src="../../../../resources/svgs/m_Icon_search.svg" alt="검색 열기"/></button>
+                    <button type="button" id="search-close"><img src="../../../../resources/svgs/Icon_close_white.svg" alt="검색 닫기"/></button>
+                </div>  
+            </div>    
+            <!-- 서브 Header End -->     
+            <!-- 검색기 레이아웃 -->
+            <div class="header-search">
+                <div class="search-input">
+                    <div class="search-datepicker-box">
+                        <div class="datepicker datepicker-multi">
+                            <div class="date start-date Body5_R">2023-03-21</div>
+                            <div class="date end-date Body5_R">2023-03-21</div>
+                            <input type="hidden" name="" id="" value="2023-03-21 ~ 2023-03-21">
+                        </div>
+                    </div>
+                    <div class="select-box search-input-row">                                
+                        <input type="hidden" name="option-value" value="" id="select-input">
+                        <button class="select-label Body4_R" type="button">전체</button>
+                        <ul class="option" id="select-options1" style="display: none;">
+                            <li class="option-item">분류1</li>
+                            <li class="option-item">분류2</li>
+                        </ul>                                
+                    </div>                    
+                    <div class="input-box search-input-row">
+                        <input class="" type="text" placeholder="검색어를 입력해 주세요">
+                        <button type="button" class="search-btn"></button>
+                    </div>
+                </div>                
+            </div>    
+            <!-- // 검색기 레이아웃 -->       
+        </header>
+        <!-- 공용 Header End -->
+
+        <!-- content start -->
+        <main >
+            <div class="approval-content content">
+
+                <div class="top-btn-row taL">
+                    <button type="button" class="btn-border">전체선택</button>
+                    <button type="button" class="btn-border">선택해제</button>
+                    <button type="button" class="btn-blue right">일괄승인</button>
+                </div>
+
+                <section class="main-top"></section>
+
+                <section class="approval-check-box">
+                    <ul class="check-list">
+                        <li class="list-item">
+                            <div class="list-top">
+                                <div class="data-list">
+                                    <span class="name Body6_R">홍길동</span>
+                                    <span class="date Body6_R en">2023.01.09</span>
+                                </div>
+                                <div class="check_box">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="tit Body3_B">
+                                로지스올 지식재산권 관리시스템(LIPS) 개발품의
+                            </div>
+                            <div class="approval-cont">
+                                <span class="Body5_M">(참조) 품의서 - 미확인</span>
+                            </div>
+                            <div class="bottom-btn-row taL">
+                                <button class="btn-border">반려</button>
+                                <button class="btn-border">검토</button>
+                                <button class="btn-border">승인</button>
+                            </div>
+                        </li>
+                        <li class="list-item">
+                            <div class="list-top">
+                                <div class="data-list">
+                                    <span class="name Body6_R">홍길동</span>
+                                    <span class="date Body6_R en">2023.01.09</span>
+                                </div>
+                                <div class="check_box">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="tit Body3_B">
+                                로지스올 지식재산권 관리시스템(LIPS) 개발품의
+                            </div>
+                            <div class="approval-cont">
+                                <span class="Body5_M">(참조) 품의서 - 미확인</span>
+                            </div>
+                            <div class="bottom-btn-row taL">
+                                <button class="btn-border">반려</button>
+                                <button class="btn-border">검토</button>
+                                <button class="btn-border">승인</button>
+                            </div>
+                        </li>
+                        <li class="list-item">
+                            <div class="list-top">
+                                <div class="data-list">
+                                    <span class="name Body6_R">홍길동</span>
+                                    <span class="date Body6_R en">2023.01.09</span>
+                                </div>
+                                <div class="check_box">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="tit Body3_B">
+                                로지스올 지식재산권 관리시스템(LIPS) 개발품의
+                            </div>
+                            <div class="approval-cont">
+                                <span class="Body5_M">(참조) 품의서 - 미확인</span>
+                            </div>
+                            <div class="bottom-btn-row taL">
+                                <button class="btn-border">반려</button>
+                                <button class="btn-border">검토</button>
+                                <button class="btn-border">승인</button>
+                            </div>
+                        </li>
+                        <li class="list-item">
+                            <div class="list-top">
+                                <div class="data-list">
+                                    <span class="name Body6_R">홍길동</span>
+                                    <span class="date Body6_R en">2023.01.09</span>
+                                </div>
+                                <div class="check_box">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="tit Body3_B">
+                                로지스올 지식재산권 관리시스템(LIPS) 개발품의
+                            </div>
+                            <div class="approval-cont">
+                                <span class="Body5_M">(참조) 품의서 - 미확인</span>
+                            </div>
+                            <div class="bottom-btn-row taL">
+                                <button class="btn-border">반려</button>
+                                <button class="btn-border">검토</button>
+                                <button class="btn-border">승인</button>
+                            </div>
+                        </li>
+                        <li class="list-item">
+                            <div class="list-top">
+                                <div class="data-list">
+                                    <span class="name Body6_R">홍길동</span>
+                                    <span class="date Body6_R en">2023.01.09</span>
+                                </div>
+                                <div class="check_box">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="tit Body3_B">
+                                로지스올 지식재산권 관리시스템(LIPS) 개발품의
+                            </div>
+                            <div class="approval-cont">
+                                <span class="Body5_M">(참조) 품의서 - 미확인</span>
+                            </div>
+                            <div class="bottom-btn-row taL">
+                                <button class="btn-border">반려</button>
+                                <button class="btn-border">검토</button>
+                                <button class="btn-border">승인</button>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="button-wrapper">
+                        <button class="btn-txt more-btn">
+                            <span class="Body5_M">29개의 결재 더보기</span>
+                            <img src="../../../../resources/svgs/Icon_mo_more_btn.svg" alt="더보기 버튼">
+                        </button>
+                    </div>
+                </section>
+            </div>        
+        </main>
+        <!-- content end -->
+
+
+        <!-- footer -->
+        <footer>
+            <div class="q-menu">
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_home.svg" alt="메인"/>
+                    <span class="Small_R">메인</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_quickmenu.svg" alt="퀵메뉴"/>
+                    <span class="Small_R">퀵메뉴</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/m_Icon_search.svg" alt="통합검색"/>
+                    <span class="Small_R">통합검색</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_user.svg" alt="마이페이지"/>
+                    <span class="Small_R">마이페이지</span>
+                </a>
+            </div>
+        </footer>
+        <!-- // footer -->
+    </div>
+    <!-- // 레이어 팝업 -->
+    <script src="../../../../resources/lib/swiper.min.js"></script>
+    <script src="../../../../resources/js/mobile/index.js"></script> <!-- common.js -->
+    <script src="../../../../resources/js/mobile/asset/index.js"></script>
+    <!-- datepicker -->
+    <script type="text/javascript" src="../../../../resources/lib/moment.min.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/daterangepicker.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/datepicker.js"></script>    
+    <script type="text/javascript" src="../../../../resources/lib/m_timepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../../resources/css/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../resources/css/swiper.min.css" />
+</body>
+
+</html>

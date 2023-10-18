@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>자산관리 월간</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../../../../resources/css/mobile/common.css" />
+    <link rel="stylesheet" href="../../../../resources/css/mobile/asset.css" />
+    <link rel="stylesheet" href="../../../../resources/css/mobile/header.css">
+    <link rel="stylesheet" href="../../../../resources/css/mobile/nav.css">
+    <!-- <link rel="stylesheet" href="<%=ROOT%>/resources/css/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <!-- 공통 nav Start -->
+    <nav class="nav-menu">
+        <div class="nav-header">
+            <a href="../main/index.html" class="logo"><img src="../../../../resources/white_new_logo.png" alt="logo"/></a>
+            <button type="button" id="nav-close">
+                <img src="../../../../resources/svgs/Icon_close_white.svg" alt="logo"/>
+            </button>
+        </div>
+        <ul class="nav-list">
+            <li id="email" class="nav-list-1nd Body2_M">E-메일</li>
+            <ol class="nav-list-2nd" style="">
+                <li class="list-2nd-item Body5_R">서브메뉴_1 
+                    <span class="alert-red"><em>11</em></span>
+                </li>
+                <li class="list-2nd-item Body5_R">서브메뉴_2
+                    <span class="alert-red"><em>99+</em></span>
+                </li>
+                <li class="list-2nd-item Body5_R">서브메뉴_3</li>
+                <li class="list-2nd-item Body5_R">서브메뉴_4</li>
+                <li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="working-mail" class="nav-list-1nd Body2_M">업무메일</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="message" class="nav-list-1nd Body2_M">쪽지</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="schedule" class="nav-list-1nd Body2_M">일정</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="id-card" class="nav-list-1nd Body2_M">명함</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="board" class="nav-list-1nd Body2_M">게시판</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li>그룹게시판</li>
+                <li>조직문화개선</li>
+                <li>안전보건</li>
+                <li>GlobalBiz게시판</li>
+                <li>사내게시판</li>
+                <li>코로나예방대책본부</li>
+                <li>청도고덕리게시판</li>
+                <li>교육게시판</li>
+                <li>사진함</li>
+            </ol>
+            <li id="work-board" class="nav-list-1nd Body2_M">업무게시판</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="approve" class="nav-list-1nd Body2_M">결재</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="fnq" class="nav-list-1nd Body2_M">설문</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="meeting" class="nav-list-1nd Body2_M">회의실</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="asset" class="nav-list-1nd Body2_M">자산관리</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="esg" class="nav-list-1nd Body2_M">ESG경영</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+            <li id="logistar" class="nav-list-1nd Body2_M">로지스타</li>
+            <ol class="nav-list-2nd" style="display: none;">
+                <li class="list-2nd-item Body5_R">서브메뉴_1</li><li class="list-2nd-item Body5_R">서브메뉴_2</li><li class="list-2nd-item Body5_R">서브메뉴_3</li><li class="list-2nd-item Body5_R">서브메뉴_4</li><li class="list-2nd-item Body5_R">서브메뉴_5</li>
+            </ol>
+        </ul>
+    </nav>    
+    <!-- 공통 Nav End -->
+
+    <div class="main-wrapper">
+        <!-- @note 2023-04-04 -->
+        <!-- 공용 Header Start -->
+        <header> 
+             <!-- 서브 Header Start -->
+             <div class="sub-header header">
+                <a href="../main/index.html" class="back"><img src="../../../../resources/svgs/Icon_header_back.svg" alt="뒤로가기"/></a>
+                <div class="page-title header-select Body2_M">
+                    6층 대회의실 1
+                    <img src="../../../../resources/svgs/m_solid.svg" alt="">
+                </div>
+                <div class="header-btn">
+                    <button type="button" class="txt-btn Body5_R" id="">목록</button>
+                    <button type="button" id="header-select-clsoe" class="txt-btn Body5_R">확인</button>
+                </div>      
+            </div>    
+            <!-- 서브 Header End -->    
+            <div class="header-search select">
+                <ul>
+                    <li ><span class="Body3_R">6층 대회의실 1</span></li>
+                    <li><span class="Body3_R">6층 대회의실 2</span></li>
+                    <li><span class="Body3_R">6층 대회의실 3</span></li>
+                    <li class="on"><span class="Body3_R">6층 대회의실 4</span></li>
+                    <li><span class="Body3_R">6층 대회의실 5</span></li>
+                    <li><span class="Body3_R">6층 대회의실 6</span></li>
+                    <li><span class="Body3_R">6층 대회의실 7</span></li>
+                </ul>         
+            </div>
+        </header>
+        <!-- 공용 Header End -->
+        <!-- // @note 2023-04-04 -->
+        <!-- content start -->
+        <main >
+            <div class="asset-wrapper content">
+                <!-- 날짜 변경 -->
+                <section class="asset-top">
+                    <div class="top-btn-row taL">
+                        <button type="button" class="btn-border">일간</button>
+                        <button type="button" class="btn-border">주간</button>
+                        <button type="button" class="btn-blue right reserve-add">일정등록</button>
+                    </div>
+                    <div class="date-select">                        
+                        <div class="date-select-btn">
+                            <button type="btn"><img src="../../../../resources/svgs/Icon-date-left.svg" alt=""></button>
+                            <div class="date-txt">2023.02 (월간)</div>
+                            <button type="btn"><img src="../../../../resources/svgs/Icon-date-right.svg" alt=""></button>
+                        </div>
+                    </div>                      
+                </section>
+                <!-- // 날짜 변경 -->
+
+                <section class="asset-list">
+                    <!-- 일정 캘린더 -->
+                    <div class="place-reserve-month ">
+                        <div class="month-celendar">
+                            <div class="month-top">
+                                <div class="box"><span class="Small_R">Mon</span></div>
+                                <div class="box"><span class="Small_R">Tue</span></div>
+                                <div class="box"><span class="Small_R">Wed</span></div>
+                                <div class="box"><span class="Small_R">Thu</span></div>
+                                <div class="box"><span class="Small_R">Fri</span></div>
+                                <div class="box"><span class="Small_R">Sat</span></div>
+                                <div class="box"><span class="Small_R">Sun</span></div>
+                            </div>
+                            <div class="month-day-box">
+                                <!-- 상태에 따른 class 변경 -->
+                                <!-- 
+                                    none = 달력상 없는 날짜
+                                    on = '일정 있을경우'
+                                    active = '클릭했을경우' 
+                                -->
+                                <div class="box none"><span class="Body5_R"></span></div>
+                                <div class="box none"><span class="Body5_R"></span></div>
+                                <div class="box active"><span class="Body5_R">1</span></div>
+                                <div class="box on"><span class="Body5_R">2</span></div>
+                                <div class="box"><span class="Body5_R">3</span></div>
+                                <div class="box"><span class="Body5_R">4</span></div>
+                                <div class="box"><span class="Body5_R">5</span></div>
+                                <div class="box"><span class="Body5_R">6</span></div>
+                                <div class="box"><span class="Body5_R">7</span></div>
+                                <div class="box"><span class="Body5_R">8</span></div>
+                                <div class="box"><span class="Body5_R">9</span></div>
+                                <div class="box"><span class="Body5_R">10</span></div>
+                                <div class="box"><span class="Body5_R">11</span></div>
+                                <div class="box"><span class="Body5_R">12</span></div>
+                                <div class="box"><span class="Body5_R">13</span></div>
+                                <div class="box"><span class="Body5_R">14</span></div>
+                                <div class="box"><span class="Body5_R">15</span></div>
+                                <div class="box"><span class="Body5_R">16</span></div>
+                                <div class="box"><span class="Body5_R">17</span></div>
+                                <div class="box"><span class="Body5_R">18</span></div>
+                                <div class="box"><span class="Body5_R">19</span></div>
+                                <div class="box"><span class="Body5_R">20</span></div>
+                                <div class="box"><span class="Body5_R">21</span></div>
+                                <div class="box"><span class="Body5_R">22</span></div>
+                                <div class="box"><span class="Body5_R">23</span></div>
+                                <div class="box"><span class="Body5_R">24</span></div>
+                                <div class="box"><span class="Body5_R">25</span></div>
+                                <div class="box"><span class="Body5_R">26</span></div>
+                                <div class="box"><span class="Body5_R">27</span></div>
+                                <div class="box"><span class="Body5_R">28</span></div>
+                                <div class="box"><span class="Body5_R">29</span></div>
+                                <div class="box"><span class="Body5_R">30</span></div>
+                                <div class="box"><span class="Body5_R">31</span></div>
+                                <div class="box none"><span class="Body5_R"></span></div>
+                                <div class="box none"><span class="Body5_R"></span></div>
+                            </div>
+                        </div>                        
+                    </div>
+                    <!-- // 일정 캘린더  -->
+                    <div class="place">
+                        <!-- place-cont -->
+                        <div class="place-cont">
+                            <ul class="reserve-list">
+                                <!-- list 반복 최대 3개 -->
+                                <li class="bg-blue">
+                                    <div class="day-box">
+                                        <span class="month">Mon</span>
+                                        <span class="day">19</span>
+                                    </div>
+                                    <div class="tit-box">
+                                        <div class="tit Body3_M">면접진행</div>
+                                        <div class="time Body6_R">09:00 ~ 10:30</div>
+                                    </div>
+                                </li>
+                                <!-- // list 반복 -->
+                                <li class="bg-blue">
+                                    <div class="day-box">
+                                        <span class="month">Mon</span>
+                                        <span class="day">19</span>
+                                    </div>
+                                    <div class="tit-box">
+                                        <div class="tit Body3_M">사업전략관련 회의</div>
+                                        <div class="time Body6_R">13:00 ~ 14:00</div>
+                                    </div>
+                                </li>
+                                <li class="bg-blue">
+                                    <div class="day-box">
+                                        <span class="month">Mon</span>
+                                        <span class="day">19</span>
+                                    </div>
+                                    <div class="tit-box">
+                                        <div class="tit Body3_M">KP 검사 회의</div>
+                                        <div class="time Body6_R">15:00 ~ 17:30</div>
+                                    </div> 
+                                </li>                                
+                            </ul>
+                        </div>
+                        <!-- // place-cont -->
+                    </div>
+                </section>
+            </div>        
+        </main>
+        <!-- content end -->
+
+
+        <!-- footer -->
+        <footer>
+            <div class="q-menu">
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_home.svg" alt="메인"/>
+                    <span class="Small_R">메인</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_quickmenu.svg" alt="퀵메뉴"/>
+                    <span class="Small_R">퀵메뉴</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/m_Icon_search.svg" alt="통합검색"/>
+                    <span class="Small_R">통합검색</span>
+                </a>
+                <a href="">
+                    <img src="../../../../resources/svgs/Icon_user.svg" alt="마이페이지"/>
+                    <span class="Small_R">마이페이지</span>
+                </a>
+            </div>
+        </footer>
+        <!-- // footer -->
+    </div>
+
+    <!-- 레이어 팝업 -->
+    <div class="dim" ></div>
+    <div class="layer-popup" >
+
+        <div class="popup-tit">
+            <span class="tit Body2_M">6층 대회의실</span>            
+        </div>
+        <button type="button" class="popup-close"><img src="../../../../resources/svgs/icon_popup_close.svg" alt=""></button>
+        <div class="popup-cont">
+            <ul class="popup-data-write ">
+                <li class="data-write-row">
+                    <div class="label-box">
+                        <span class="Body4_R">예약일</span>
+                    </div>
+                    <div class="write-box">
+                        <div class="datepicker datepicker-single">
+                            <div class="date">2023-03-16</div>
+                            <input type="hidden" name="datepicker-single" id="datepicker-single" value="2023-03-16">
+                        </div>
+                        <button class="btn-border">
+                            오늘
+                        </button>
+                    </div>
+                </li>
+                <li class="data-write-row align-start">
+                    <div class="label-box">
+                        <span class="Body4_R">예약내역</span>
+                    </div>
+                    <div class="write-box">
+                        <ul class="reserve-list">
+                            <li>
+                                <span class="Body6_R en">8:00 ~ 9:00</span>
+                                <span class="Body5_M">면접진행</span>
+                                <button type="button" class="">
+                                    <img src="../../../../resources/svgs/Icon_close_gray.svg" alt="삭제햐기">
+                                </button>
+                            </li>
+                            <li>
+                                <span class="Body6_R en">13:00 ~ 14:00</span>
+                                <span class="Body5_M">사업전략관련 회의</span>
+                                <button type="button" class="">
+                                    <img src="../../../../resources/svgs/Icon_close_gray.svg" alt="삭제햐기">
+                                </button>
+                            </li>
+                            <li>
+                                <span class="Body6_R en">15:00 ~ 17:30</span>
+                                <span class="Body5_M">KP검사 회의</span>
+                                <button type="button" class="">
+                                    <img src="../../../../resources/svgs/Icon_close_gray.svg" alt="삭제햐기">
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="data-write-row">
+                    <div class="label-box">
+                        <span class="Body4_R">회의제목</span>
+                    </div>
+                    <div class="write-box">
+                        <input type="text" placeholder="">
+                    </div>
+                </li>
+                <li class="data-write-row">
+                    <div class="label-box">
+                        <span class="Body4_R">시작시간</span>
+                    </div>
+                    <div class="write-box">
+                        <div class="time-select-box">
+                            <div class="time-selt">01 : 00 AM
+                                <input type="hidden" class="pick-time" value="" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="data-write-row">
+                    <div class="label-box">
+                        <span class="Body4_R">종료시간</span>
+                    </div>
+                    <div class="write-box">
+                        <div class="time-select-box">
+                            <div class="time-selt">01 : 00 AM
+                                <input type="hidden" class="pick-time" value="" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="data-write-row">
+                    <div class="label-box">
+                        <span class="Body4_R">예약자</span>
+                    </div>
+                    <div class="write-box">
+                        <input type="text" placeholder="">
+                    </div>
+                </li>
+                <li class="data-write-row">
+                    <div class="label-box">
+                        <span class="Body4_R">공유자</span>
+                    </div>
+                    <div class="write-box">
+                        <input type="text" placeholder="" class="mini">
+                        <div class="btn-box">
+                            <button type="button" class="btn-icon">
+                                <img src="../../../../resources/svgs/Icon_search_w.svg" alt="검색햐기">
+                            </button>
+                            <button type="button" class="btn-icon gray">
+                                <img src="../../../../resources/svgs/Icon-refresh.svg" alt="새로고침">
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="popup-btn-box pt0   ">
+            <button class="btn-blue Body5_M full">등록</button>
+        </div>
+    </div>
+    <!-- // 레이어 팝업 -->
+    <script src="../../../../resources/lib/swiper.min.js"></script>
+    <script src="../../../../resources/js/mobile/index.js"></script> <!-- common.js -->
+    <script src="../../../../resources/js/mobile/asset/index.js"></script>
+    <!-- datepicker -->
+    <script type="text/javascript" src="../../../../resources/lib/moment.min.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/daterangepicker.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/datepicker.js"></script>    
+    <script type="text/javascript" src="../../../../resources/lib/m_timepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../../resources/css/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../resources/css/swiper.min.css" />
+</body>
+
+</html>

@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=UTF-8'>
+    <link rel="stylesheet" href="../../../../resources/css/common.css" />
+    <link rel="stylesheet" href="../../../../resources/css/board.css" />
+    <link rel="stylesheet" href="../../../../resources/css/header.css">
+    <link rel="stylesheet" href="../../../../resources/css/nav.css">
+    <!-- <link rel="stylesheet" href="<%=ROOT%>/resources/css/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+
+    
+    
+        /**
+         * 그래프 데이터 입력
+         * : 미수금현황(도넛 그래프), 업무관리 진행바 데이터 입력은 해당 html 태그에서 진행
+         * /
+         
+        /* 바 그래프 데이터셋 */
+        let barData = {
+            labels: ['2020', '2021', '2022'],  // 연도 순서대로 입력
+            datasets: [
+                {
+                    label: '복리후생비',
+                    data: [70, 75, 90],  // 데이터 순서대로 입력
+                    borderRadius: 3,
+                    backgroundColor: '#394DC0',
+                    maxBarThickness: 40,
+                    datalabels: {
+                        color: '#394DC0',
+                    },
+                },
+                {
+                    label: '접대비',
+                    data: [30, 25, 10],  // 데이터 순서대로 입력
+                    borderRadius: 3,
+                    backgroundColor: '#FEAA12',
+                    maxBarThickness: 40,
+                    datalabels: {
+                        color: '#FEAA12'
+                    },
+                },
+            ]
+        }
+
+        // Profile DropDown Start
+        $(document).ready(function() {
+            // quick-menu dropDown
+            $('#quick-menu').click(function(e) {
+                e.stopPropagation();
+                $(".quickmenu-wrapper").toggle();
+            });
+            
+            $(document).click(function(e) {
+                if (!$(e.target).closest('#quick-menu').length &&
+                    !$(e.target).closest('.quickmenu-wrapper').length) {
+                        $('.quickmenu-wrapper').css({'display': 'none'});
+                };
+            });
+
+            // profile dropDown
+            $('#more-menu').click(function(e) {
+                e.stopPropagation();
+                $(".drop-wrapper").toggle();
+                $('#dropdown-icon').toggleClass('rotate');
+            });
+
+            $(document).click(function(e) {
+                if (!$(e.target).closest('#more-menu').length &&
+                    !$(e.target).closest('.drop-wrapper').length) {
+                        $('.drop-wrapper').css({'display': 'none'});
+                        $('#dropdown-icon').removeClass('rotate');
+                };
+            });
+
+            // profile-contents dropDown
+            $(".menu-contents").hide();
+            $(".menu-title").click(function() {
+                $(this).next(".menu-contents").toggle();
+                $(this).children('.drop-btn').toggleClass('rotate');
+            });
+
+        });
+        // Profile DropDown End
+
+        // Nav menu DropDown End
+        $(document).ready(function() {
+            // nav hide show
+            $(".slider_btn").click(function (e) {
+                if ($(".slider_btn").hasClass("slider_chk")) {
+                    $(".nav-menu").animate({
+                        left: "0px",
+                    }, 500);
+                    $(".main-wrapper").animate({
+                        paddingLeft: "240px",
+                    }, 500);
+                    $(".slider_btn").removeClass("slider_chk");
+                } else {
+                    $(".nav-menu").animate({
+                        left: "-200px",
+                    }, 500);
+                    $(".main-wrapper").animate({
+                        paddingLeft: "40px",
+                    }, 500);
+                    $(".slider_btn").addClass("slider_chk");
+                }
+            });
+
+            // nav dropDown
+            $('.nav-list-2nd').hide();
+            $('.nav-list-1nd').click(function() {
+                $('.list-2nd-item').removeClass('select');
+                $('.sub-content').css({'display':'none'});
+                $(this).toggleClass('select');
+                $('.nav-list-1nd').not(this).removeClass('select');
+                $(this).next('.nav-list-2nd').slideToggle(300);
+                $('.nav-list-1nd').not(this).next('.nav-list-2nd').slideUp(300);
+            });
+        
+            // nav-sub dropDown
+            $('.list-2nd-item').click(function(e) {
+                let viewY = window.innerHeight;
+                let targetY = Math.floor(e.target.getBoundingClientRect().top);
+                let popupHeight = $('.sub-content').outerHeight()
+
+
+                $(this).toggleClass('select');
+                $('.list-2nd-item').not(this).removeClass('select');
+                if($('.list-2nd-item').hasClass('select')) {
+                    if((viewY - popupHeight) > (targetY + 10)) {
+                        $('.sub-content').css({'display':'block', 'top':targetY, 'bottom':''});
+                    }else {
+                        $('.sub-content').css({'display':'block', 'top':'', 'bottom':viewY - targetY - 30});
+                    }
+                }else {
+                    $('.sub-content').css({'display':'none'});
+                }
+            });
+
+            $(document).click(function(e) {
+                if (!$(e.target).closest('.list-2nd-item').length &&
+                    !$(e.target).closest('.sub-content').length) {
+                        $('.sub-content').css({'display': 'none'});
+                        $('.list-2nd-item').removeClass('select');
+                };
+            });
+        });
+        // Nav menu DropDown End
+
+        // @note 2023-04-21
+        $(document).ready(function() {
+            $(".board-wrapper").scroll(function() {
+                $('.daterangepicker').css("display", "none");
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <!-- 공통 nav Start -->
+    <nav class="nav-menu">
+        <div class="slider_btn ">
+            <img src="../../../../resources/svgs/Icon_arrowdownx20.svg" />
+        </div>
+        <a href="../main/index.html" class="logo"><img src="../../../../resources/white_new_logo.png" alt="logo"/></a>
+        <ul class="nav-list">
+            <li id="email" class="nav-list-1nd">E-메일</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="working-mail" class="nav-list-1nd">업무메일</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="message" class="nav-list-1nd">쪽지</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="schedule" class="nav-list-1nd">일정</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="id-card" class="nav-list-1nd">명함</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="board" class="nav-list-1nd">게시판</li>
+            <ol class="nav-list-2nd">
+                <li>그룹게시판</li>
+                <li>조직문화개선</li>
+                <li>안전보건</li>
+                <li>GlobalBiz게시판</li>
+                <li>사내게시판</li>
+                <li>코로나예방대책본부</li>
+                <li>청도고덕리게시판</li>
+                <li>교육게시판</li>
+                <li>사진함</li>
+            </ol>
+            <li id="work-board" class="nav-list-1nd">업무게시판</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="approve" class="nav-list-1nd">결재</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="fnq" class="nav-list-1nd">설문</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="meeting" class="nav-list-1nd">회의실</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="asset" class="nav-list-1nd">자산관리</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="esg" class="nav-list-1nd">ESG경영</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="logistar" class="nav-list-1nd">로지스타</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+        </ul>
+
+        <div class="nav-setting">
+            <img src="../../../../resources/svgs/setting2.svg" alt="widget-setting"/>
+            <p>위젯설정</p>
+        </div>
+    </nav>
+    <div class="sub-content">
+        <ul>
+            <li>서브컨텐츠_1</li>
+            <li>서브컨텐츠_2</li>
+            <li>서브컨텐츠_3</li>
+            <li>서브컨텐츠_4</li>
+            <li>서브컨텐츠_5</li>
+        </ul>
+    </div>
+    <!-- 공통 Nav End -->
+
+    <div class="main-wrapper bgW">
+        <!-- 공통 Header Start -->
+        <header>
+            <div class="header-search">
+                <input type="text" placeholder="검색어를 입력해주세요" />
+                <img src="../../../../resources/svgs/Icon_search.svg" alt="search" class="search"/>
+            </div>
+            <div class="header-middle"></div>
+            <div class="header-options">
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_mail_new.svg" alt="mail"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 1</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_messagecircle.svg" alt="message"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 2</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_talk.svg" alt="messanger"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 3</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_clipboard.svg" alt="clipboard"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 4</span>
+                </div>
+                <div class="division"></div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_quickmenu.svg" alt="quick-menu" id="quick-menu"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 5</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_notification_new.svg" alt="alert"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 6</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_usersearch.svg" alt="search-user"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 7</span>
+                </div>
+                <div id="more-menu" class="more-menu">
+                    <div class="profile-img">
+                        <img src="../../../../resources/svgs/profile.jfif" alt="profile-img"/>
+                    </div>
+                    <img src="../../../../resources/svgs/Icon_arrowdown.svg" alt="dropdown-icon" id="dropdown-icon"/>
+                </div>
+            </div>
+            <!-- QuickMenu Start -->
+            <div class="quickmenu-wrapper">
+                <div class="quick-box">
+                    <div class="quick-contents">
+                        <a href="#"><p>온라인연수원</p></a>
+                        <a href="#"><p>사내추천</p></a>
+                        <a href="#"><p>담당업무</p></a>
+                        <a href="#"><p>일반업무</p></a>
+                        <a href="#"><p>업무용SW다운</p></a>
+                        <a href="#"><p>지원센터</p></a>
+                        <a href="#"><p>전산자료실</p></a>
+                        <a href="#"><p>전산담당자</p></a>
+                    </div>
+                    <div class="quick-contents">
+                        <a href="#"><p>담당자별 사무보조</p></a>
+                        <a href="#"><p>노사협의회</p></a>
+                        <a href="#"><p>건의함</p></a>
+                        <a href="#"><p>연구회</p></a>
+                        <a href="#"><p>문의요청</p></a>
+                        <a href="#"><p>실비보험</p></a>
+                        <a href="#"><p>콘도예약</p></a>
+                        <a href="#"><p>메인설정</p></a>
+                    </div>
+                </div>
+            </div>
+            <!-- QuickMenu End -->
+            <!-- Profile DropDown Start -->
+            <div class="drop-wrapper">
+                <div class="dorp-my-profile">
+                    <div class="profile-box">
+                        <img src="../../../../resources/svgs/profile.jfif" alt="profile-img"/>
+                        <div class="my-profile">
+                            <div>노지은</div>
+                            <div>ULN 경영시스템 | 운영관리팀</div>
+                        </div>
+                        <img src="../../../../resources/svgs/Icon_setting.svg" alt="setting-icon">
+                    </div>
+                    <div class="info-box">
+                        <div>마지막 접속일 : 2022.12.09</div>
+                        <button type="button" class="logout-btn">로그아웃</button>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>커뮤니티</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_mail.svg"><p class="content-title">메일</p></div>
+                            <div class="community-right"><p class="txt-blue">129<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_messagecircle.svg"><p class="content-title">쪽지</p></div>
+                            <div class="community-right"><p class="txt-blue">9<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_talk.svg"><p class="content-title">로지스톡</p></div>
+                            <div class="community-right"><p class="txt-blue">34<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg"><p class="content-title">결재</p></div>
+                            <div class="community-right"><p class="txt-blue">86<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>일정관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full bg-blue-10 h-84">
+                            <div class="cal-box">
+                                <div class="cal">
+                                    <p class="day">Mon</p>
+                                    <p class="date">09</p>
+                                </div>
+                                <div class="schedule">
+                                    <div class="schedule-time">공유<span class="line"></span>15:00</div>
+                                    <div class="schedule-title content-title">운영관리팀 회의</div>
+                                </div>
+                            </div>
+                            <div class="date-count">today</div>
+                        </div>
+                        <div class="con-full h-84">
+                            <div  class="cal-box">
+                                <div class="cal">
+                                    <p class="day">Wed</p>
+                                    <p class="date">11</p>
+                                </div>
+                                <div class="schedule">
+                                    <div class="schedule-time">개인<span class="line"></span>10:00</div>
+                                    <div class="schedule-title content-title">포스팟 미팅</div>
+                                </div>
+                            </div>
+                            <div class="date-count">today</div>
+                        </div>
+                        <button class="add-btn">일정등록<img src="../../../../resources/svgs/Icon_add.svg"></button>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>휴가 사용현황</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-56">
+                            <div class="content-title">연차</div>
+                            <p class="txt-bold"><span class="s-navy100" style="margin-right: 10px;">총 10일 중</span>10<span class="s-navy100"> 일 남음</span></p>
+                        </div>
+                        <div class="con-full h-56">
+                            <div class="content-title">하계휴가</div>
+                            <p class="txt-bold"><span class="s-navy100" style="margin-right: 10px;">총 10일 중</span>0<span class="s-navy100"> 일 남음</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>교육이수</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents flex-left">
+                        <div class="con-auto bg-y content-title">어학</div>
+                        <div class="con-auto bg-p content-title">물류</div>
+                        <div class="con-auto bg-b content-title">마케팅</div>
+                        <span class="s-gray60">개인정보관리 > 인사정보 > <a href="#">진급/교육과정필수정보</a> 에서 반드시 상세정보를 확인하시길 바랍니다.</span>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>자산관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">자산</p>
+                            </div>
+                            <p class="txt-blue">3<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg" alt="icon"/>
+                                <p class="content-title">관리</p>
+                            </div>
+                            <p class="txt-blue">29<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>물품관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">신청</p>
+                            </div>
+                            <p class="txt-blue">3<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg" alt="icon"/>
+                                <p class="content-title">결재</p>
+                            </div>
+                            <p class="txt-blue">29<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>콘도예약</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">신청</p>
+                            </div>
+                            <p class="txt-blue">75<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_calendar.svg" alt="icon"/>
+                                <p class="content-title">예약</p>
+                            </div>
+                            <p class="txt-blue">176<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Profile DropDown End -->
+        </header>
+        <!-- 공통 Header End -->
+
+        <!-- content start -->
+        <main>
+            <div class="board-wrapper">
+                <!-- @note 2023-03-09 -->
+                <section class="board-content">
+                     <!-- @note 조직도 영역 -->
+                     <div class="board-content-left">
+                        <section class="board-group-content color_bg">
+                            <div class="tree-list">
+                                <!-- 바인딩된 data로 jstree 생성하는 부분, /resouces/js/board/index.js에서 처리 -->
+                                <div class="tree-list-bottom" id="jstree">
+                                    <ul class="menu-list"></ul>
+                                </div>
+                            </div>                            
+                        </section>
+                    </div>
+                    <!-- // @note 조직도 영역 -->
+                    <section class="post-content view-content board-content-right">
+                        <section class="wrapper-title">
+                            <p class="title ph3">게시글 작성</p>
+                        </section>
+                        <div class="post-write-area">
+                            <div class="post-write-tb-area">
+                                <table class="post-write-tb">
+                                    <caption>게시판, 제목, 분류1, 분류2, 분류3, 등록예약, 게시기간, 첨부파일, 내용이 포함된 표</caption>
+                                    <colgroup>
+                                        <col style="width: 160px;">
+                                        <col style="width: auto;">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>
+                                                <div class="tit">게시판</div>
+                                            </th>
+                                            <td>
+                                                <div class="content-search-item">
+                                                    <div class="select-box">                                
+                                                        <input type="hidden" name="option-value" value="" id="select-input">
+                                                        <button class="select-label" type="button">전체</button>
+                                                        <ul class="option" id="select-options1">
+                                                            <!-- /resouces/js/borad/index.js에서 처리 -->
+                                                            <li class="option-item">분류1</li>
+                                                            <li class="option-item">분류2</li>
+                                                        </ul>                               
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div class="tit">제목</div>
+                                            </th>
+                                            <td>
+                                                <div class="input-box">
+                                                    <input type="text" placeholder="검색어를 입력해 주세요">
+                                                    <span class="text-count Small_R">0/200</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div class="tit">분류1</div>
+                                            </th>
+                                            <td>
+                                                <div class="content-search-item">
+                                                    <!-- select-box -->
+                                                    <div class="select-box size-s">                                
+                                                        <input type="hidden" name="option-value" value="" id="select-input">
+                                                        <button class="select-label" type="button">전체</button>
+                                                        <ul class="option" id="select-options1" style="display: none;">
+                                                            <!-- /resouces/js/borad/index.js에서 처리 -->
+                                                            <li class="option-item">분류1</li>
+                                                            <li class="option-item">분류2</li>
+                                                        </ul>                                
+                                                    </div>
+                                                    <!-- // select-box -->
+                                                    <!-- select-box -->
+                                                    <div class="select-box">                                
+                                                        <input type="hidden" name="option-value" value="" id="select-input">
+                                                        <button class="select-label" type="button">전체</button>
+                                                        <ul class="option" id="select-options2" style="display: none;">
+                                                            <!-- /resouces/js/borad/index.js에서 처리 -->
+                                                            <li class="option-item">분류1</li>
+                                                            <li class="option-item">분류2</li>
+                                                        </ul>                                
+                                                    </div>
+                                                    <!-- // select-box -->
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div class="tit">분류2</div>
+                                            </th>
+                                            <td>
+                                                <div class="chk_list_area">
+                                                    <ul class="list">
+                                                        <li>
+                                                            <div class="chk_inner">
+                                                                <input type="checkbox" class="inp_chk" id="inp_chk1" name="inp_chks" title="선택되지 않음">
+                                                                <label for="inp_chk1" class="radio-a-label">전체</label>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="chk_inner">
+                                                                <input type="checkbox" class="inp_chk" id="inp_chk2" name="inp_chks" title="선택되지 않음">
+                                                                <label for="inp_chk2" class="radio-a-label">회사공급횡령</label>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="chk_inner">
+                                                                <input type="checkbox" class="inp_chk" id="inp_chk3" name="inp_chks" title="선택되지 않음">
+                                                                <label for="inp_chk3" class="radio-a-label">근무태만/업무지시불이행</label>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="chk_inner">
+                                                                <input type="checkbox" class="inp_chk" id="inp_chk4" name="inp_chks" title="선택되지 않음">
+                                                                <label for="inp_chk4" class="radio-a-label"> 폭언/폭행</label>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="chk_inner">
+                                                                <input type="checkbox" class="inp_chk" id="inp_chk5" name="inp_chks" title="선택되지 않음">
+                                                                <label for="inp_chk5" class="radio-a-label">음주운전</label>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="chk_inner">
+                                                                <input type="checkbox" class="inp_chk" id="inp_chk6" name="inp_chks" title="선택되지 않음">
+                                                                <label for="inp_chk6"  class="radio-a-label"> 데이터가공/조작</label>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="chk_inner">
+                                                                <input type="checkbox" class="inp_chk" id="inp_chk7" name="inp_chks" title="선택되지 않음">
+                                                                <label for="inp_chk7"   class="radio-a-label"> 거래처금품수수</label>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="chk_inner">
+                                                                <input type="checkbox" class="inp_chk" id="inp_chk8" name="inp_chks" title="선택되지 않음">
+                                                                <label for="inp_chk8"   class="radio-a-label"> 성희롱/성추행</label>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="chk_inner">
+                                                                <input type="checkbox" class="inp_chk" id="inp_chk9" name="inp_chks" title="선택되지 않음">
+                                                                <label for="inp_chk9"   class="radio-a-label"> 기타</label>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div class="tit">분류3</div>
+                                            </th>
+                                            <td>
+                                                <div class="content-search-item">
+                                                    <div class="sum-text-select">
+                                                        <div class="select-box size-s mr10">                                
+                                                            <input type="hidden" name="option-value" value="" id="select-input">
+                                                            <button class="select-label" type="button">전체</button>
+                                                            <ul class="option" id="select-options2" style="display: none;">
+                                                                <!-- /resouces/js/borad/index.js에서 처리 -->
+                                                                <li class="option-item">분류1</li>
+                                                                <li class="option-item">분류2</li>
+                                                            </ul>                                
+                                                        </div>
+                                                        <div class="input-box ss-size">
+                                                            <input type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div class="tit">등록예약</div>
+                                            </th>
+                                            <td>
+                                                <div class="day-on-off">
+                                                    <div class="switch-btn">
+                                                        <label class="toggle">
+                                                            <input class="toggle-checkbox" type="checkbox" checked="">
+                                                            <div class="toggle-switch"></div>
+                                                            <span class="toggle-label">Bluetooth</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="datepicker datepicker-single">
+                                                        <div class="date">2022.12.19</div>
+                                                        <input type="hidden" name="" id="" value="">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <div class="tit">게시기간</div>
+                                            </th>
+                                            <td>
+                                                <div class="day-on-off">
+                                                    <div class="switch-btn">
+                                                        <label class="toggle">
+                                                            <input class="toggle-checkbox" type="checkbox" checked="">
+                                                            <div class="toggle-switch"></div>
+                                                            <span class="toggle-label">Bluetooth</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="datepicker datepicker-multi">
+                                                        <div class="date start-date">2023-02-28</div>
+                                                        <div class="date end-date">2023-02-28</div>
+                                                        <input type="hidden" name="" id="" value="">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="add-file-tr no-view">
+                                            <th>
+                                                <div class="tit">
+                                                    첨부파일
+                                                    <button type="button" class="more-btn">
+                                                        <img src="../../../../resources/svgs/Icon_arrowdown2.svg" alt="dropdown-icon" class="more-btn-img">
+                                                    </button>
+                                                </div>
+                                            </th>
+                                            <td>
+                                                <div class="add-file-area">         
+                                                    <div class="add-file-btns">
+                                                        <button type="button" class="r10">내 PC</button>
+                                                        <button type="button">드라이브</button>
+                                                    </div>                       
+                                                    <div class="Small_R --color-grey-80 ">
+                                                        첨부파일 0개 (0MB)
+                                                    </div>                
+                                                </div>
+        
+                                                <!-- @note 2023-03-06 -->
+                                                <div class="file-drag">
+                                                    <div class="file-drag-tp">
+                                                        <button class="file-drag-tp-del">
+                                                            <img src="../../../../resources/svgs/Icon_close_gray.svg" alt="dropdown-icon" class="more-btn-img">
+                                                        </button>
+                                                        <div class="file-drag-tp-tit">                                                        
+                                                            <span class="Small_R">파일명</span>
+                                                        </div> 
+                                                        <div class="file-drag-tp-volume">
+                                                            <span class="Small_R">용량</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- 파일 끌어오기전 -->
+                                                    <!-- <div class="file-drag-bp af-file Small_R">
+                                                        <img src="../../../../resources/svgs/Icon_file_drag.svg" alt="file_drag">
+                                                        마우스로 파일을 끌어오세요.
+                                                    </div> -->
+                                                    <!-- // 파일 끌어오기전 -->
+
+                                                    <!-- 파일 끌어오기 후 -->
+                                                    <div class="file-drag-bp bf-file" >
+                                                        <span class="file-drag-bp-list">
+                                                            <button class="file-drag-bp-del">
+                                                                <img src="../../../../resources/svgs/Icon_close_gray.svg" alt="dropdown-icon" class="more-btn-img">
+                                                            </button>
+                                                            <div class="file-drag-bp-tit ">
+                                                                <span class="Body6_R">파일명1</span>
+                                                            </div>
+                                                            <div class="file-drag-bp-volume ">
+                                                                <span class="Body6_R">265.1.MB</span>
+                                                            </div>
+                                                        </span>   
+                                                        <span class="file-drag-bp-list">
+                                                            <button class="file-drag-bp-del">
+                                                                <img src="../../../../resources/svgs/Icon_close_gray.svg" alt="dropdown-icon" class="more-btn-img">
+                                                            </button>
+                                                            <div class="file-drag-bp-tit ">
+                                                                <span class="Body6_R">파일명1</span>
+                                                            </div>
+                                                            <div class="file-drag-bp-volume ">
+                                                                <span class="Body6_R">265.1.MB</span>
+                                                            </div>
+                                                        </span>                                                 
+                                                    </div>
+                                                    <!-- // 파일 끌어오기후 -->
+                                                </div>
+                                                <!-- // @note 2023-03-06 -->
+                                            </td>
+                                        </tr>
+                                        <tr class="tb-full-line full-size">
+                                            <td colspan="2">
+                                                <div class="wr_edit">
+                                                    에디트 영역입니다.
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="tb-full-line">
+                                            <th>
+                                                <div class="tit">댓글허용</div>
+                                            </th>
+                                            <td>
+                                                <div class="switch-btn">
+                                                    <label class="toggle">
+                                                        <input class="toggle-checkbox" type="checkbox" checked="">
+                                                        <div class="toggle-switch"></div>
+                                                        <span class="toggle-label">Bluetooth</span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="bottom-btn-row taL">
+                                    <button class="btn-border left">미리보기</button>
+                                    <button class="btn-border ">취소</button>
+                                    <button class="btn-border ">임시저장</button>
+                                    <button class="btn-blue ">저장</button>
+                                </div>
+                                
+                                <script>
+
+                                    $(function() {
+                                    $('input[name="date1"]').daterangepicker({
+                                        opens: 'left'
+                                    }, function(start, end, label) {
+                                        console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+                                    });
+                                    });
+
+                                    $(".more-btn").click(function() {                               
+                                        if($(this).parents(".add-file-tr").hasClass("no-view")){
+                                            $(this).parents(".add-file-tr").removeClass("no-view");
+                                        }else {
+                                            $(this).parents(".add-file-tr").addClass("no-view");
+                                        }
+
+                                        $(this).children('.more-btn-img').toggleClass('rotate');
+                                    });
+                                </script>    
+                            </div>
+                            <!-- // post-write-tb-area -->
+                        </div>
+                        <!-- // post-write-area-->
+                    </section>             
+                </section>
+            </div>
+            <!-- content end -->
+        </main>
+    </div>
+    <!-- jQuery -->
+    <script src="../../../../resources/lib/jquery-migrate-1.4.1.min.js"></script>
+    <!-- jsTree -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <!-- datepicker -->
+    <script type="text/javascript" src="../../../../resources/lib/moment.min.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/datepicker.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/timepicker.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../../resources/css/daterangepicker.css" />
+    <!-- data load / functions -->
+    <script src="../../../../resources/js/user/board/index.js"></script>
+</body>
+
+</html>

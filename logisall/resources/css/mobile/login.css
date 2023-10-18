@@ -1,0 +1,313 @@
+
+.main-wrapper.login-wrapper .login-content{
+    padding-bottom: 100px;
+}
+.main-wrapper.login-wrapper {
+    background-color: #F5F5F5;
+}
+
+.main-wrapper.login-wrapper main{
+    padding: 20px 0;
+}
+
+
+.login-content .login-logo-box  {
+    padding: 0 20px;
+    text-align: center;
+}
+
+/* @note 2023-06-12 */
+.login-content .login-logo-box .login-logo {
+    width: 240px;
+    height: 42px;
+}
+
+.login-content .login-logo-box .login-help {
+   margin-top:30px;
+   text-align:right;
+}
+
+.login-content .login-help button {
+    color: var(--color-navy-40);
+    text-decoration-line: underline;
+    border: 0;
+    background-color: #F5F5F5;
+}
+
+.login-content .login-box {
+    margin-top:16px;
+    padding: 0 20px;
+}
+
+.login-content .login-box .input-box {
+    position: relative;
+    margin-bottom:12px;
+}
+
+.login-content .login-box .input-box.password-box {
+    position: relative;
+}
+
+.login-content .login-box .input-box.password-box .eyes {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 12px;
+    right: 24px;
+    cursor: pointer;
+    border:0;
+}
+
+.login-content .login-box .input-box:last-child {
+    margin-bottom:0;
+}
+
+.login-content .login-box .input-box input[type="text"], .login-content .login-box .input-box input[type="password"] {
+    position: relative;
+    width: 100%;
+    height: 56px;
+    padding: 0 51px 0 15px;
+    border: 1px solid var(--color-grey-20);
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 25px;
+    color: var(--color-navy-100);
+}
+
+.input-box input[type="text"]::placeholder, .login-content .login-box .input-box input[type="password"]::placeholder {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 25px;
+    letter-spacing: -0.05em;
+    color: var(--color-grey-60);
+}
+
+.login-content .login-box .input-box:after {
+    display:none;
+}
+
+.login-content .login-box .check-box-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    gap:20px;
+}
+
+
+.login-content .login-box .check-box-list .chk-inner {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 0 0 0 21px;
+    font-size: 0;
+    margin-bottom:0;
+}
+
+.login-content .login-box .check-box-list .chk-inner .inp-chk {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 13px;
+    height: 13px;
+    margin: -8px 0 0;
+    border: 1px solid var(--color-grey-20);
+    padding: 0;
+    background-color: #ffffff;
+    cursor: pointer;
+    vertical-align: middle;
+    opacity: 1;
+    border-radius: 2px;
+}
+
+/*
+.login-content .login-box .check-box-list .chk-inner .inp-chk:checked {
+    border: 2px solid #228020;
+    background-color: #228020;
+}
+*/
+
+.login-content .login-box .check-box-list .chk-inner .inp-chk:checked:before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 9px;
+    background-image: url('/images/board/chk.png');
+    background-size: 12px 9px;
+    background-repeat: no-repeat;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.login-content .login-box .check-box-list .chk-inner label {
+    display: inline-block;
+    line-height: 16px;
+    color: var(--color-navy-100);
+    vertical-align: middle;
+}
+
+.login-content .login-box .check-box-list .chk-inner .inp-txt {
+    display: inline-block;
+    max-width: 150px;
+    margin: 0 0 0 5px;
+    vertical-align: middle;
+}
+
+.login-content .roaming-box {
+    margin-top: 30px;
+    padding: 30px 20px 18px;
+    background-color: #FFFFFF;
+    
+}
+
+.login-content .roaming-box .roaming-tit {
+    color: var(--color-navy-100);
+}
+
+.login-content .roaming-box .roaming-slide {
+    margin-top: 12px;
+    padding-bottom: 12px;
+    overflow-x: scroll;
+}
+
+.login-content .roaming-box .roaming-slide::-webkit-scrollbar {
+    display: block; /* Chrome, Safari, Opera*/
+}
+
+.login-content .roaming-box .roaming-slide::-webkit-scrollbar-thumb {
+    background: #a9a9a9;
+}
+
+.login-content .roaming-box .roaming-slide ul {
+    margin-top: 12px;
+    width: 100%;
+    overflow-x: auto;
+    min-width: 500px;
+    display: flex;
+    gap: 8px;
+    flex-direction: row;
+}
+
+.login-content .roaming-box .roaming-slide ul li {
+    width:150px;
+    background-color: var(--color-navy-10);
+    border-radius: 10px;
+    padding:21px 16px;
+    box-sizing: border-box;
+}
+
+.login-content .roaming-box .roaming-slide ul li .nation {
+    color: var(--color-navy-60);
+}
+
+.login-content .roaming-box .roaming-slide ul li .clock {
+    margin-top:5px;
+    color: var(--color-navy-80);
+ }
+
+ .login-content .roaming-box .roaming-slide ul li .day {
+    margin-top:3px;
+    color: var(--color-navy-60);
+ }
+
+
+.login-content .login-box .btn-blue {
+    width:100%;
+    margin-top:30px;
+    height:60px;
+    font-weight:700;
+    font-size:16px;
+}
+
+.login-content .login-bot {
+    margin-top:30px;
+    padding: 0 20px;
+}
+
+.login-content .login-bot ul {
+    display: flex;
+    gap: 25px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-content .login-bot ul li {
+    position: relative;
+}
+
+.login-content .login-bot ul li:after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    right: -13px;
+    width: 1px;
+    height: 13px;
+    background-color: var(--color-navy-20);
+}
+
+.login-content .login-bot ul li:last-child:after {
+    display: none;
+}
+
+.login-content .login-bot ul li a{
+    color: var(--color-navy-40);
+}
+
+.login-content .login-bot .ver-naming {
+    margin-top:10px;
+    text-align:center;
+    color: var(--color-navy-40);
+}
+
+
+
+/* 팝업 */
+
+.layer-popup.ver-03 {
+    min-width:320px;
+    padding:30px 20px;
+}
+
+.layer-popup.ver-03 .popup-tit {
+    border-bottom: 0;
+    padding: 0;
+}
+
+.layer-popup.ver-03 .popup-cont {
+    padding:20px 0 0;
+}
+
+.layer-popup.ver-03 .popup-tit span 
+{
+    color: var(--color-grey-100 );
+}
+
+.layer-popup.ver-03 .popup-cont .login-help-list li {
+    position: relative;
+    padding-left: 15px;
+    color: var(--color-navy-80);
+    margin-top: 10px;
+}
+
+.layer-popup.ver-03 .popup-cont .login-help-list li::after {
+    content:'';
+    position:absolute;
+    top:11px;
+    left:0;
+    background-color: var(--color-navy-80);
+    width:5px;
+    height:5px;
+    border-radius: 50%;
+}

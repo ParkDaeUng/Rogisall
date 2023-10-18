@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../../../resources/css/common.css" />
+    <link rel="stylesheet" href="../../../../resources/css/login.css" />
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="../../../../resources/js/user/login/index.js"></script>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-left">
+            <div class="login-img"></div>
+        </div>
+        <div class="login-right">
+            <div class="right-wrapper">
+                <!-- @note 2023-06-12 -->
+                <div class="login-logo">
+                    <img src="../../../../resources/svgs/login_new_logo.svg">
+                </div>
+                <div class="form-box">
+                    <form action="" id="login-form">
+                        <input type="text" id="username" name="username" placeholder="아이디를 입력해 주세요.">
+                        <input type="password" id="password" name="password" placeholder="비밀번호를 입력해 주세요.">
+                        <div class="eyes">
+                            <img src="../../../../resources/svgs/Icon_eyeslash.svg" class="hide">
+                        </div>
+                        <div class="label-box">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">아이디저장</label>
+                            <input type="checkbox" id="login-keep">
+                            <label for="login-keep">로그인유지</label>
+                        </div>
+                        <button type="submit" class="login-btn">로그인</button>
+                        <div class="sub-area">
+                            <a href="#">아이디 찾기</a>
+                            <a href="#">비밀번호 찾기</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="bottom-group">
+                    <p>다른 서비스 선택</p>
+                    <div class="btn-wrap">
+                        <a href="#"><button type="button"><img src='../../../../resources/svgs/Icon_booksaved.svg'>가족어학교육</button></a>
+                        <a href="#"><button type="button"><img src='../../../../resources/svgs/Icon_userquare.svg'>유저모드</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

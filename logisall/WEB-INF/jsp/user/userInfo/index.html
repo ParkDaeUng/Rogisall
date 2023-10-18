@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=UTF-8'>
+    <link rel="stylesheet" href="../../../../resources/css/common.css" />
+    <link rel="stylesheet" href="../../../../resources/css/userinfo.css" />
+    <link rel="stylesheet" href="../../../../resources/css/header.css">
+    <link rel="stylesheet" href="../../../../resources/css/nav.css">
+    <!-- <link rel="stylesheet" href="<%=ROOT%>/resources/css/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+
+    
+    
+        /**
+         * 그래프 데이터 입력
+         * : 미수금현황(도넛 그래프), 업무관리 진행바 데이터 입력은 해당 html 태그에서 진행
+         * /
+         
+        /* 바 그래프 데이터셋 */
+        let barData = {
+            labels: ['2020', '2021', '2022'],  // 연도 순서대로 입력
+            datasets: [
+                {
+                    label: '복리후생비',
+                    data: [70, 75, 90],  // 데이터 순서대로 입력
+                    borderRadius: 3,
+                    backgroundColor: '#394DC0',
+                    maxBarThickness: 40,
+                    datalabels: {
+                        color: '#394DC0',
+                    },
+                },
+                {
+                    label: '접대비',
+                    data: [30, 25, 10],  // 데이터 순서대로 입력
+                    borderRadius: 3,
+                    backgroundColor: '#FEAA12',
+                    maxBarThickness: 40,
+                    datalabels: {
+                        color: '#FEAA12'
+                    },
+                },
+            ]
+        }
+
+        // Profile DropDown Start
+        $(document).ready(function() {
+            // quick-menu dropDown
+            $('#quick-menu').click(function(e) {
+                e.stopPropagation();
+                $(".quickmenu-wrapper").toggle();
+            });
+            
+            $(document).click(function(e) {
+                if (!$(e.target).closest('#quick-menu').length &&
+                    !$(e.target).closest('.quickmenu-wrapper').length) {
+                        $('.quickmenu-wrapper').css({'display': 'none'});
+                };
+            });
+
+            // profile dropDown
+            $('#more-menu').click(function(e) {
+                e.stopPropagation();
+                $(".drop-wrapper").toggle();
+                $('#dropdown-icon').toggleClass('rotate');
+            });
+
+            $(document).click(function(e) {
+                if (!$(e.target).closest('#more-menu').length &&
+                    !$(e.target).closest('.drop-wrapper').length) {
+                        $('.drop-wrapper').css({'display': 'none'});
+                        $('#dropdown-icon').removeClass('rotate');
+                };
+            });
+
+            // profile-contents dropDown
+            $(".menu-contents").hide();
+            $(".menu-title").click(function() {
+                $(this).next(".menu-contents").toggle();
+                $(this).children('.drop-btn').toggleClass('rotate');
+            });
+
+        });
+        // Profile DropDown End
+
+        // Nav menu DropDown End
+        $(document).ready(function() {
+            // nav hide show
+            $(".slider_btn").click(function (e) {
+                if ($(".slider_btn").hasClass("slider_chk")) {
+                    $(".nav-menu").animate({
+                        left: "0px",
+                    }, 500);
+                    $(".main-wrapper").animate({
+                        paddingLeft: "240px",
+                    }, 500);
+                    $(".slider_btn").removeClass("slider_chk");
+                } else {
+                    $(".nav-menu").animate({
+                        left: "-200px",
+                    }, 500);
+                    $(".main-wrapper").animate({
+                        paddingLeft: "40px",
+                    }, 500);
+                    $(".slider_btn").addClass("slider_chk");
+                }
+            });
+
+            // nav dropDown
+            $('.nav-list-2nd').hide();
+            $('.nav-list-1nd').click(function() {
+                $('.list-2nd-item').removeClass('select');
+                $('.sub-content').css({'display':'none'});
+                $(this).toggleClass('select');
+                $('.nav-list-1nd').not(this).removeClass('select');
+                $(this).next('.nav-list-2nd').slideToggle(300);
+                $('.nav-list-1nd').not(this).next('.nav-list-2nd').slideUp(300);
+            });
+        
+            // nav-sub dropDown
+            $('.list-2nd-item').click(function(e) {
+                let viewY = window.innerHeight;
+                let targetY = Math.floor(e.target.getBoundingClientRect().top);
+                let popupHeight = $('.sub-content').outerHeight()
+
+
+                $(this).toggleClass('select');
+                $('.list-2nd-item').not(this).removeClass('select');
+                if($('.list-2nd-item').hasClass('select')) {
+                    if((viewY - popupHeight) > (targetY + 10)) {
+                        $('.sub-content').css({'display':'block', 'top':targetY, 'bottom':''});
+                    }else {
+                        $('.sub-content').css({'display':'block', 'top':'', 'bottom':viewY - targetY - 30});
+                    }
+                }else {
+                    $('.sub-content').css({'display':'none'});
+                }
+            });
+
+            $(document).click(function(e) {
+                if (!$(e.target).closest('.list-2nd-item').length &&
+                    !$(e.target).closest('.sub-content').length) {
+                        $('.sub-content').css({'display': 'none'});
+                        $('.list-2nd-item').removeClass('select');
+                };
+            });
+        });
+        // Nav menu DropDown End
+
+        // @note 2023-04-21
+        $(document).ready(function() {
+            $(".board-wrapper").scroll(function() {
+                $('.daterangepicker').css("display", "none");
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <!-- 공통 nav Start -->
+    <nav class="nav-menu">
+        <div class="slider_btn ">
+            <img src="../../../../resources/svgs/Icon_arrowdownx20.svg" />
+        </div>
+        <a href="../main/index.html" class="logo"><img src="../../../../resources/white_new_logo.png" alt="logo"/></a>
+        <ul class="nav-list">
+            <li id="email" class="nav-list-1nd">E-메일</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="working-mail" class="nav-list-1nd">업무메일</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="message" class="nav-list-1nd">쪽지</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="schedule" class="nav-list-1nd">일정</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="id-card" class="nav-list-1nd">명함</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="board" class="nav-list-1nd">게시판</li>
+            <ol class="nav-list-2nd">
+                <li>그룹게시판</li>
+                <li>조직문화개선</li>
+                <li>안전보건</li>
+                <li>GlobalBiz게시판</li>
+                <li>사내게시판</li>
+                <li>코로나예방대책본부</li>
+                <li>청도고덕리게시판</li>
+                <li>교육게시판</li>
+                <li>사진함</li>
+            </ol>
+            <li id="work-board" class="nav-list-1nd">업무게시판</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="approve" class="nav-list-1nd">결재</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="fnq" class="nav-list-1nd">설문</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="meeting" class="nav-list-1nd">회의실</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="asset" class="nav-list-1nd">자산관리</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="esg" class="nav-list-1nd">ESG경영</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="logistar" class="nav-list-1nd">로지스타</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+        </ul>
+
+        <div class="nav-setting">
+            <img src="../../../../resources/svgs/setting2.svg" alt="widget-setting"/>
+            <p>위젯설정</p>
+        </div>
+    </nav>
+    <div class="sub-content">
+        <ul>
+            <li>서브컨텐츠_1</li>
+            <li>서브컨텐츠_2</li>
+            <li>서브컨텐츠_3</li>
+            <li>서브컨텐츠_4</li>
+            <li>서브컨텐츠_5</li>
+        </ul>
+    </div>
+    <!-- 공통 Nav End -->
+
+    <div class="main-wrapper bgW">
+        <!-- 공통 Header Start -->
+        <header>
+            <div class="header-search">
+                <input type="text" placeholder="검색어를 입력해주세요" />
+                <img src="../../../../resources/svgs/Icon_search.svg" alt="search" class="search"/>
+            </div>
+            <div class="header-middle"></div>
+            <div class="header-options">
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_mail_new.svg" alt="mail"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 1</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_messagecircle.svg" alt="message"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 2</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_talk.svg" alt="messanger"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 3</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_clipboard.svg" alt="clipboard"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 4</span>
+                </div>
+                <div class="division"></div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_quickmenu.svg" alt="quick-menu" id="quick-menu"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 5</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_notification_new.svg" alt="alert"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 6</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_usersearch.svg" alt="search-user"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 7</span>
+                </div>
+                <div id="more-menu" class="more-menu">
+                    <div class="profile-img">
+                        <img src="../../../../resources/svgs/profile.jfif" alt="profile-img"/>
+                    </div>
+                    <img src="../../../../resources/svgs/Icon_arrowdown.svg" alt="dropdown-icon" id="dropdown-icon"/>
+                </div>
+            </div>
+            <!-- QuickMenu Start -->
+            <div class="quickmenu-wrapper">
+                <div class="quick-box">
+                    <div class="quick-contents">
+                        <a href="#"><p>온라인연수원</p></a>
+                        <a href="#"><p>사내추천</p></a>
+                        <a href="#"><p>담당업무</p></a>
+                        <a href="#"><p>일반업무</p></a>
+                        <a href="#"><p>업무용SW다운</p></a>
+                        <a href="#"><p>지원센터</p></a>
+                        <a href="#"><p>전산자료실</p></a>
+                        <a href="#"><p>전산담당자</p></a>
+                    </div>
+                    <div class="quick-contents">
+                        <a href="#"><p>담당자별 사무보조</p></a>
+                        <a href="#"><p>노사협의회</p></a>
+                        <a href="#"><p>건의함</p></a>
+                        <a href="#"><p>연구회</p></a>
+                        <a href="#"><p>문의요청</p></a>
+                        <a href="#"><p>실비보험</p></a>
+                        <a href="#"><p>콘도예약</p></a>
+                        <a href="#"><p>메인설정</p></a>
+                    </div>
+                </div>
+            </div>
+            <!-- QuickMenu End -->
+            <!-- Profile DropDown Start -->
+            <div class="drop-wrapper">
+                <div class="dorp-my-profile">
+                    <div class="profile-box">
+                        <img src="../../../../resources/svgs/profile.jfif" alt="profile-img"/>
+                        <div class="my-profile">
+                            <div>노지은</div>
+                            <div>ULN 경영시스템 | 운영관리팀</div>
+                        </div>
+                        <img src="../../../../resources/svgs/Icon_setting.svg" alt="setting-icon">
+                    </div>
+                    <div class="info-box">
+                        <div>마지막 접속일 : 2022.12.09</div>
+                        <button type="button" class="logout-btn">로그아웃</button>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>커뮤니티</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_mail.svg"><p class="content-title">메일</p></div>
+                            <div class="community-right"><p class="txt-blue">129<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_messagecircle.svg"><p class="content-title">쪽지</p></div>
+                            <div class="community-right"><p class="txt-blue">9<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_talk.svg"><p class="content-title">로지스톡</p></div>
+                            <div class="community-right"><p class="txt-blue">34<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg"><p class="content-title">결재</p></div>
+                            <div class="community-right"><p class="txt-blue">86<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>일정관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full bg-blue-10 h-84">
+                            <div class="cal-box">
+                                <div class="cal">
+                                    <p class="day">Mon</p>
+                                    <p class="date">09</p>
+                                </div>
+                                <div class="schedule">
+                                    <div class="schedule-time">공유<span class="line"></span>15:00</div>
+                                    <div class="schedule-title content-title">운영관리팀 회의</div>
+                                </div>
+                            </div>
+                            <div class="date-count">today</div>
+                        </div>
+                        <div class="con-full h-84">
+                            <div  class="cal-box">
+                                <div class="cal">
+                                    <p class="day">Wed</p>
+                                    <p class="date">11</p>
+                                </div>
+                                <div class="schedule">
+                                    <div class="schedule-time">개인<span class="line"></span>10:00</div>
+                                    <div class="schedule-title content-title">포스팟 미팅</div>
+                                </div>
+                            </div>
+                            <div class="date-count">today</div>
+                        </div>
+                        <button class="add-btn">일정등록<img src="../../../../resources/svgs/Icon_add.svg"></button>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>휴가 사용현황</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-56">
+                            <div class="content-title">연차</div>
+                            <p class="txt-bold"><span class="s-navy100" style="margin-right: 10px;">총 10일 중</span>10<span class="s-navy100"> 일 남음</span></p>
+                        </div>
+                        <div class="con-full h-56">
+                            <div class="content-title">하계휴가</div>
+                            <p class="txt-bold"><span class="s-navy100" style="margin-right: 10px;">총 10일 중</span>0<span class="s-navy100"> 일 남음</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>교육이수</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents flex-left">
+                        <div class="con-auto bg-y content-title">어학</div>
+                        <div class="con-auto bg-p content-title">물류</div>
+                        <div class="con-auto bg-b content-title">마케팅</div>
+                        <span class="s-gray60">개인정보관리 > 인사정보 > <a href="#">진급/교육과정필수정보</a> 에서 반드시 상세정보를 확인하시길 바랍니다.</span>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>자산관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">자산</p>
+                            </div>
+                            <p class="txt-blue">3<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg" alt="icon"/>
+                                <p class="content-title">관리</p>
+                            </div>
+                            <p class="txt-blue">29<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>물품관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">신청</p>
+                            </div>
+                            <p class="txt-blue">3<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg" alt="icon"/>
+                                <p class="content-title">결재</p>
+                            </div>
+                            <p class="txt-blue">29<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>콘도예약</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">신청</p>
+                            </div>
+                            <p class="txt-blue">75<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_calendar.svg" alt="icon"/>
+                                <p class="content-title">예약</p>
+                            </div>
+                            <p class="txt-blue">176<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Profile DropDown End -->
+        </header>
+        <!-- 공통 Header End -->
+
+        <!-- content start -->
+        <main>
+            <div class="board-wrapper">
+                <section class="board-content">
+                     <!-- @note 조직도 영역 -->
+                     <div class="board-content-left">
+                        <section class="board-group-content color_bg">
+                            <div class="tree-list">
+                                <!-- 바인딩된 data로 jstree 생성하는 부분, /resouces/js/board/index.js에서 처리 -->
+                                <div class="tree-list-bottom" id="jstree">
+                                    <ul class="menu-list"></ul>
+                                </div>
+                            </div>                            
+                        </section>
+                    </div>
+                    <!-- // @note 조직도 영역 -->
+                    <section class="post-content view-content board-content-right">
+                        <section class="wrapper-title">
+                            <p class="title ph3">개인정보 상세</p>
+                        </section>
+                        <div class="post-write-area">
+                            <div class="post-write-tb-area">
+
+                                <div class="user-img-area sign">
+                                    <img src="../../../../resources/mask_group.png">
+                                </div>
+                                <div class="user-img-area stamp">
+                                    <img src="../../../../resources/mask_group.png">
+                                </div>
+                                <div class="user-img-area profile">
+                                    <img src="../../../../resources/svgs/profile.jfif">
+                                </div>
+
+                                <table class="post-write-tb">
+                                    <colgroup>
+                                        <col style="width: 160px;">
+                                        <col style="width: auto;">
+                                    </colgroup>
+                                    <tbody>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">성명</div>
+                                        </th>
+                                        <td>
+                                            <div class="input-box ss-size">
+                                                <input type="text" value="김사원" readonly>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">사번</div>
+                                        </th>
+                                        <td>
+                                            <div class="input-box ss-size">
+                                                <input type="text" value="123456" readonly>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">소속/직급</div>
+                                        </th>
+                                        <td>
+                                            <div class="input-box m-size">
+                                                <input type="text" value="로지스올시스템즈 운영혁신담당 POOLINGBiz혁신팀 프로" readonly>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">전자우편</div>
+                                        </th>
+                                        <td>
+                                            <div class="input-box ss-size">
+                                                <input type="text" value="user123@logisall.com" readonly>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">입사일</div>
+                                        </th>
+                                        <td>
+                                            <div class="input-box ss-size">
+                                                <input type="text" value="2022-12-31" readonly>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                          <th>
+                                              <div class="tit">담당직무</div>
+                                          </th>
+                                          <td>
+                                              <div class="content-search-item">
+                                                  <div class="select-box">                                
+                                                      <input type="hidden" name="option-value" value="" id="select-input">
+                                                      <button class="select-label" type="button">선택</button>
+                                                      <ul class="option" id="select-options1">
+                                                          <li class="option-item">분류1</li>
+                                                          <li class="option-item">분류2</li>
+                                                          <li class="option-item">분류3</li>
+                                                      </ul>                               
+                                                  </div>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <th>
+                                              <div class="tit">담당업무</div>
+                                          </th>
+                                          <td>
+                                              <div class="input-box">
+                                                  <input type="text" placeholder="">
+                                                  <span class="text-count Small_R"></span>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">한문이름</div>
+                                        </th>
+                                        <td>
+                                            <div class="input-box ss-size">
+                                                <input type="text" value="">
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">영문이름</div>
+                                        </th>
+                                        <td>
+                                            <div class="input-box ss-size">
+                                                <input type="text" value="">
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">사내전화</div>
+                                        </th>
+                                        <td>
+                                          <div class='content-search-item'>
+                                            <div class="input-box num-size">
+                                                <input type="text" value="">
+                                            </div>
+                                            <p>-</p>
+                                            <div class="input-box num-size">
+                                              <input type="text" value="">
+                                            </div>
+                                            <p>-</p>
+                                            <div class="input-box num-size">
+                                              <input type="text" value="">
+                                            </div>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">인터넷내선</div>
+                                        </th>
+                                        <td>
+                                          <div class="input-box num-size">
+                                              <input type="text" value="">
+                                          </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">팩스번호</div>
+                                        </th>
+                                        <td>
+                                          <div class='content-search-item'>
+                                            <div class="input-box num-size">
+                                                <input type="text" value="">
+                                            </div>
+                                            <p>-</p>
+                                            <div class="input-box num-size">
+                                              <input type="text" value="">
+                                            </div>
+                                            <p>-</p>
+                                            <div class="input-box num-size">
+                                              <input type="text" value="">
+                                            </div>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">법인폰</div>
+                                        </th>
+                                        <td>
+                                          <div class='content-search-item'>
+                                            <div class="input-box num-size">
+                                                <input type="text" value="">
+                                            </div>
+                                            <p>-</p>
+                                            <div class="input-box num-size">
+                                              <input type="text" value="">
+                                            </div>
+                                            <p>-</p>
+                                            <div class="input-box num-size">
+                                              <input type="text" value="">
+                                            </div>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">이동전화2</div>
+                                        </th>
+                                        <td>
+                                          <div class='content-search-item'>
+                                            <div class="input-box num-size">
+                                                <input type="text" value="">
+                                            </div>
+                                            <p>-</p>
+                                            <div class="input-box num-size">
+                                              <input type="text" value="">
+                                            </div>
+                                            <p>-</p>
+                                            <div class="input-box num-size">
+                                              <input type="text" value="">
+                                            </div>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">자택전화</div>
+                                        </th>
+                                        <td>
+                                          <div class='content-search-item'>
+                                            <div class="input-box num-size">
+                                                <input type="text" value="">
+                                            </div>
+                                            <p>-</p>
+                                            <div class="input-box num-size">
+                                              <input type="text" value="">
+                                            </div>
+                                            <p>-</p>
+                                            <div class="input-box num-size">
+                                              <input type="text" value="">
+                                            </div>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                          <th>
+                                              <div class="tit">생년월일</div>
+                                          </th>
+                                          <td>
+                                              <div class="content-search-item">
+                                                  <div class="sum-text-select">
+                                                      <div class="select-box size-ss mr10">                                
+                                                          <input type="hidden" name="option-value" value="" id="select-input">
+                                                          <button class="select-label" type="button">선택</button>
+                                                          <ul class="option" id="select-options2" style="display: none;">
+                                                              <li class="option-item">양력</li>
+                                                              <li class="option-item">음력</li>
+                                                          </ul>                                
+                                                      </div>
+                                                      <div class="datepicker datepicker-single">
+                                                        <div class="date">2022.12.19</div>
+                                                        <input type="hidden" name="" id="" value="">
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">결혼기념일</div>
+                                        </th>
+                                        <td>
+                                            <div class="datepicker datepicker-single">
+                                              <div class="date">2022.12.19</div>
+                                              <input type="hidden" name="" id="" value="">
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">자택주소</div>
+                                        </th>
+                                        <td>
+                                            <div class="input-box">
+                                                <input type="text" placeholder="">
+                                                <span class="text-count Small_R"></span>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">근무지주소</div>
+                                        </th>
+                                        <td>
+                                            <div class="content-search-item">
+                                              <div class="select-box size-m mr10 mb10">                                
+                                                <input type="hidden" name="option-value" value="" id="select-input">
+                                                <button class="select-label" type="button">근무지 선택</button>
+                                                <ul class="option" id="select-options2" style="display: none;">
+                                                    <li class="option-item">근무지1</li>
+                                                    <li class="option-item">근무지2</li>
+                                                </ul>                                
+                                              </div>
+                                              <button type="button" class="add-btn mb10">근무지주소추가요청</button>
+                                            </div>
+                                            <div class="input-box">
+                                                <input type="text" value="서울특별시 마포구 마포대로 63-8(삼창프라자빌딩7F)" readonly>
+                                                <span class="text-count Small_R"></span>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">근무복사이즈</div>
+                                        </th>
+                                        <td>
+                                            <div class="content-search-item">
+                                                <div class="sum-text-select">
+                                                  <p>춘추복근무복</p>
+                                                  <div class="select-box size-ss mr10 ml5">                                
+                                                    <input type="hidden" name="option-value" value="" id="select-input">
+                                                    <button class="select-label" type="button">선택</button>
+                                                    <ul class="option" id="select-options2" style="display: none;">
+                                                        <li class="option-item">80</li>
+                                                        <li class="option-item">85</li>
+                                                        <li class="option-item">90</li>
+                                                        <li class="option-item">95</li>
+                                                        <li class="option-item">100</li>
+                                                        <li class="option-item">105</li>
+                                                        <li class="option-item">110</li>
+                                                        <li class="option-item">115</li>
+                                                        <li class="option-item">120</li>
+                                                    </ul>
+                                                  </div>
+                                                </div>
+                                                <div class="sum-text-select">
+                                                  <p>동계근무복</p>
+                                                  <div class="select-box size-ss mr10 ml5">                                
+                                                    <input type="hidden" name="option-value" value="" id="select-input">
+                                                    <button class="select-label" type="button">선택</button>
+                                                    <ul class="option" id="select-options2" style="display: none;">
+                                                        <li class="option-item">80</li>
+                                                        <li class="option-item">85</li>
+                                                        <li class="option-item">90</li>
+                                                        <li class="option-item">95</li>
+                                                        <li class="option-item">100</li>
+                                                        <li class="option-item">105</li>
+                                                        <li class="option-item">110</li>
+                                                        <li class="option-item">115</li>
+                                                        <li class="option-item">120</li>
+                                                    </ul>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">서명이미지</div>
+                                        </th>
+                                        <td>
+                                            <div class="content-search-item">
+                                                <div class="input-box m-size">
+                                                    <input type="text" id="file1name" value="" readonly>
+                                                </div>
+                                                <label for="file1" class="add-file-label">파일추가</label>
+                                                <input type="file" name="file1" id="file1" onchange="showFileName('file1', 'file1name')" style="display : none">
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">도장이미지</div>
+                                        </th>
+                                        <td>
+                                            <div class="content-search-item">
+                                                <div class="input-box m-size">
+                                                    <input type="text" id="file2name" value="" readonly>
+                                                </div>
+                                                <label for="file2" class="add-file-label">파일추가</label>
+                                                <input type="file" name="file2" id="file2" onchange="showFileName('file2', 'file2name')" style="display : none">
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">프로필이미지</div>
+                                        </th>
+                                        <td>
+                                            <div class="content-search-item">
+                                                <div class="input-box m-size">
+                                                    <input type="text" id="file3name" value="" readonly>
+                                                </div>
+                                                <label for="file3" class="add-file-label">파일추가</label>
+                                                <input type="file" name="file3" id="file3" onchange="showFileName('file3', 'file3name')" style="display : none">
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">명함표기</div>
+                                        </th>
+                                        <td>
+                                            <div class="content-search-item">
+                                                <div class="sum-text-select">
+                                                  <p>한</p>
+                                                  <div class="input-box ss-size ml10">
+                                                    <input type="text" value="">
+                                                  </div>
+                                                </div>
+                                                <div class="sum-text-select">
+                                                  <p>영</p>
+                                                  <div class="input-box ss-size ml10">
+                                                    <input type="text" value="">
+                                                  </div>
+                                              </div>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr class="tb-full-line">
+                                          <th>
+                                            <div class="tit">메일 서명</div>
+                                          </th>
+                                          <td colspan="2">
+                                              <div class="wr_edit">
+                                                  에디트 영역입니다.
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit mt20">배우자 정보</div>
+                                        </th>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">성명</div>
+                                        </th>
+                                        <td>
+                                            <div class="input-box ss-size">
+                                                <input type="text" value="이배우자">
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">생년월일</div>
+                                        </th>
+                                        <td>
+                                            <div class="datepicker datepicker-single">
+                                              <div class="date">2022.12.19</div>
+                                              <input type="hidden" name="" id="" value="">
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">연락처</div>
+                                        </th>
+                                        <td>
+                                          <div class='content-search-item'>
+                                            <div class="input-box num-size">
+                                                <input type="text" value="">
+                                            </div>
+                                            <p>-</p>
+                                            <div class="input-box num-size">
+                                              <input type="text" value="">
+                                            </div>
+                                            <p>-</p>
+                                            <div class="input-box num-size">
+                                              <input type="text" value="">
+                                            </div>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <!-- @note 2023-04-21 -->
+                                        <th>
+                                            <div class="tit">코로나 확진일</div>
+                                        </th>
+                                        <td>
+                                            <div class="datepicker datepicker-single-up">
+                                              <div class="date">2022.12.19</div>
+                                              <input type="hidden" name="" id="" value="">
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th>
+                                            <div class="tit">백신접종</div>
+                                        </th>
+                                        <td>
+                                            <div class="content-search-item mb10">
+                                              <div>1차접종 백신종류 : </div>
+                                              <div class="select-box size-s mr10">
+                                                <input type="hidden" name="option-value" value="" id="select-input">
+                                                <button class="select-label" type="button">선택</button>
+                                                <ul class="option" id="select-options2" style="display: none;">
+                                                    <li class="option-item">아스트라제네카</li>
+                                                    <li class="option-item">얀센</li>
+                                                    <li class="option-item">화이자</li>
+                                                    <li class="option-item">모더나</li>
+                                                </ul>
+                                              </div>
+                                              <div>예약일 : </div>
+                                              <div class="datepicker datepicker-single-up mr10">
+                                                <div class="date">2022.12.19</div>
+                                                <input type="hidden" name="datepicker-single" id="datepicker-single" value="">
+                                              </div>
+                                              <div>접종일 : </div>
+                                              <div class="datepicker datepicker-single-up">
+                                                <div class="date">2022.12.19</div>
+                                                <input type="hidden" name="datepicker-single" id="datepicker-single" value="">
+                                              </div>
+                                            </div>
+                                            <div class="content-search-item mb10">
+                                              <div>2차접종 백신종류 : </div>
+                                              <div class="select-box size-s mr10">
+                                                <input type="hidden" name="option-value" value="" id="select-input">
+                                                <button class="select-label" type="button">선택</button>
+                                                <ul class="option" id="select-options2" style="display: none;">
+                                                    <li class="option-item">아스트라제네카</li>
+                                                    <li class="option-item">얀센</li>
+                                                    <li class="option-item">화이자</li>
+                                                    <li class="option-item">모더나</li>
+                                                </ul>
+                                              </div>
+                                              <div>예약일 : </div>
+                                              <div class="datepicker datepicker-single-up mr10">
+                                                <div class="date">2022.12.19</div>
+                                                <input type="hidden" name="datepicker-single" id="datepicker-single" value="">
+                                              </div>
+                                              <div>접종일 : </div>
+                                              <div class="datepicker datepicker-single-up">
+                                                <div class="date">2022.12.19</div>
+                                                <input type="hidden" name="datepicker-single" id="datepicker-single" value="">
+                                              </div>
+                                            </div>
+                                            <div class="content-search-item mb10">
+                                              <div>부스트샷 백신종류 : </div>
+                                              <div class="select-box size-s mr10">
+                                                <input type="hidden" name="option-value" value="" id="select-input">
+                                                <button class="select-label" type="button">선택</button>
+                                                <ul class="option" id="select-options2" style="display: none;">
+                                                    <li class="option-item">아스트라제네카</li>
+                                                    <li class="option-item">얀센</li>
+                                                    <li class="option-item">화이자</li>
+                                                    <li class="option-item">모더나</li>
+                                                </ul>
+                                              </div>
+                                              <div>예약일 : </div>
+                                              <div class="datepicker datepicker-single-up mr10">
+                                                <div class="date">2022.12.19</div>
+                                                <input type="hidden" name="datepicker-single" id="datepicker-single" value="">
+                                              </div>
+                                              <div>접종일 : </div>
+                                              <div class="datepicker datepicker-single-up">
+                                                <div class="date">2022.12.19</div>
+                                                <input type="hidden" name="datepicker-single" id="datepicker-single" value="">
+                                              </div>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="bottom-btn-row taL">
+                                    <button class="btn-border left">미리보기</button>
+                                    <button class="btn-border ">취소</button>
+                                    <button class="btn-blue ">저장</button>
+                                </div>
+                                
+                                <script>
+
+                                    $(function() {
+                                    $('input[name="date1"]').daterangepicker({
+                                        opens: 'left'
+                                    }, function(start, end, label) {
+                                        console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+                                    });
+                                    });
+
+                                    $(".more-btn").click(function() {                               
+                                        if($(this).parents(".add-file-tr").hasClass("no-view")){
+                                            $(this).parents(".add-file-tr").removeClass("no-view");
+                                        }else {
+                                            $(this).parents(".add-file-tr").addClass("no-view");
+                                        }
+
+                                        $(this).children('.more-btn-img').toggleClass('rotate');
+                                    });
+                                </script>    
+                            </div>
+                            <!-- // post-write-tb-area -->
+                        </div>
+                        <!-- // post-write-area-->
+                    </section>             
+                </section>
+            </div>
+            <!-- content end -->
+        </main>
+    </div>
+    <!-- jQuery -->
+    <script src="../../../../resources/lib/jquery-migrate-1.4.1.min.js"></script>
+    <!-- jsTree -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <!-- datepicker -->
+    <script type="text/javascript" src="../../../../resources/lib/moment.min.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/datepicker.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/timepicker.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../../resources/css/daterangepicker.css" />
+    <!-- data load / functions -->
+    <script src="../../../../resources/js/user/board/index.js"></script>
+    <script src="../../../../resources/js/user/userInfo/index.js"></script>
+</body>
+
+</html>

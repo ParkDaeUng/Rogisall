@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>통합검색</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../../../../resources/css/mobile/common.css" />
+    <link rel="stylesheet" href="../../../../resources/css/mobile/search.css" />
+    <link rel="stylesheet" href="../../../../resources/css/mobile/header.css">
+    <link rel="stylesheet" href="../../../../resources/css/mobile/nav.css">
+    <!-- <link rel="stylesheet" href="<%=ROOT%>/resources/css/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <!-- 공용 Header Start -->
+      <header>
+        <!-- 서브 Header Start -->
+        <div class="sub-header header">
+            <a href="../main/index.html" class="back"><img src="../../../../resources/svgs/Icon_header_back.svg" alt="뒤로가기"/></a>
+            <div class="page-title Body2_M">
+                통합검색
+            </div>
+        </div>    
+        <!-- 서브 Header End --> 
+      </header>
+      <!-- 공용 Header End -->
+
+      <!-- content Start -->
+      <main>
+        <div class="search-wrapper content">
+          <div class="header-search">
+            <div class="search-input">
+              <div class="search-datepicker-box">
+
+                <!-- @note 2023-06-14 -->
+                <div class="date-input-group-new">
+                  <div class="group-wrapper">
+                    <input type="text" class="startPicker" id="user-input-start">
+                    <div class="start-datepicker"><img src="../../../../resources/svgs/Icon_calendar.svg"></div>
+                  </div>
+                  <div class="group-wrapper">
+                    <input type="text" class="endPicker" id="user-input-end">
+                    <div class="end-datepicker"><img src="../../../../resources/svgs/Icon_calendar.svg"></div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="input-box search-input-row">
+                <input class="" type="text" placeholder="검색어를 입력해 주세요">
+                <button type="button" class="search-btn"></button>
+              </div>
+              <div class="btn-blue">
+                검색
+              </div>
+            </div>                
+          </div>   
+        </div>
+        <div class="search-title">
+          <h1>교육 검색결과</h1>
+        </div>
+        <div class="search-tab-container">
+          <ul class="tab-title">
+            <li class="active">전체(36건)</li>
+            <li>게시판(20건)</li>
+            <li>회의실(4건)</li>
+            <li>쪽지(5건)</li>
+            <li>결재(3건)</li>
+            <li>메일(4건)</li>
+          </ul>
+          <div class="tab-contents">
+            <!-- 전체 -->
+            <div class="active">
+              <div class="all-title">
+                <div>
+                  <p>게시판<span>20</span></p>
+                </div>
+                <a href="#">
+                  <img src="../../../../resources/svgs/Icon_search_more_btn.svg">
+                </a>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>그룹게시판</div>
+                  <div class="category-blue">자유게시판</div>
+                </div>
+                <div class="cont-title">
+                  <p>[로지스올시스템즈]메인시안 및 디자인 가이드 문서 전달건에 관한 게시판입니다.</p>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>그룹게시판</div>
+                  <div class="category-blue">자유게시판</div>
+                </div>
+                <div class="cont-title">
+                  <p>[로지스올시스템즈]메인시안 및 디자인 가이드 문서 전달건에 관한 게시판입니다.</p>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>그룹게시판</div>
+                  <div class="category-blue">자유게시판</div>
+                </div>
+                <div class="cont-title">
+                  <p>[로지스올시스템즈]메인시안 및 디자인 가이드 문서 전달건에 관한 게시판입니다.</p>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>그룹게시판</div>
+                  <div class="category-blue">자유게시판</div>
+                </div>
+                <div class="cont-title">
+                  <p>[로지스올시스템즈]메인시안 및 디자인 가이드 문서 전달건에 관한 게시판입니다.</p>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                </div>
+              </div>
+              <div class="search-add-btn">
+                <button>검색결과 더보기 &gt;</button>
+              </div>
+              <!--  -->
+              <div class="all-title">
+                <div>
+                  <p>회의실<span>4</span></p>
+                </div>
+                <a href="#">
+                  <img src="../../../../resources/svgs/Icon_search_more_btn.svg">
+                </a>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>자산관리</div>
+                  <div class="category-blue">회의실</div>
+                </div>
+                <div class="cont-title">
+                  <p>경영시스템혁신팀 - 내부회의</p>
+                </div>
+                <div class="cont-text">
+                  <p>1층 중회의실 · 2023.05.05 · 14:00 ~ 15:00</p>
+                  <p>경영시스템혁신팀</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>자산관리</div>
+                  <div class="category-blue">회의실</div>
+                </div>
+                <div class="cont-title">
+                  <p>경영시스템혁신팀 - 내부회의</p>
+                </div>
+                <div class="cont-text">
+                  <p>1층 중회의실 · 2023.05.05 · 14:00 ~ 15:00</p>
+                  <p>경영시스템혁신팀</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>자산관리</div>
+                  <div class="category-blue">회의실</div>
+                </div>
+                <div class="cont-title">
+                  <p>경영시스템혁신팀 - 내부회의</p>
+                </div>
+                <div class="cont-text">
+                  <p>1층 중회의실 · 2023.05.05 · 14:00 ~ 15:00</p>
+                  <p>경영시스템혁신팀</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>자산관리</div>
+                  <div class="category-blue">회의실</div>
+                </div>
+                <div class="cont-title">
+                  <p>경영시스템혁신팀 - 내부회의</p>
+                </div>
+                <div class="cont-text">
+                  <p>1층 중회의실 · 2023.05.05 · 14:00 ~ 15:00</p>
+                  <p>경영시스템혁신팀</p>
+                </div>
+              </div>
+              <!--  -->
+              <div class="all-title">
+                <div>
+                  <p>쪽지<span>5</span></p>
+                </div>
+                <a href="#">
+                  <img src="../../../../resources/svgs/Icon_search_more_btn.svg">
+                </a>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>쪽지</div>
+                  <div class="category-blue">받은쪽지</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">받는사람 : 운영혁신담당</p>
+                  </div>
+                </div>
+                <div class="cont-memo">
+                  <p>차세대 인트라넷 메뉴목록 정리한 파일입니다. 확인 부탁드립니다.</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>쪽지</div>
+                  <div class="category-blue">받은쪽지</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">받는사람 : 문정혁, 김수아, 노지은</p>
+                    <button class="receive-more-btn">+</button>
+                  </div>
+                </div>
+                <div class="cont-memo">
+                  <p>차세대 인트라넷 메뉴목록 정리한 파일입니다. 확인 부탁드립니다.</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>쪽지</div>
+                  <div class="category-blue">받은쪽지</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">받는사람 : 운영혁신담당</p>
+                  </div>
+                </div>
+                <div class="cont-memo">
+                  <p>차세대 인트라넷 메뉴목록 정리한 파일입니다. 확인 부탁드립니다.</p>
+                </div>
+              </div>
+              <!--  -->
+              <div class="all-title">
+                <div>
+                  <p>결재<span>3</span></p>
+                </div>
+                <a href="#">
+                  <img src="../../../../resources/svgs/Icon_search_more_btn.svg">
+                </a>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>결재</div>
+                  <div class="category-blue">휴가원</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">참조자 : 김철수, 김민수</p>
+                  </div>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>결재</div>
+                  <div class="category-blue">휴가원</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">참조자 : 김철수, 김민수</p>
+                  </div>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>결재</div>
+                  <div class="category-blue">휴가원</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">참조자 : 김철수, 김민수</p>
+                  </div>
+                </div>
+              </div>
+              <!--  -->
+              <div class="all-title">
+                <div>
+                  <p>메일<span>5</span></p>
+                </div>
+                <a href="#">
+                  <img src="../../../../resources/svgs/Icon_search_more_btn.svg">
+                </a>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>메일</div>
+                  <div class="category-blue">받은메일</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">받는사람 : 문정혁, 김수아, 노지은</p>
+                    <button class="receive-more-btn">+</button>
+                  </div>
+                </div>
+                <div class="cont-memo">
+                  <p>차세대 인트라넷 메뉴목록 정리한 파일입니다. 확인 부탁드립니다.</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>메일</div>
+                  <div class="category-blue">받은메일</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">받는사람 : 문정혁, 김수아, 노지은</p>
+                    <button class="receive-more-btn">+</button>
+                  </div>
+                </div>
+                <div class="cont-memo">
+                  <p>차세대 인트라넷 메뉴목록 정리한 파일입니다. 확인 부탁드립니다.</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>메일</div>
+                  <div class="category-blue">받은메일</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">받는사람 : 문정혁, 김수아, 노지은</p>
+                  </div>
+                </div>
+                <div class="cont-memo">
+                  <p>차세대 인트라넷 메뉴목록 정리한 파일입니다. 확인 부탁드립니다.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 게시판 -->
+            <div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>그룹게시판</div>
+                  <div class="category-blue">자유게시판</div>
+                </div>
+                <div class="cont-title">
+                  <p>[로지스올시스템즈]메인시안 및 디자인 가이드 문서 전달건에 관한 게시판입니다.</p>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>그룹게시판</div>
+                  <div class="category-blue">자유게시판</div>
+                </div>
+                <div class="cont-title">
+                  <p>[로지스올시스템즈]메인시안 및 디자인 가이드 문서 전달건에 관한 게시판입니다.</p>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>그룹게시판</div>
+                  <div class="category-blue">자유게시판</div>
+                </div>
+                <div class="cont-title">
+                  <p>[로지스올시스템즈]메인시안 및 디자인 가이드 문서 전달건에 관한 게시판입니다.</p>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>그룹게시판</div>
+                  <div class="category-blue">자유게시판</div>
+                </div>
+                <div class="cont-title">
+                  <p>[로지스올시스템즈]메인시안 및 디자인 가이드 문서 전달건에 관한 게시판입니다.</p>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                </div>
+              </div>
+              <div class="search-add-btn">
+                <button>검색결과 더보기 &gt;</button>
+              </div>
+            </div>
+            <!-- 회의실 -->
+            <div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>자산관리</div>
+                  <div class="category-blue">회의실</div>
+                </div>
+                <div class="cont-title">
+                  <p>경영시스템혁신팀 - 내부회의</p>
+                </div>
+                <div class="cont-text">
+                  <p>1층 중회의실 · 2023.05.05 · 14:00 ~ 15:00</p>
+                  <p>경영시스템혁신팀</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>자산관리</div>
+                  <div class="category-blue">회의실</div>
+                </div>
+                <div class="cont-title">
+                  <p>경영시스템혁신팀 - 내부회의</p>
+                </div>
+                <div class="cont-text">
+                  <p>1층 중회의실 · 2023.05.05 · 14:00 ~ 15:00</p>
+                  <p>경영시스템혁신팀</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>자산관리</div>
+                  <div class="category-blue">회의실</div>
+                </div>
+                <div class="cont-title">
+                  <p>경영시스템혁신팀 - 내부회의</p>
+                </div>
+                <div class="cont-text">
+                  <p>1층 중회의실 · 2023.05.05 · 14:00 ~ 15:00</p>
+                  <p>경영시스템혁신팀</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>자산관리</div>
+                  <div class="category-blue">회의실</div>
+                </div>
+                <div class="cont-title">
+                  <p>경영시스템혁신팀 - 내부회의</p>
+                </div>
+                <div class="cont-text">
+                  <p>1층 중회의실 · 2023.05.05 · 14:00 ~ 15:00</p>
+                  <p>경영시스템혁신팀</p>
+                </div>
+              </div>
+            </div>
+            <!-- 쪽지 -->
+            <div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>쪽지</div>
+                  <div class="category-blue">받은쪽지</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">받는사람 : 운영혁신담당</p>
+                  </div>
+                </div>
+                <div class="cont-memo">
+                  <p>차세대 인트라넷 메뉴목록 정리한 파일입니다. 확인 부탁드립니다.</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>쪽지</div>
+                  <div class="category-blue">받은쪽지</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">받는사람 : 문정혁, 김수아, 노지은</p>
+                    <button class="receive-more-btn">+</button>
+                  </div>
+                </div>
+                <div class="cont-memo">
+                  <p>차세대 인트라넷 메뉴목록 정리한 파일입니다. 확인 부탁드립니다.</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>쪽지</div>
+                  <div class="category-blue">받은쪽지</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">받는사람 : 운영혁신담당</p>
+                  </div>
+                </div>
+                <div class="cont-memo">
+                  <p>차세대 인트라넷 메뉴목록 정리한 파일입니다. 확인 부탁드립니다.</p>
+                </div>
+              </div>
+            </div>
+            <!-- 결재 -->
+            <div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>결재</div>
+                  <div class="category-blue">휴가원</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">참조자 : 김철수, 김민수</p>
+                  </div>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>결재</div>
+                  <div class="category-blue">휴가원</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">참조자 : 김철수, 김민수</p>
+                  </div>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>결재</div>
+                  <div class="category-blue">휴가원</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">참조자 : 김철수, 김민수</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 메일 -->
+            <div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>메일</div>
+                  <div class="category-blue">받은메일</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">받는사람 : 문정혁, 김수아, 노지은</p>
+                    <button class="receive-more-btn">+</button>
+                  </div>
+                </div>
+                <div class="cont-memo">
+                  <p>차세대 인트라넷 메뉴목록 정리한 파일입니다. 확인 부탁드립니다.</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>메일</div>
+                  <div class="category-blue">받은메일</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">받는사람 : 문정혁, 김수아, 노지은</p>
+                    <button class="receive-more-btn">+</button>
+                  </div>
+                </div>
+                <div class="cont-memo">
+                  <p>차세대 인트라넷 메뉴목록 정리한 파일입니다. 확인 부탁드립니다.</p>
+                </div>
+              </div>
+              <div class="cont-box">
+                <div class="cont-category">
+                  <div>메일</div>
+                  <div class="category-blue">받은메일</div>
+                </div>
+                <div class="cont-text">
+                  <p>홍길동 · 2023.05.05</p>
+                  <div class="receive-wrapper">
+                    <p class="text-receive">받는사람 : 문정혁</p>
+                  </div>
+                </div>
+                <div class="cont-memo">
+                  <p>차세대 인트라넷 메뉴목록 정리한 파일입니다. 확인 부탁드립니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!-- content End -->
+
+      <!-- footer Start -->
+      <footer>
+        <div class="q-menu">
+            <a href="">
+                <img src="../../../../resources/svgs/Icon_home.svg" alt="메인"/>
+                <span class="Small_R">메인</span>
+            </a>
+            <a href="">
+                <img src="../../../../resources/svgs/Icon_quickmenu.svg" alt="퀵메뉴"/>
+                <span class="Small_R">퀵메뉴</span>
+            </a>
+            <a href="">
+                <img src="../../../../resources/svgs/m_Icon_search.svg" alt="통합검색"/>
+                <span class="Small_R">통합검색</span>
+            </a>
+            <a href="">
+                <img src="../../../../resources/svgs/Icon_user.svg" alt="마이페이지"/>
+                <span class="Small_R">마이페이지</span>
+            </a>
+        </div>
+      </footer>
+      <!-- footer End -->
+    </div>
+
+    <!-- 받는사람 팝업 -->
+    <div class="dim"></div>
+    <div class="layer-popup ver-03">
+        <div class="popup-tit">
+            <span class="tit Body3_B">받는사람</span>
+        </div>
+        <div class="popup-cont">
+            <p>문정혁, 김수아, 노지은</p>
+        </div>
+        <div class="popup-btn-box">
+            <button class="btn-blue Body5_M popup-close">확인</button>
+        </div>
+    </div>
+
+    <script src="../../../../resources/js/mobile/index.js"></script> <!-- common.js -->
+    <script src="../../../../resources/js/mobile/search/index.js"></script>
+    <!-- datepicker -->
+    <script type="text/javascript" src="../../../../resources/lib/moment.min.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/datepicker.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/timepicker.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../../resources/css/daterangepicker.css" />
+  </body>
+</html>

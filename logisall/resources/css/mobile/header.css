@@ -1,0 +1,286 @@
+/* header */
+header {    
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+     
+    background-color: var(--font-color); 
+    color: var(--color-search); 
+    z-index:10;
+}
+header * {
+    font-family: var(--font-kr);
+    transform: rotate(-0.03deg);
+}
+header .header{
+    display: flex;
+    width: 100%;
+    height: 56px; 
+    padding: 0 20px;
+    display: flex !important; 
+    text-align: center; 
+    align-items: center; 
+    justify-content: space-between;
+}
+header .header-btn{
+    display: flex;
+    gap: 21px;
+}
+header .header-btn img{
+    width: 24px;
+    height: 24px;
+}
+header .header-btn button{
+    background: none;
+    border: none;
+    color: #fff;
+}
+header .header.sub-header{
+    height: 60px;
+}
+header .header.sub-header .back{
+    line-height: 1;
+}
+header .header.sub-header .back img{
+    width: 8px;
+    height: 16px;
+}
+header .header.sub-header .page-title{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+header .header.sub-header .page-title > img{
+    margin-left: 5px;
+}
+header .header.sub-header .header-btn #search-close{
+    display: none;
+}
+header .header.sub-header .header-btn #search-close img{
+    width: 20px;
+    height: 20px;
+}
+
+/* @note 2023-04-04 */
+header .header-btn #header-select-clsoe{
+    display: none;
+}
+
+header .header-search{
+    display: none;
+    position: absolute;
+    top: calc(56px - 1px);
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: var(--font-color); 
+}
+header .header-search.active{
+    display: block;
+}
+header .header-search .search-input{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+header .header-search .search-input .search-input-row{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 60px;        
+    padding: 0 15px;
+    background-color: white;
+    border: 1px solid var(--color-grey-20);
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 25px;
+    color: var(--color-navy-100);
+}
+header .header-search .search-input .search-input-row .search-btn{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    border: none;
+    background: none;
+    width: 50px;
+    background: url("../../svgs/Icon_searchnormal1.svg") center/21px  no-repeat;
+}
+header .header-search .search-input .search-input-row input{
+    border: none;
+    background: none;
+    padding: 0 30px 0 0 ;
+}
+header .header-search .search-input .search-input-row:nth-child(1){
+    z-index: 10;
+}
+header .header-search .search-input .search-input-row:nth-child(2){
+    z-index: 9;
+}
+header .header-search .search-input .search-input-row:nth-child(3){
+    z-index: 8;
+}
+header .header-search .search-input input{
+    flex: 1 1 ;
+    height: 60px;
+}
+header .header-search .search-input .input-box:after{
+    display: none;
+}
+header .header-search .search-input .search-input-row.select-box{
+    width: 100%;
+}
+header .header-search .search-input .search-input-row.select-box .select-label{
+    color: var(--color-navy-100);
+}
+
+header .header-search .search-input .search-input-row.datepicker{
+    width: 100%;
+    background-color: white;
+}
+header .header-search .search-input .search-input-row.datepicker .date{
+    background-size: 18px;
+    color: var(--color-grey-60);
+}
+
+header .header-search .search-input .search-input-row.timepicker{
+    position: relative;
+    display: flex;
+    width: 100%;
+    background-color: white;
+    padding: 0 20px;
+    border: 1px solid var(--color-grey-20);
+    border-radius: 10px;    
+    gap: 17px;
+    justify-content: space-between;
+    align-items: center;
+}
+header .header-search .search-input .search-input-row.timepicker .time-selt{
+    background-size: 18px;
+    position: relative;
+    width: 100%;
+    padding: 0;
+    flex: 1 1 50%;
+    border: none;
+    font-family: 'Noto Sans';
+    letter-spacing: var(--font-en-sapcing);    
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 25px;
+    color: var(--color-grey-60);
+}
+.timepicker .time-selt::after{
+    content: "";
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    background: url(../../svgs/Icon_arrowdown2.svg) 100% 100%/cover no-repeat;
+    transform: translate(0, -50%);
+}
+
+header .header-search .search-input .detail-serch-btn{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: none;
+    border: none;
+    text-align: right;
+    color: var(--color-grey-20);
+}
+header .header-search .search-input .detail-serch-btn img{
+    position: relative;
+    margin-left: 8px;
+}
+
+
+header .header-search .search-input .search-datepicker-box{}
+header .header-search .search-input .search-datepicker-box .datepicker-multi{
+    width: 100%;
+    height: 60px;
+    padding: 0 15px;
+    gap: 0;
+    background-color: #fff;
+    color: var(--color-grey-60);
+}
+
+header .header-search .search-input .search-datepicker-box .datepicker-multi .date{
+    flex: 1 1 50%;
+    background-size: 19px 21px;
+}
+header .header-search .search-input .search-datepicker-box .datepicker-multi .start-date{
+    background-position: right 15px center;
+}
+header .header-search .search-input .search-datepicker-box .datepicker-multi .date + .date {
+    padding-left: 15px;;
+}
+
+
+/* @noet 2023-04-04 */
+
+header .header-search.select{
+    background-color: #fff;
+    padding: 0;
+    max-height: 270px;
+    overflow-y: overlay;
+    box-shadow: 0px 7px 20px 0px rgba(29, 32, 58, 0.24);
+}
+header .header-search.select ul{
+    display: flex;
+    
+    flex-direction: column;
+}
+header .header-search.select ul li{
+    display: flex;
+    width: 100%;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+}
+header .header-search.select ul li span{
+    color: var(--color-navy-60);
+}
+header .header-search.select ul li.on{
+    background-color: var(--color-navy-100);
+}
+header .header-search.select ul li.on span{
+    color: #fff;
+}
+/* // @noet 2023-04-04 */
+
+
+/* footer */
+footer{    
+    position: fixed;
+    display: flex;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: var(--font-color);
+    z-index: 9000;
+}
+footer .q-menu{
+    display: flex;
+       
+}
+footer .q-menu a{
+    display: flex;
+    flex:0 0 25%; 
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+footer .q-menu img{
+    width: 24px;
+    height: 24px;
+}
+footer .q-menu span{
+    color: white
+}

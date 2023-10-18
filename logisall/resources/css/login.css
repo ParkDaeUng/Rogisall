@@ -1,0 +1,146 @@
+.login-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.login-left {
+    width: 66.666%;
+    height: auto;
+    background: rgba(57, 77, 192, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-left .login-img {
+    width: 750px;
+    height: 574px;
+    background-image: url('../../resources/login_01.png');
+    background-size: cover;
+}
+
+.login-right {
+    width: 33.333%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-right .right-wrapper {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login-right .right-wrapper .login-logo {
+    margin-bottom: 50px;
+}
+/* @note 2023-06-12 */
+.login-right .right-wrapper .login-logo > img {
+    width: 150px;
+    height: 24px;
+}
+.login-right .right-wrapper .form-box {
+    position: relative;
+    width: 100%;
+}
+
+.right-wrapper .form-box input[type=text], input[type=password] {
+    width: 100%;
+    height: 56px;
+    padding: 18px 24px;
+    background: #FFFFFF;
+    border: 1px solid var(--color-grey-20);
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 16px;
+}
+.right-wrapper .form-box input[type=text]::placeholder, input[type=password]::placeholder {
+    color: var(--color-grey-60);
+}
+.right-wrapper .form-box .eyes {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 88px;
+    right: 24px;
+    cursor: pointer;
+}
+.right-wrapper .form-box input[type=checkbox] {
+    margin: 0;
+}
+.right-wrapper .form-box .label-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+.right-wrapper .form-box .label-box label {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--color-navy-100);
+    margin: 0 16px 0 8px;
+}
+.right-wrapper .form-box .login-btn {
+    width: 100%;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 28px;
+    color: #FFFFFF;
+    padding: 16px;
+    background: var(--color-blue-100);
+    border: none;
+    border-radius: 10px;
+}
+.right-wrapper .form-box .sub-area {
+    display: flex;
+    justify-content: center;
+    margin: 28px 0 80px;
+}
+.right-wrapper .form-box .sub-area > a {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-grey-80);
+    margin: 0 12px;
+}
+.login-right .right-wrapper .bottom-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.login-right .right-wrapper .bottom-group > p {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 30px;
+    color: var(--color-navy-100);
+}
+.login-right .right-wrapper .bottom-group .btn-wrap {
+    margin-top: 30px;
+    display: flex;
+}
+.right-wrapper .bottom-group .btn-wrap > a button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 116px;
+    height: 80px;
+    background: var(--color-navy-100);
+    border: none;
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-right: 16px;
+}
+.right-wrapper .bottom-group .btn-wrap > a button > img {
+    margin-bottom: 8px;
+}

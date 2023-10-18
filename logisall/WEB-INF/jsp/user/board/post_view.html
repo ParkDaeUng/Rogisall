@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=UTF-8'>
+    <link rel="stylesheet" href="../../../../resources/css/common.css" />
+    <link rel="stylesheet" href="../../../../resources/css/board.css" />
+    <link rel="stylesheet" href="../../../../resources/css/header.css">
+    <link rel="stylesheet" href="../../../../resources/css/nav.css">
+    <!-- <link rel="stylesheet" href="<%=ROOT%>/resources/css/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+
+    
+    
+        /**
+         * 그래프 데이터 입력
+         * : 미수금현황(도넛 그래프), 업무관리 진행바 데이터 입력은 해당 html 태그에서 진행
+         * /
+         
+        /* 바 그래프 데이터셋 */
+        let barData = {
+            labels: ['2020', '2021', '2022'],  // 연도 순서대로 입력
+            datasets: [
+                {
+                    label: '복리후생비',
+                    data: [70, 75, 90],  // 데이터 순서대로 입력
+                    borderRadius: 3,
+                    backgroundColor: '#394DC0',
+                    maxBarThickness: 40,
+                    datalabels: {
+                        color: '#394DC0',
+                    },
+                },
+                {
+                    label: '접대비',
+                    data: [30, 25, 10],  // 데이터 순서대로 입력
+                    borderRadius: 3,
+                    backgroundColor: '#FEAA12',
+                    maxBarThickness: 40,
+                    datalabels: {
+                        color: '#FEAA12'
+                    },
+                },
+            ]
+        }
+
+        // Profile DropDown Start
+        $(document).ready(function() {
+            // quick-menu dropDown
+            $('#quick-menu').click(function(e) {
+                e.stopPropagation();
+                $(".quickmenu-wrapper").toggle();
+            });
+            
+            $(document).click(function(e) {
+                if (!$(e.target).closest('#quick-menu').length &&
+                    !$(e.target).closest('.quickmenu-wrapper').length) {
+                        $('.quickmenu-wrapper').css({'display': 'none'});
+                };
+            });
+
+            // profile dropDown
+            $('#more-menu').click(function(e) {
+                e.stopPropagation();
+                $(".drop-wrapper").toggle();
+                $('#dropdown-icon').toggleClass('rotate');
+            });
+
+            $(document).click(function(e) {
+                if (!$(e.target).closest('#more-menu').length &&
+                    !$(e.target).closest('.drop-wrapper').length) {
+                        $('.drop-wrapper').css({'display': 'none'});
+                        $('#dropdown-icon').removeClass('rotate');
+                };
+            });
+
+            // profile-contents dropDown
+            $(".menu-contents").hide();
+            $(".menu-title").click(function() {
+                $(this).next(".menu-contents").toggle();
+                $(this).children('.drop-btn').toggleClass('rotate');
+            });
+
+        });
+        // Profile DropDown End
+
+        // Nav menu DropDown End
+        $(document).ready(function() {
+            // nav hide show
+            $(".slider_btn").click(function (e) {
+                if ($(".slider_btn").hasClass("slider_chk")) {
+                    $(".nav-menu").animate({
+                        left: "0px",
+                    }, 500);
+                    $(".main-wrapper").animate({
+                        paddingLeft: "240px",
+                    }, 500);
+                    $(".slider_btn").removeClass("slider_chk");
+                } else {
+                    $(".nav-menu").animate({
+                        left: "-200px",
+                    }, 500);
+                    $(".main-wrapper").animate({
+                        paddingLeft: "40px",
+                    }, 500);
+                    $(".slider_btn").addClass("slider_chk");
+                }
+            });
+
+            // nav dropDown
+            $('.nav-list-2nd').hide();
+            $('.nav-list-1nd').click(function() {
+                $('.list-2nd-item').removeClass('select');
+                $('.sub-content').css({'display':'none'});
+                $(this).toggleClass('select');
+                $('.nav-list-1nd').not(this).removeClass('select');
+                $(this).next('.nav-list-2nd').slideToggle(300);
+                $('.nav-list-1nd').not(this).next('.nav-list-2nd').slideUp(300);
+            });
+        
+            // nav-sub dropDown
+            $('.list-2nd-item').click(function(e) {
+                let viewY = window.innerHeight;
+                let targetY = Math.floor(e.target.getBoundingClientRect().top);
+                let popupHeight = $('.sub-content').outerHeight()
+
+
+                $(this).toggleClass('select');
+                $('.list-2nd-item').not(this).removeClass('select');
+                if($('.list-2nd-item').hasClass('select')) {
+                    if((viewY - popupHeight) > (targetY + 10)) {
+                        $('.sub-content').css({'display':'block', 'top':targetY, 'bottom':''});
+                    }else {
+                        $('.sub-content').css({'display':'block', 'top':'', 'bottom':viewY - targetY - 30});
+                    }
+                }else {
+                    $('.sub-content').css({'display':'none'});
+                }
+            });
+
+            $(document).click(function(e) {
+                if (!$(e.target).closest('.list-2nd-item').length &&
+                    !$(e.target).closest('.sub-content').length) {
+                        $('.sub-content').css({'display': 'none'});
+                        $('.list-2nd-item').removeClass('select');
+                };
+            });
+        });
+        // Nav menu DropDown End
+    </script>
+</head>
+
+<body>
+    <!-- 공통 nav Start -->
+    <nav class="nav-menu">
+        <div class="slider_btn ">
+            <img src="../../../../resources/svgs/Icon_arrowdownx20.svg" />
+        </div>
+        <a href="../main/index.html" class="logo"><img src="../../../../resources/white_new_logo.png" alt="logo"/></a>
+        <ul class="nav-list">
+            <li id="email" class="nav-list-1nd">E-메일</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="working-mail" class="nav-list-1nd">업무메일</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="message" class="nav-list-1nd">쪽지</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="schedule" class="nav-list-1nd">일정</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="id-card" class="nav-list-1nd">명함</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="board" class="nav-list-1nd">게시판</li>
+            <ol class="nav-list-2nd">
+                <li>그룹게시판</li>
+                <li>조직문화개선</li>
+                <li>안전보건</li>
+                <li>GlobalBiz게시판</li>
+                <li>사내게시판</li>
+                <li>코로나예방대책본부</li>
+                <li>청도고덕리게시판</li>
+                <li>교육게시판</li>
+                <li>사진함</li>
+            </ol>
+            <li id="work-board" class="nav-list-1nd">업무게시판</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="approve" class="nav-list-1nd">결재</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="fnq" class="nav-list-1nd">설문</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="meeting" class="nav-list-1nd">회의실</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="asset" class="nav-list-1nd">자산관리</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="esg" class="nav-list-1nd">ESG경영</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+            <li id="logistar" class="nav-list-1nd">로지스타</li>
+            <ol class="nav-list-2nd">
+                <li class="list-2nd-item">서브메뉴_1</li><li class="list-2nd-item">서브메뉴_2</li><li class="list-2nd-item">서브메뉴_3</li><li class="list-2nd-item">서브메뉴_4</li><li class="list-2nd-item">서브메뉴_5</li>
+            </ol>
+        </ul>
+
+        <div class="nav-setting">
+            <img src="../../../../resources/svgs/setting2.svg" alt="widget-setting"/>
+            <p>위젯설정</p>
+        </div>
+    </nav>
+    <div class="sub-content">
+        <ul>
+            <li>서브컨텐츠_1</li>
+            <li>서브컨텐츠_2</li>
+            <li>서브컨텐츠_3</li>
+            <li>서브컨텐츠_4</li>
+            <li>서브컨텐츠_5</li>
+        </ul>
+    </div>
+    <!-- 공통 Nav End -->
+
+    <div class="main-wrapper bgW">
+        <!-- 공통 Header Start -->
+        <header>
+            <div class="header-search">
+                <input type="text" placeholder="검색어를 입력해주세요" />
+                <img src="../../../../resources/svgs/Icon_search.svg" alt="search" class="search"/>
+            </div>
+            <div class="header-middle"></div>
+            <div class="header-options">
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_mail_new.svg" alt="mail"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 1</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_messagecircle.svg" alt="message"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 2</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_talk.svg" alt="messanger"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 3</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_clipboard.svg" alt="clipboard"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 4</span>
+                </div>
+                <div class="division"></div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_quickmenu.svg" alt="quick-menu" id="quick-menu"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 5</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_notification_new.svg" alt="alert"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 6</span>
+                </div>
+                <div class="tooltip-box">
+                    <img src="../../../../resources/svgs/Icon_usersearch.svg" alt="search-user"/>
+                    <span class="tooltiptext tooltip-bottom">툴팁Text 7</span>
+                </div>
+                <div id="more-menu" class="more-menu">
+                    <div class="profile-img">
+                        <img src="../../../../resources/svgs/profile.jfif" alt="profile-img"/>
+                    </div>
+                    <img src="../../../../resources/svgs/Icon_arrowdown.svg" alt="dropdown-icon" id="dropdown-icon"/>
+                </div>
+            </div>
+            <!-- QuickMenu Start -->
+            <div class="quickmenu-wrapper">
+                <div class="quick-box">
+                    <div class="quick-contents">
+                        <a href="#"><p>온라인연수원</p></a>
+                        <a href="#"><p>사내추천</p></a>
+                        <a href="#"><p>담당업무</p></a>
+                        <a href="#"><p>일반업무</p></a>
+                        <a href="#"><p>업무용SW다운</p></a>
+                        <a href="#"><p>지원센터</p></a>
+                        <a href="#"><p>전산자료실</p></a>
+                        <a href="#"><p>전산담당자</p></a>
+                    </div>
+                    <div class="quick-contents">
+                        <a href="#"><p>담당자별 사무보조</p></a>
+                        <a href="#"><p>노사협의회</p></a>
+                        <a href="#"><p>건의함</p></a>
+                        <a href="#"><p>연구회</p></a>
+                        <a href="#"><p>문의요청</p></a>
+                        <a href="#"><p>실비보험</p></a>
+                        <a href="#"><p>콘도예약</p></a>
+                        <a href="#"><p>메인설정</p></a>
+                    </div>
+                </div>
+            </div>
+            <!-- QuickMenu End -->
+            <!-- Profile DropDown Start -->
+            <div class="drop-wrapper">
+                <div class="dorp-my-profile">
+                    <div class="profile-box">
+                        <img src="../../../../resources/svgs/profile.jfif" alt="profile-img"/>
+                        <div class="my-profile">
+                            <div>노지은</div>
+                            <div>ULN 경영시스템 | 운영관리팀</div>
+                        </div>
+                        <img src="../../../../resources/svgs/Icon_setting.svg" alt="setting-icon">
+                    </div>
+                    <div class="info-box">
+                        <div>마지막 접속일 : 2022.12.09</div>
+                        <button type="button" class="logout-btn">로그아웃</button>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>커뮤니티</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_mail.svg"><p class="content-title">메일</p></div>
+                            <div class="community-right"><p class="txt-blue">129<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_messagecircle.svg"><p class="content-title">쪽지</p></div>
+                            <div class="community-right"><p class="txt-blue">9<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_talk.svg"><p class="content-title">로지스톡</p></div>
+                            <div class="community-right"><p class="txt-blue">34<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                        <div class="con-5 community-box">
+                            <div class="title-box community-left"><img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg"><p class="content-title">결재</p></div>
+                            <div class="community-right"><p class="txt-blue">86<span class="s-gray60"> 건</span></p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>일정관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full bg-blue-10 h-84">
+                            <div class="cal-box">
+                                <div class="cal">
+                                    <p class="day">Mon</p>
+                                    <p class="date">09</p>
+                                </div>
+                                <div class="schedule">
+                                    <div class="schedule-time">공유<span class="line"></span>15:00</div>
+                                    <div class="schedule-title content-title">운영관리팀 회의</div>
+                                </div>
+                            </div>
+                            <div class="date-count">today</div>
+                        </div>
+                        <div class="con-full h-84">
+                            <div  class="cal-box">
+                                <div class="cal">
+                                    <p class="day">Wed</p>
+                                    <p class="date">11</p>
+                                </div>
+                                <div class="schedule">
+                                    <div class="schedule-time">개인<span class="line"></span>10:00</div>
+                                    <div class="schedule-title content-title">포스팟 미팅</div>
+                                </div>
+                            </div>
+                            <div class="date-count">today</div>
+                        </div>
+                        <button class="add-btn">일정등록<img src="../../../../resources/svgs/Icon_add.svg"></button>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>휴가 사용현황</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-56">
+                            <div class="content-title">연차</div>
+                            <p class="txt-bold"><span class="s-navy100" style="margin-right: 10px;">총 10일 중</span>10<span class="s-navy100"> 일 남음</span></p>
+                        </div>
+                        <div class="con-full h-56">
+                            <div class="content-title">하계휴가</div>
+                            <p class="txt-bold"><span class="s-navy100" style="margin-right: 10px;">총 10일 중</span>0<span class="s-navy100"> 일 남음</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>교육이수</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents flex-left">
+                        <div class="con-auto bg-y content-title">어학</div>
+                        <div class="con-auto bg-p content-title">물류</div>
+                        <div class="con-auto bg-b content-title">마케팅</div>
+                        <span class="s-gray60">개인정보관리 > 인사정보 > <a href="#">진급/교육과정필수정보</a> 에서 반드시 상세정보를 확인하시길 바랍니다.</span>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>자산관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">자산</p>
+                            </div>
+                            <p class="txt-blue">3<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg" alt="icon"/>
+                                <p class="content-title">관리</p>
+                            </div>
+                            <p class="txt-blue">29<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>물품관리</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">신청</p>
+                            </div>
+                            <p class="txt-blue">3<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_check.svg" alt="icon"/>
+                                <p class="content-title">결재</p>
+                            </div>
+                            <p class="txt-blue">29<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop-menu">
+                    <div class="menu-title">
+                        <div>콘도예약</div>
+                        <img src="../../../../resources/svgs/Icon_arrowdownx16 (1).svg" alt="drop-btn" class="drop-btn"/>
+                    </div>
+                    <div class="menu-contents">
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_clipboard_add.svg" alt="icon"/>
+                                <p class="content-title">신청</p>
+                            </div>
+                            <p class="txt-blue">75<span class="s-gray80"> 건</span></p>
+                        </div>
+                        <div class="con-full h-64">
+                            <div class="title-box">
+                                <img src="../../../../resources/svgs/Icon_bold_calendar.svg" alt="icon"/>
+                                <p class="content-title">예약</p>
+                            </div>
+                            <p class="txt-blue">176<span class="s-gray80"> 건</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Profile DropDown End -->
+        </header>
+        <!-- 공통 Header End -->
+
+        <!-- content start -->
+        <main>
+            <div class="board-wrapper">
+                <!-- @note 2023-03-09 -->
+                <section class="board-content">
+                    <!-- @note 조직도 영역 -->
+                    <div class="board-content-left">
+                        <section class="board-group-content color_bg">
+                            <div class="tree-list">
+                                <!-- 바인딩된 data로 jstree 생성하는 부분, /resouces/js/board/index.js에서 처리 -->
+                                <div class="tree-list-bottom" id="jstree">
+                                    <ul class="menu-list"></ul>
+                                </div>
+                            </div>                            
+                        </section>
+                    </div>
+                    <!-- // @note 조직도 영역 -->
+                    <div class="post-content view-content board-content-right">
+                        <!-- @note 2023-03-09 -->
+                        <section class="wrapper-title">
+                            <h1 class="title ph1">무적신고방2</h1>
+                        </section>
+                        <!-- // @note 2023-03-09 -->
+                        <div class="post-view-area">
+                            <!-- 제목 컨텐츠 영역 -->
+                            <div class="post-view-top">
+                                <p class="tit"><span class="mark">[분류]</span> 게시글 제목입니다. 게시글 제목입니다. 게시글 제목입니다. 게시글 제목입니다. 게시글 제목입니다.</p>
+                                <div class="post-write-info">
+                                    <div class="profile-box">
+                                        <div>
+                                            <img src="../../../../resources/svgs/profile.jfif" alt="profile-img">
+                                        </div>
+                                        <div class="my-profile">
+                                            <div>깁지은</div>
+                                            <div>
+                                                <span class="date en">2023.01.01 14:00</span> 
+                                                <span class="state">읽음 3</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tool-box">
+                                        <button class="btn-icon btn-icon border">
+                                            <img src="../../../../resources/svgs/Icon_tool_print.svg" alt="print-img">
+                                        </button>                                       
+                                        <button class="btn-icon btn-icon border">
+                                            <img src="../../../../resources/svgs/Icon_tool_share.svg" alt="share-img">
+                                        </button> 
+                                        <button class="btn-icon btn-icon border">
+                                            <img src="../../../../resources/svgs/Icon_tool-view.svg" alt="view-img">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //제목 컨텐츠 영역 -->
+    
+                            <!-- 게시물 내용 컨텐츠 영역 -->
+                            <table class="post-tb">
+                                <caption>업체명, 이메일, 연락처, 상태 내용이 담겨있는 표</caption>
+                                <colgroup>
+                                    <col style="width: 159px;">
+                                    <col style="width: auto;">
+                                    <col style="width: 159px;">
+                                    <col style="width: auto;">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th><span class="tit">업체명</span></th>
+                                        <td>(주)포스팟</td>
+                                        <th><span class="tit">이메일</span></th>
+                                        <td class="en">kkk123@email.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th><span class="tit">연락처</span></th>
+                                        <td class="en">010-1234-56784</td>
+                                        <th><span class="tit">상태</span></th>
+                                        <td>
+                                            (1234546) 충남 아산시 음봉면 동동리 123
+                                            <button class="map-btn">위치보기</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th><span class="tit">종류</span></th>
+                                        <td>Pallet</td>
+                                        <th><span class="tit">수량</span></th>
+                                        <td class="en">
+                                            1
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+    
+                            <div class="post-view-con">
+                                <div class="post-content-tit">내용</div>
+                                <div class="post-view-editor">
+                                    음봉면 동암리 486 / 기천농산 토종 한우 직판장 뒤 주차장 전봇대 옆에 있음
+                                    위에 종량제 및 분리수거 쓰레기 올려두는것으로 보이며 제 예상이나 지속적으로 해당용도로 사용한 듯 보임
+                                    길가이며 주변 파렛트 사용하는 곳은 없어보이며 별도 문의는 못하였습니다. 우선 제보드립니다.
+                                </div>
+                            </div>
+                            <!-- //게시물 내용 컨텐츠 영역 -->
+    
+                            <!-- 첨부파일 컨텐츠 영역 -->
+                            <div class="post-view-file">
+                                <p class="tit">첨부파일 1개</p>
+                                <div class="file-box">
+                                    <div class="file-each">
+                                        <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                        <p>22046_202252141728_KakaoTalk_20220502_140816459.jpg</p>
+                                        <em class="file-capacity">1.5MB</em>
+                                        <button type="button">
+                                            <img src="../../../../resources/svgs/Icon_file_download.svg" alt="file_download">
+                                        </button>
+                                        <button type="button">
+                                            <img src="../../../../resources/svgs/Icon_file_close.svg" alt="file_close">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //첨부파일 컨텐츠 영역 -->
+    
+                            <!-- 진행 내역 -->
+                            <div class="progress-view-area">	
+                                <div class="post-content-tit">진행내역</div>
+                                
+                                <!-- 진행내역이 아무것도 없을때 -->
+                                <div class="progress-view">
+                                    <ul>
+                                        <li>
+                                            <div class="tp Body3_M">
+                                                담당자지정
+                                            </div>
+                                            <div class="md">
+                                                <button type="button" class="appoint-btn"></button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- //진행내역이 아무것도 없을때-->
+                                
+                                <!-- 진행내역이 하나 이상일때 -->
+                                <div class="progress-view">
+                                    <ul>
+                                        <li class="step step-01"> 
+                                            <div class="tp Body3_M ">
+                                                등록
+                                            </div>
+                                            <div class="md">
+                                                <div class="Body2_B">김지은</div>
+                                                <div class="md-team Body5_R mt5 -color-grey-80">경영지원혁신팀</div>
+                                            </div>
+                                            <div class="bt Body3_R">
+                                                2023.01.09 13:00
+                                            </div>
+                                        </li>
+                                        <li class="step step-02"> 
+                                            <div class="tp Body3_M ">
+                                                진행중
+                                            </div>
+                                            <div class="md">
+                                                <div>
+                                                    <span class="Body2_B">김지은</span>
+                                                    <span class="md-team Body5_R mt5 -color-grey-80 ">경영지원혁신팀</span>
+                                                </div>
+                                                <div class="Small_R --color-grey-100">
+                                                    NPPS, 인트라넷(KLP경인, 수도권지역 본부), 스마트랜스, 스마트폼, 문의 대응
+                                                </div>
+                                            </div>
+                                            <div class="bt Body3_R">
+                                                2023.02.09 11:00
+                                            </div>
+                                        </li>
+                                        <li class="step step-03"> 
+                                            <div class="tp Body3_M ">
+                                                회수완료
+                                            </div>
+                                            <div class="md">
+                                                <div class="collect-info">
+                                                    <div class="lt-cell Body6_R">종류 및 수량</div>
+                                                    <div class="rt-cell">
+                                                        <span class="Body6_B en">pallet</span>
+                                                        <em class="Body6_R --color-grey-80">1</em>
+                                                    </div>
+                                                </div>
+    
+                                                <div class="collect-info">
+                                                    <div class="lt-cell Body6_R">진행사항</div>
+                                                    <div class="rt-cell Body6_R --color-grey-100">
+                                                        실물회수
+                                                        <button type="button" class="result-btn">결과보기</button>
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="more-btn Body6_R">더보기
+                                                    <img src="../../../../resources/svgs/Icon_page_arrow.svg" class="more-btn-img" alt="more-btn">
+                                                </button>
+                                                <div class="more-area">
+                                                    <div class="more-add-file">
+                                                        <div class="file-each">
+                                                            <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                                            <a href="javascript:void(0);" class="Body6_R --color-grey-80">
+                                                                이미지회수전.jpg
+                                                            </a>
+                                                        </div>
+                                                        <div class="file-each">
+                                                            <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                                            <a href="javascript:void(0);" class="Body6_R --color-grey-80">
+                                                                이미지회수후이미지회수후이미지회수.jpg
+                                                            </a>
+                                                        </div>
+                                                    </div> 
+                                                    <p class="Small_R --color-grey-100 mt15">
+                                                        NPPS, 인트라넷(KLP경인, 수도권지역 본부), 스마트랜스, 스마트폼, 문의 대응
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="bt finish Body3_R">
+                                                <span>완료</span> 2023.02.09 11:00
+                                            </div>
+                                        </li>
+                                        <li class="step step-04"> 
+                                            <div class="tp Body3_M ">
+                                                처리완료
+                                            </div>
+                                            <div class="md">
+                                                <div class="md-team Body5_R mt5 -color-grey-80">
+                                                    NPPS, 인트라넷(KLP경인, 수도권지역 본부), 스마트랜스, 스마트폼, 문의 대응
+                                                </div>
+                                            </div>
+                                            <div class="bt Body3_R">
+                                                2023.01.09 13:00
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- //진행내역이 하나 이상일때 -->
+    
+                                <script>
+                                    $(".more-btn").click(function() {                               
+                                        $(this).next(".more-area").toggle();
+                                        $(this).children('.more-btn-img').toggleClass('rotate');
+                                    });
+                                </script>    
+    
+                            </div>
+                            <!-- // 진행 내역 -->
+                            
+                            <!-- 결과내역 -->
+                            <div class="result-view-area">	
+                                <div>
+                                    <div class="post-content-tit">결과내역</div>
+                                    <div class="header-search">
+                                        <input type="text" placeholder="검색어를 입력해주세요">
+                                        <img src="../../../../resources/svgs/Icon_search.svg" alt="search" class="search">
+                                    </div>
+                                </div>
+                                
+                                <div class="rt-bt-area">
+                                    <table class="result-tb">
+                                        <caption>담당구분, 담당자, 상태, 일시, 내용, 첨부파일 내용이 담겨있는 표</caption>
+                                        <colgroup>
+                                            <col style="width: 179px;">
+                                            <col style="width: 179px;">
+                                            <col style="width: 139px;">
+                                            <col style="width: 179px;">
+                                            <col style="width: 540px;">
+                                            <col style="width: 139px;">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">담당구분</th>
+                                                <th scope="col">담당자</th>
+                                                <th scope="col">상태</th>
+                                                <th scope="col">일시</th>
+                                                <th scope="col">내용</th>
+                                                <th scope="col">첨부파일</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                            </tr> 
+                                            <tr>
+                                                <td>회수담당자</td>
+                                                <td>곽대한(아산지점)</td>
+                                                <!-- 
+                                                    mark1 - > 완료
+                                                -->
+                                                <td class="mark1">완료</td>
+                                                <td>2023.02.09 11:00</td>
+                                                <td class="cont">5/3 N11 1매 회수 완료</td>
+                                                <td class="file">
+                                                    <button type="button">
+                                                        <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon"> 
+                                                        1
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>회수담당자</td>
+                                                <td>곽대한(아산지점)</td>
+                                                 <!-- 
+                                                    mark1 - > 완료
+                                                -->
+                                                <td class="mark1">완료</td>
+                                                <td>2023.02.09 11:00</td>
+                                                <td class="cont">5/3 N11 1매 회수 완료</td>
+                                                <td class="file">
+                                                    <button type="button">
+                                                        <img src="../../../../resources/svgs/Icon_file.svg" alt="file_icon">
+                                                        1
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>담당자</td>
+                                                <td>송탁(시스템운영팀)</td>
+                                                <td>협의</td>
+                                                <td>2023.02.09 16:00</td>
+                                                <td class="cont">저장 오류로 인해 처리완료 저장함</td>
+                                                <td class="file"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table> 
+                                </div>
+    
+                            </div>
+                            <!-- // 결과내역 -->
+    
+                            <!-- 댓글영역 -->
+                            <!-- @note 2023-03-06 -->
+                            <div class="reply-view-area">	
+                                <div class="post-content-tit">댓글 0</div>							
+                                <div class="reply-area">
+                                    <!-- 댓글 목록 -->
+                                    <ul class="reply-list">
+                                        <!-- 반복시작 -->
+                                        <li class="list-item">
+                                            <div class="user-info">
+                                                <span class="user-thumb">
+                                                    <img src="../../../../resources/svgs/profile.jfif" alt="profile-img">
+                                                </span>
+                                                <span class="user-name Body5_B">
+                                                    홍길동
+                                                </span>
+                                                <span class="user-date Small_R en">
+                                                    2023.01.04 15:00
+                                                </span>
+                                            </div>
+                                            <div class="reply-cont ">
+                                                <span class="Body2_R">
+                                                    댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 
+                                                    댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <!-- // 반복끝 -->
+                                        <li class="list-item">
+                                            <div class="user-info">
+                                                <span class="user-thumb">
+                                                    <img src="../../../../resources/svgs/profile.jfif" alt="profile-img">
+                                                </span>
+                                                <span class="user-name Body5_B">
+                                                    홍길동
+                                                </span>
+                                                <span class="user-date Small_R en">
+                                                    2023.01.04 15:00
+                                                </span>
+                                            </div>
+                                            <div class="reply-cont ">
+                                                <span class="Body2_R">
+                                                    댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 
+                                                    댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 댓글 댓글나와라 댓글 
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+    
+                                    <!-- 댓글 작성 -->
+                                    <div class="reply-write-area">
+                                        <textarea  placeholder="해당 게시판에 작성하실 내용을 입력해보세요. 최대 한글 100자까지 가능하며 욕설, 광고는 삭제될 수 있습니다." title="댓글 입력란"></textarea>
+                                        <div class="reply-write-area-btn">
+                                            <button class="reply-file btn-icon border">
+                                                <img src="../../../../resources/svgs/Icon_reply_file.svg" alt="reply_file_icon">
+                                            </button>
+                                            <button class="reply-submit">작성</button>
+                                        </div>                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // @note 2023-03-06 -->
+                            <!-- // 댓글영역 -->
+                            <div class="bottom-btn-row taL">
+                                <button type="button" class="btn-border left">목록</button>
+                                <button type="button" class="btn-border">답글</button>
+                                <button type="button" class="btn-border">수정</button>
+                                <button type="button" class="btn-border">삭제</button>
+                            </div>
+                        </div>
+                    </div>   
+                </section>
+                <!-- @note 2023-03-09 -->
+            </div>
+            <!-- content end -->
+        </main>
+    </div>
+
+
+    <!-- layer-popup-1 ~ 3 은 퍼블리싱용입니다 개발시에는 삭제해주세요-->
+    <div class="dim" style=""></div>
+    <!-- 담당자지정 레이어 팝업 영역 -->
+    <div class="layer-popup layer-popup-01">
+        <div class="popup-tit">
+            <span class="tit Body2_M">담당자지정</span>
+        </div>
+        <div class="popup-cont borderB">
+            <ul class="popup-data-write ">
+                <li class="data-write-row">
+                    <div class="label-box">
+                        <span class="Body4_R">부서</span>
+                    </div>
+                    <div class="write-box">
+                        <input type="text" placeholder="">
+                    </div>
+                </li>
+                <li class="data-write-row">
+                    <div class="label-box">
+                        <span class="Body4_R">담당자</span>
+                    </div>
+                    <div class="write-box">
+                        <input type="text" placeholder="">
+                        <div class="btn-box">
+                            <button type="button" class="btn-icon">
+                                <img src="../../../../resources/svgs/Icon_search_w.svg" alt="검색햐기">
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="data-write-row">
+                    <div class="label-box">
+                        <span class="Body4_R">KPP 카카오채널방송</span>
+                    </div>
+                    <div class="write-box">
+                        <div class="switch-btn">
+                            <label class="toggle">
+                                <input class="toggle-checkbox" type="checkbox" checked="">
+                                <div class="toggle-switch"></div>
+                                <span class="toggle-label">Bluetooth</span>
+                            </label>
+                        </div>
+                    </div>
+                </li>
+                <li class="data-write-row">
+                    <div class="label-box">
+                        <span class="Body4_R">SNS 발송</span>
+                    </div>
+                    <div class="write-box">
+                        <div class="switch-btn">
+                            <label class="toggle">
+                                <input class="toggle-checkbox" type="checkbox" checked="">
+                                <div class="toggle-switch"></div>
+                                <span class="toggle-label">Bluetooth</span>
+                            </label>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="popup-btn-box">
+            <button class="btn-border popup-close Body5_M">닫기</button>
+            <button class="btn-blue Body5_M">저장</button>
+        </div>
+    </div>
+    <!-- // 담당자지정 레이어 팝업 영역 -->
+
+    <!-- 진행중 레이어 팝업 영역 -->
+    <div class="layer-popup layer-popup-02">
+        <div class="popup-tit">
+            <span class="tit Body2_M">진행중</span>
+            <!-- <span class="tit Body2_M">처리완료</span> -->
+        </div>
+        <div class="popup-cont borderB">
+            <ul class="popup-data-write ">
+                <li class="data-write-row">
+                    <div class="label-box">
+                        <span class="Body4_R">처리일자</span>
+                    </div>
+                    <div class="write-box">
+                        <div class="datepicker datepicker-single size-l">
+                            <div class="date">2022.12.19</div>
+                            <input type="hidden" name="" id="" value="">
+                        </div>
+                    </div>
+                </li>
+                <li class="data-write-row">
+                    <div class="label-box">
+                        <span class="Body4_R">문의구분</span>
+                    </div>
+                    <div class="write-box">
+                        <div class="select-box size-l">                                
+                            <input type="hidden" name="option-value" value="" id="select-input">
+                            <button class="select-label" type="button">전체</button>
+                            <ul class="option" id="select-options2" style="display: none;">
+                                <!-- /resouces/js/board/index.js에서 처리 -->
+                                <li class="option-item">분류1</li>
+                                <li class="option-item">분류2</li>
+                            </ul>                                
+                        </div>
+                    </div>
+                </li>
+                <li class="data-write-row etc-row">
+                    <div class="label-box">
+                        <span class="Body4_R">임대</span>
+                    </div>
+                    <div class="write-box">
+                        <ul class="wt-kind">
+                            <li class="tit">
+                                <div class="lt">유형</div>
+                                <div class="ct">구내용</div>
+                                <div class="ct-0">수송용</div>
+                                <div class="rt">운반비</div>
+                            </li>
+                            <li class="cont">
+                                <div class="lt">N11</div>
+                                <div class="ct"></div>
+                                <div class="ct-0"></div>
+                                <div class="rt"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="data-write-row etc-row">
+                    <div class="label-box">
+                        <span class="Body4_R">메모</span>
+                    </div>
+                    <div class="write-box">
+                        <textarea id="memo" name="memo">
+                            NPPS, 인트라넷(KLP경인, 수도권지역 본부), 스마트랜스, 스마트폼, 문의 대응
+                        </textarea>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="popup-btn-box">
+            <button class="btn-border popup-close Body5_M">닫기</button>
+            <button class="btn-blue Body5_M">저장</button>
+        </div>
+    </div>
+    <!-- // 진행중 레이어 팝업 영역 -->
+
+    <!-- jQuery -->
+    <script src="../../../../resources/lib/jquery-migrate-1.4.1.min.js"></script>
+    <!-- jsTree -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <!-- datepicker -->
+    <script type="text/javascript" src="../../../../resources/lib/moment.min.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/datepicker.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/timepicker.js"></script>
+    <script type="text/javascript" src="../../../../resources/lib/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../../resources/css/daterangepicker.css" />
+    <!-- data load / functions -->
+    <script src="../../../../resources/js/user/board/index.js"></script>
+</body>
+
+</html>
